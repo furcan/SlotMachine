@@ -1,2 +1,2 @@
-# SlotMachine
+# Slot Machine
 Slot Machine Simulation
