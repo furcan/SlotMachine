@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 
-type TReduxSlotData = string[]; // TODO: enum
+type TReduxSlotData = number[];
 
 interface IReduxSlotVisibleIndexes {
   top: number;

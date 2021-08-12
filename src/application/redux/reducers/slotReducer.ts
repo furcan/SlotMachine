@@ -1,14 +1,17 @@
 
+import { constants } from 'application/constants';
+import { ESymbols } from 'application/enumerations/symbols';
 import { generateRandomNumberBetween } from 'application/helpers';
 
 import { IReduxSlotActions, IReduxSlotState, rdxSlotActionTypes } from 'application/redux';
+
 
 const slotInitialState: IReduxSlotState = {
   stateSlotIsWelcome: false, // TODO: will be true after dev
   stateSlotCanBePlayed: true,
   stateSlotIsSpinning: false,
   stateSlotSpinningHasEnded: false,
-  stateSlotData: Array(20).fill(['symbol1', 'symbol2', 'symbol3', 'symbol4', 'symbol5']).flat(), // TODO: will be enum && 20 => constants
+  stateSlotData: Array(constants.settings.dataDuplication).fill([ESymbols.THREEXBAR, ESymbols.BAR, ESymbols.TWOXBAR, ESymbols.SEVEN, ESymbols.CHERRY]).flat(),
   stateSlotAchievements: {
     lineTopAchievements: '',
     lineCenterAchievements: '',

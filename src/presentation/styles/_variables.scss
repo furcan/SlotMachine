@@ -12,14 +12,14 @@ $color_black: #000;
 $color_white: #fff;
 $color_dark: #1e1e1e;
 $color_light: #f8f8f8;
-$color_gray_dark: #6f6f6f;
+$color_gray_dark: #333333;
 $color_gray_medium: #919191;
 $color_gray_light: #eee;
 $color_theme_dark: #2b3b42;
 $color_theme_light: #f4f4f4;
 $color_theme_green: #00e089;
 $color_theme_red: #ff5549;
-$color_theme_yellow: #ff9801;
+$color_theme_yellow: #ffcc00;
 $color_theme_blue: #26c0d3;
 
 // transitions
@@ -44,6 +44,11 @@ $font_family_base: "Red Hat Display", sans-serif;
 $font_size_base: 0.9rem;
 $font_lineheight_base: 1.3;
 $font_weight_base: 400;
+
+// calculations
+$count_reels: 3;
+$size_symbol_mobile: 6.25rem;
+$size_symbol_desktop: 7.5rem;
 
 // mixins
 @import "mixins";

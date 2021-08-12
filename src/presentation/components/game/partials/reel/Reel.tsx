@@ -1,4 +1,5 @@
-import { EReelsPositions, getReelsPositionsDesc } from 'application/enumerations/reels';
+import { EReelsPositions, getReelsPositionsValue } from 'application/enumerations/reels';
+import { getSymbolsValue } from 'application/enumerations/symbols';
 import { TReduxSlotData, IReduxSlotVisibleIndexes } from 'application/redux';
 
 import 'presentation/components/game/partials/reel/Reel.scss';
@@ -16,8 +17,8 @@ interface IReel {
 
 function Reel({ classNamePrefix, slotData, refReel, refsSymbol, achievedIndexes, position, hasEnded }: IReel): JSX.Element {
   return (
-    <div className={`${classNamePrefix}__reel ${classNamePrefix}__reel--${getReelsPositionsDesc(position)}`} ref={refReel}>
-      {slotData?.map((symbol: string, index: number) => {
+    <div className={`${classNamePrefix}__reel ${classNamePrefix}__reel--${getReelsPositionsValue(position)}`} ref={refReel}>
+      {slotData?.map((symbol: number, index: number) => {
         const classNameTop = hasEnded && achievedIndexes.top === index ? 'state--top' : '';
         const classNameCenter = hasEnded && achievedIndexes.center === index ? 'state--center' : '';
         const classNameBottom = hasEnded && achievedIndexes.bottom === index ? 'state--bottom' : '';
@@ -29,7 +30,7 @@ function Reel({ classNamePrefix, slotData, refReel, refsSymbol, achievedIndexes,
             data-achievement={symbol}
             className={[`${classNamePrefix}__reel__symbol`, classNameTop, classNameCenter, classNameBottom].join(' ').trim()}
           >
-            <span>{`${symbol} - ${index + 1}`}</span>
+            <img className={`${classNamePrefix}__reel__symbol__image`} src={getSymbolsValue(symbol)} width="90" height="77" alt="TODO:" />
           </div>
         );
       })}

@@ -1,5 +1,6 @@
 {
   "name": "slot-machine",
+  "description": "Slot Machine",
   "homepage": "https://furcan.github.io/SlotMachine/",
   "version": "1.0.0-Beta.01",
   "private": true,

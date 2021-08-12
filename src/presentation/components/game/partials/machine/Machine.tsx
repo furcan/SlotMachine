@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
+import { constants } from 'application/constants';
 import { EReelsPositions } from 'application/enumerations/reels';
 import { rdxSlotSelector } from 'application/redux';
 
@@ -27,7 +28,8 @@ function Machine(): JSX.Element { // TODO:
 
   return (
     <div className="machine">
-      <div className={`machine__reels ${stateSlotIsSpinning ? 'machine__reels--spinning' : ''}`}>
+      <div className={[`machine__reels`, `${stateSlotIsSpinning ? 'machine__reels--spinning' : ''}`].join(' ').trim()}>
+        <h2 className="machine__reels__title">{constants.text.machineName}</h2>
         <Reel
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}

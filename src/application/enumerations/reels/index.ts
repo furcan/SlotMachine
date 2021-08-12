@@ -10,11 +10,11 @@ const mapReelsPositions = new Map<number, string>([
   [EReelsPositions.RIGHT, `right`],
 ]);
 
-const getReelsPositionsDesc = (enumeration: number): string => {
+const getReelsPositionsValue = (enumeration: number): string => {
   return mapReelsPositions.get(enumeration) || '';
 };
 
 export {
   EReelsPositions,
-  getReelsPositionsDesc,
+  getReelsPositionsValue,
 };

@@ -1,4 +1,3 @@
-
 import Machine from 'presentation/components/game/partials/machine/Machine';
 
 import 'presentation/components/game/Game.scss';

@@ -1,5 +1,5 @@
 // media
-@mixin media_up($width_as_rem) {
+@mixin media_up($width_as_rem: $breakpoint_tablet) {
   @media only screen and (min-width: #{$width_as_rem}) {
     @content;
   }
