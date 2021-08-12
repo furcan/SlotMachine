@@ -46,6 +46,8 @@ interface IReduxSlotState {
 }
 
 interface IReduxSlotActionTypes {
+  SLOT_WELLCOME: string;
+  SLOT_START: string;
   SLOT_RESTART: string;
   SLOT_ISSPINNING: string;
   SLOT_SPINNINGHASENDED: string;

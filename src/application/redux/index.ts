@@ -11,6 +11,8 @@ import {
 
 import {
   rdxSlotActionTypes,
+  rdxSlotWelcomeAsync,
+  rdxSlotStartAsync,
   rdxSlotRestartAsync,
   rdxSlotIsSpinningAsync,
   rdxSlotHasEndedAsync,
@@ -33,6 +35,8 @@ export type {
 
 export {
   rdxSlotActionTypes,
+  rdxSlotWelcomeAsync,
+  rdxSlotStartAsync,
   rdxSlotRestartAsync,
   rdxSlotIsSpinningAsync,
   rdxSlotHasEndedAsync,

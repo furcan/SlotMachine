@@ -12,6 +12,8 @@ import {
 } from 'application/redux';
 
 const rdxSlotActionTypes: IReduxSlotActionTypes = {
+  SLOT_WELLCOME: 'SLOT_START',
+  SLOT_START: 'SLOT_START',
   SLOT_RESTART: 'SLOT_RESTART',
   SLOT_ISSPINNING: 'SLOT_ISSPINNING',
   SLOT_SPINNINGHASENDED: 'SLOT_SPINNINGHASENDED',
@@ -19,6 +21,14 @@ const rdxSlotActionTypes: IReduxSlotActionTypes = {
   SLOT_LUCKYNUMBERS: 'SLOT_LUCKYNUMBERS',
   SLOT_ACHIEVEMENTS: 'SLOT_ACHIEVEMENTS',
 };
+
+const slotWelcome = (): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_WELLCOME,
+});
+
+const slotStart = (): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_RESTART,
+});
 
 const slotRestart = (): IReduxSlotActions => ({
   type: rdxSlotActionTypes.SLOT_RESTART,
@@ -50,6 +60,14 @@ const slotAchievements = (achievements: IReduxSlotAchievements): IReduxSlotActio
 });
 
 
+const rdxSlotWelcomeAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotWelcome());
+};
+
+const rdxSlotStartAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotStart());
+};
+
 const rdxSlotRestartAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
   dispatch(slotRestart());
 };
@@ -80,6 +98,8 @@ const rdxSlotSelector = (state: IReduxSlotState): IReduxSlotState => state.slotR
 
 export {
   rdxSlotActionTypes,
+  rdxSlotWelcomeAsync,
+  rdxSlotStartAsync,
   rdxSlotRestartAsync,
   rdxSlotIsSpinningAsync,
   rdxSlotHasEndedAsync,

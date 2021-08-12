@@ -49,8 +49,20 @@ const slotInitialState: IReduxSlotState = {
 /* eslint-disable indent */
 const slotReducer = (state = slotInitialState, action: IReduxSlotActions): IReduxSlotState => {
   switch (action.type) {
-    case rdxSlotActionTypes.SLOT_RESTART:
+    case rdxSlotActionTypes.SLOT_WELLCOME:
       return slotInitialState;
+
+    case rdxSlotActionTypes.SLOT_START:
+      return {
+        ...slotInitialState,
+        stateSlotIsWelcome: false,
+      };
+
+    case rdxSlotActionTypes.SLOT_RESTART:
+      return {
+        ...slotInitialState,
+        stateSlotIsWelcome: false,
+      };
 
     case rdxSlotActionTypes.SLOT_ISSPINNING:
       return {
