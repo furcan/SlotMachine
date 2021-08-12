@@ -1,2 +1,0 @@
-(this["webpackJsonpslot-machine"]=this["webpackJsonpslot-machine"]||[]).push([[0],{9:function(e,t,c){"use strict";c.r(t);var n=c(1),i=c.n(n),s=c(3),r=c(0);var d=function(){return Object(r.jsx)("div",{children:Object(r.jsx)("h1",{children:"TEST"})})},j=function(){return Object(r.jsx)(i.a.StrictMode,{children:Object(r.jsx)(d,{})})},o=window.document.getElementById("SlotMachineApp");(null===o||void 0===o?void 0:o.hasChildNodes())?Object(s.hydrate)(Object(r.jsx)(j,{}),o):Object(s.render)(Object(r.jsx)(j,{}),o)}},[[9,1,2]]]);
-//# sourceMappingURL=main.f12e3e0f.chunk.js.map
