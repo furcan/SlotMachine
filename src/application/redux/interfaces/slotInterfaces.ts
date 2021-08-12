@@ -1,5 +1,15 @@
 import { Dispatch } from 'redux';
 
+import { EReelsPositions } from 'application/enumerations/reels';
+
+type TReduxSlotData = string[]; // TODO: enum
+
+
+interface IReduxSlotVisibleIndexes {
+  top: number;
+  center: number;
+  bottom: number;
+}
 
 interface IReduxSlotLuckyLines {
   left: number;
@@ -17,28 +27,16 @@ interface IReduxSlotAchievements {
   lineTopAchievements: string;
   lineCenterAchievements: string;
   lineBottomAchievements: string;
-  reelLeftVisibleIndexes: {
-    top: number;
-    center: number;
-    bottom: number;
-  };
-  reelCenterVisibleIndexes: {
-    top: number;
-    center: number;
-    bottom: number;
-  };
-  reelRightVisibleIndexes: {
-    top: number;
-    center: number;
-    bottom: number;
-  };
+  reelLeftVisibleIndexes: IReduxSlotVisibleIndexes;
+  reelCenterVisibleIndexes: IReduxSlotVisibleIndexes;
+  reelRightVisibleIndexes: IReduxSlotVisibleIndexes;
 }
 
 interface IReduxSlotState {
   stateSlotIsWelcome: boolean;
   stateSlotIsSpinning: boolean;
   stateSlotSpinningHasEnded: boolean;
-  stateSlotData: string[];
+  stateSlotData: TReduxSlotData;
   stateSlotLuckyLines: IReduxSlotLuckyLines,
   stateSlotLuckyNumbers: IReduxSlotLuckyNumbers,
   stateSlotAchievements: IReduxSlotAchievements,
@@ -70,6 +68,8 @@ interface IReduxSlotDispatch {
 }
 
 export type {
+  IReduxSlotVisibleIndexes,
+  TReduxSlotData,
   IReduxSlotLuckyLines,
   IReduxSlotLuckyNumbers,
   IReduxSlotAchievements,

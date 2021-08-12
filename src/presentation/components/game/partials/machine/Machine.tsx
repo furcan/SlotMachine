@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
+import { EReelsPositions } from 'application/enumerations/reels';
 import {
   rdxSlotSelector,
   rdxSlotRestartAsync,
@@ -11,7 +13,7 @@ import {
   rdxSlotAchievementsAsync,
 } from 'application/redux';
 
-import { elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
+import Reel from 'presentation/components/game/partials/reel/Reel';
 
 import 'presentation/components/game/partials/machine/Machine.scss';
 
@@ -30,9 +32,9 @@ function Machine(): JSX.Element { // TODO:
   const refReelLeft = useRef<HTMLDivElement>(null);
   const refReelCenter = useRef<HTMLDivElement>(null);
   const refReelRight = useRef<HTMLDivElement>(null);
-  const refsSymbolsLeft = useRef<(HTMLButtonElement | null)[]>([]);
-  const refsSymbolsCenter = useRef<(HTMLButtonElement | null)[]>([]);
-  const refsSymbolsRight = useRef<(HTMLButtonElement | null)[]>([]);
+  const refsSymbolsLeft = useRef<(HTMLDivElement | null)[]>([]);
+  const refsSymbolsCenter = useRef<(HTMLDivElement | null)[]>([]);
+  const refsSymbolsRight = useRef<(HTMLDivElement | null)[]>([]);
 
 
   const spinHandlerAsync = async (luckyNum1: number, luckyNum2: number, luckyNum3: number): Promise<void> => {
@@ -121,65 +123,37 @@ function Machine(): JSX.Element { // TODO:
         <span>TEST BUTTON ({`${stateSlotLuckyNumbers.left}, ${stateSlotLuckyNumbers.center}, ${stateSlotLuckyNumbers.right}`})</span>
       </button>
 
+      <br />
+      <br />
+
       <div className={`machine ${stateSlotIsSpinning ? 'machine--spinning' : ''}`}>
-
-        <div className="machine__reel machine__reel--left" ref={refReelLeft}>
-          {stateSlotData?.map((symbol: string, index: number) => {
-            const classNameTop = stateSlotSpinningHasEnded && stateSlotAchievements.reelLeftVisibleIndexes.top === index ? 'state--top' : '';
-            const classNameCenter = stateSlotSpinningHasEnded && stateSlotAchievements.reelLeftVisibleIndexes.center === index ? 'state--center' : '';
-            const classNameBottom = stateSlotSpinningHasEnded && stateSlotAchievements.reelLeftVisibleIndexes.bottom === index ? 'state--bottom' : '';
-
-            return (
-              <button
-                key={index}
-                ref={_this => refsSymbolsLeft.current[index] = _this}
-                data-achievement={symbol}
-                className={['machine__reel__symbol', classNameTop, classNameCenter, classNameBottom].join(' ').trim()}
-              >
-                <span>{`${symbol} - ${index + 1}`}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="machine__reel machine__reel--center" ref={refReelCenter}>
-          {stateSlotData?.map((symbol: string, index: number) => {
-            const classNameTop = stateSlotSpinningHasEnded && stateSlotAchievements.reelCenterVisibleIndexes.top === index ? 'state--top' : '';
-            const classNameCenter = stateSlotSpinningHasEnded && stateSlotAchievements.reelCenterVisibleIndexes.center === index ? 'state--center' : '';
-            const classNameBottom = stateSlotSpinningHasEnded && stateSlotAchievements.reelCenterVisibleIndexes.bottom === index ? 'state--bottom' : '';
-
-            return (
-              <button
-                key={index}
-                ref={_this => refsSymbolsCenter.current[index] = _this}
-                data-achievement={symbol}
-                className={['machine__reel__symbol', classNameTop, classNameCenter, classNameBottom].join(' ').trim()}
-              >
-                <span>{`${symbol} - ${index + 1}`}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="machine__reel machine__reel--right" ref={refReelRight}>
-          {stateSlotData?.map((symbol: string, index: number) => {
-            const classNameTop = stateSlotSpinningHasEnded && stateSlotAchievements.reelRightVisibleIndexes.top === index ? 'state--top' : '';
-            const classNameCenter = stateSlotSpinningHasEnded && stateSlotAchievements.reelRightVisibleIndexes.center === index ? 'state--center' : '';
-            const classNameBottom = stateSlotSpinningHasEnded && stateSlotAchievements.reelRightVisibleIndexes.bottom === index ? 'state--bottom' : '';
-
-            return (
-              <button
-                key={index}
-                ref={_this => refsSymbolsRight.current[index] = _this}
-                data-achievement={symbol}
-                className={['machine__reel__symbol', classNameTop, classNameCenter, classNameBottom].join(' ').trim()}
-              >
-                <span>{`${symbol} - ${index + 1}`}</span>
-              </button>
-            );
-          })}
-        </div>
-
+        <Reel
+          classNamePrefix={'machine'}
+          slotData={stateSlotData}
+          refReel={refReelLeft}
+          refsSymbol={refsSymbolsLeft}
+          achievedIndexes={stateSlotAchievements.reelLeftVisibleIndexes}
+          position={EReelsPositions.LEFT}
+          hasEnded={stateSlotSpinningHasEnded}
+        />
+        <Reel
+          classNamePrefix={'machine'}
+          slotData={stateSlotData}
+          refReel={refReelCenter}
+          refsSymbol={refsSymbolsCenter}
+          achievedIndexes={stateSlotAchievements.reelCenterVisibleIndexes}
+          position={EReelsPositions.CENTER}
+          hasEnded={stateSlotSpinningHasEnded}
+        />
+        <Reel
+          classNamePrefix={'machine'}
+          slotData={stateSlotData}
+          refReel={refReelRight}
+          refsSymbol={refsSymbolsRight}
+          achievedIndexes={stateSlotAchievements.reelRightVisibleIndexes}
+          position={EReelsPositions.RIGHT}
+          hasEnded={stateSlotSpinningHasEnded}
+        />
       </div>
     </>
   );
