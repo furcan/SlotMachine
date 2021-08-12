@@ -1,6 +1,9 @@
 import { EReelsPositions, getReelsPositionsDesc } from 'application/enumerations/reels';
 import { TReduxSlotData, IReduxSlotVisibleIndexes } from 'application/redux';
 
+import 'presentation/components/game/partials/reel/Reel.scss';
+
+
 interface IReel {
   classNamePrefix: string;
   slotData: TReduxSlotData;

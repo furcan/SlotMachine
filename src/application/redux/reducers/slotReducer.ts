@@ -5,9 +5,10 @@ import { IReduxSlotActions, IReduxSlotState, rdxSlotActionTypes } from 'applicat
 
 const slotInitialState: IReduxSlotState = {
   stateSlotIsWelcome: false, // TODO: will be true after dev
+  stateSlotCanBePlayed: true,
   stateSlotIsSpinning: false,
   stateSlotSpinningHasEnded: false,
-  stateSlotData: Array(20).fill(['symbol1', 'symbol2', 'symbol3', 'symbol4', 'symbol5']).flat(), // TODO:
+  stateSlotData: Array(20).fill(['symbol1', 'symbol2', 'symbol3', 'symbol4', 'symbol5']).flat(), // TODO: will be enum && 20 => constants
   stateSlotAchievements: {
     lineTopAchievements: '',
     lineCenterAchievements: '',
@@ -29,9 +30,10 @@ const slotInitialState: IReduxSlotState = {
     },
   },
   stateSlotLuckyLines: {
-    // TODO: will be enum => 0 => top || random
-    // TODO: will be enum => 1 => center || random
-    // TODO: will be enum => 2 => bottom || random
+    // TODO: debug mode or random mode
+    // TODO: random will be enum => 0 => top || random
+    // TODO: random will be enum => 1 => center || random
+    // TODO: random will be enum => 2 => bottom || random
     // left: generateRandomNumberBetween(0, 2),
     // center: generateRandomNumberBetween(0, 2),
     // right: generateRandomNumberBetween(0, 2),
@@ -40,6 +42,8 @@ const slotInitialState: IReduxSlotState = {
     right: 1,
   },
   stateSlotLuckyNumbers: {
+    // TODO: debug mode or random mode
+    // TODO: random mode: will be 1x - 5x
     left: generateRandomNumberBetween(6, 94),
     center: generateRandomNumberBetween(6, 94),
     right: generateRandomNumberBetween(6, 94),
@@ -67,12 +71,14 @@ const slotReducer = (state = slotInitialState, action: IReduxSlotActions): IRedu
     case rdxSlotActionTypes.SLOT_ISSPINNING:
       return {
         ...state,
+        stateSlotCanBePlayed: false,
         stateSlotIsSpinning: action.actionIsSpinning === true,
       };
 
     case rdxSlotActionTypes.SLOT_SPINNINGHASENDED:
       return {
         ...state,
+        stateSlotCanBePlayed: true,
         stateSlotSpinningHasEnded: action.actionHasEnded === true,
       };
 

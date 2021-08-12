@@ -1,9 +1,6 @@
 import { Dispatch } from 'redux';
 
-import { EReelsPositions } from 'application/enumerations/reels';
-
 type TReduxSlotData = string[]; // TODO: enum
-
 
 interface IReduxSlotVisibleIndexes {
   top: number;
@@ -34,6 +31,7 @@ interface IReduxSlotAchievements {
 
 interface IReduxSlotState {
   stateSlotIsWelcome: boolean;
+  stateSlotCanBePlayed: boolean;
   stateSlotIsSpinning: boolean;
   stateSlotSpinningHasEnded: boolean;
   stateSlotData: TReduxSlotData;

@@ -3,7 +3,7 @@ const addSomeDelayAsync = (milliseconds?: number): Promise<void> => new Promise(
 const elementScrollToWithDurationAsync = async (element: HTMLElement, to: number, duration: number): Promise<void> => new Promise(resolve => {
   const start = element.scrollTop;
   const diff = to - start;
-  const increment = 10;
+  const increment = Math.floor(duration / 100) < 10 ? 10 : Math.floor(duration / 100);
   let currentTime = 0;
 
   const easeInOutQuad = (crrntTm: number, strt: number, dff: number, drtn: number): number => {
