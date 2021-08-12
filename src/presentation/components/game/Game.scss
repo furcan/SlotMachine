@@ -1,0 +1,11 @@
+@import "presentation/styles/variables";
+
+.game {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto;
+}

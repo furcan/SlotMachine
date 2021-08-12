@@ -74,7 +74,7 @@ const rdxSlotRestartAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<
 
 const rdxSlotIsSpinningAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
   dispatch(slotIsSpinning(true));
-  await addSomeDelayAsync(1500);
+  await addSomeDelayAsync(1000); // todo: 2000 - 500 - 500
   dispatch(slotIsSpinning(false));
 };
 
