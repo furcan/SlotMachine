@@ -1,0 +1,24 @@
+@import "presentation/styles/variables";
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: $color_white;
+  background: $color_theme_dark;
+
+  &__container {
+    width: 100%;
+    max-width: $breakpoint_laptop;
+    margin: 0 auto;
+    padding: 1.75rem 1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

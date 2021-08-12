@@ -1,0 +1,92 @@
+@import "variables";
+
+// Reset: begin
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: none;
+  user-select: none;
+}
+
+body {
+  width: 100%;
+  max-width: $breakpoint_max;
+  overflow-x: hidden;
+  margin: 0 auto;
+  padding: 0;
+  color: $color_white;
+  background: $color_theme_dark;
+  font-family: $font_family_base;
+  font-size: $font_size_base;
+  line-height: $font_lineheight_base;
+  font-weight: $font_weight_base;
+}
+
+button,
+a {
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  outline: none;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+button[disabled] {
+  pointer-events: none;
+}
+
+img {
+  font-size: 0.5rem;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+input,
+select,
+option {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+*::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba($color_black, 0.05);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba($color_black, 0.2);
+  cursor: pointer;
+}
+
+* {
+  scrollbar-color: rgba($color_black, 0.2) rgba($color_black, 0.05);
+  scrollbar-width: thin;
+}
+// Reset: end

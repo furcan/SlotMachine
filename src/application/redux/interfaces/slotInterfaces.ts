@@ -35,6 +35,7 @@ interface IReduxSlotAchievements {
 }
 
 interface IReduxSlotState {
+  stateSlotIsWelcome: boolean;
   stateSlotIsSpinning: boolean;
   stateSlotSpinningHasEnded: boolean;
   stateSlotData: string[];

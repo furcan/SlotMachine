@@ -1,0 +1,6 @@
+// media
+@mixin media_up($width_as_rem) {
+  @media only screen and (min-width: #{$width_as_rem}) {
+    @content;
+  }
+}

@@ -4,6 +4,7 @@ import { generateRandomNumberBetween } from 'application/helpers';
 import { IReduxSlotActions, IReduxSlotState, rdxSlotActionTypes } from 'application/redux';
 
 const slotInitialState: IReduxSlotState = {
+  stateSlotIsWelcome: true,
   stateSlotIsSpinning: false,
   stateSlotSpinningHasEnded: false,
   stateSlotData: Array(20).fill(['symbol1', 'symbol2', 'symbol3', 'symbol4', 'symbol5']).flat(), // TODO:

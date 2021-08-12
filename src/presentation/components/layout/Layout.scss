@@ -1,0 +1,40 @@
+@import "presentation/styles/variables";
+
+.layout {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__container {
+    width: 100%;
+    max-width: $breakpoint_laptop;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: $color_dark;
+    background: $color_white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include media_up($breakpoint_tablet) {
+      padding: 2rem;
+    }
+  }
+}

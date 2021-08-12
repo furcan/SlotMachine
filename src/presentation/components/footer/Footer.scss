@@ -1,0 +1,33 @@
+@import "presentation/styles/variables";
+
+.footer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: $color_white;
+  background: $color_theme_dark;
+
+  &__container {
+    width: 100%;
+    max-width: $breakpoint_laptop;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  &__copyright {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+
+    &__text {
+      font-size: 0.75rem;
+    }
+  }
+}

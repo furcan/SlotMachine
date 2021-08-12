@@ -9,6 +9,8 @@ import { appReducers } from 'application/redux/reducers';
 
 import App from 'presentation/App';
 
+import 'presentation/styles/global.scss';
+
 const SlotMachineApp = () => {
   const store = createStore(appReducers, composeWithDevTools(applyMiddleware(thunk)));
   return (

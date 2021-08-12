@@ -1,0 +1,49 @@
+// breakpoints
+$breakpoint_min: 20rem; // 320px
+$breakpoint_mobile: 34rem; // 544px
+$breakpoint_tablet: 48rem; // 768px
+$breakpoint_minibook: 64rem; // 1024px
+$breakpoint_laptop: 75rem; // 1200px
+$breakpoint_pc: 84rem; // 1344px
+$breakpoint_max: 240rem; // 3840px
+
+// colors
+$color_black: #000;
+$color_white: #fff;
+$color_dark: #1e1e1e;
+$color_light: #f8f8f8;
+$color_gray_dark: #6f6f6f;
+$color_gray_medium: #919191;
+$color_gray_light: #eee;
+$color_theme_dark: #2b3b42;
+$color_theme_light: #f4f4f4;
+$color_theme_green: #00e089;
+$color_theme_red: #ff5549;
+$color_theme_yellow: #ff9801;
+$color_theme_blue: #26c0d3;
+
+// transitions
+$transition_delay_base: 0.25s;
+$transition_base: all 0.25s ease-in-out;
+$transition_transform: transform 0.25s linear;
+$transition_opacity: opacity 0.25s ease-in-out;
+$transition_visibility: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
+$transition_background: background 0.25s ease-in-out;
+$transition_color: color 0.25s ease-in-out;
+$transition_border: border 0.1s ease-in-out;
+
+// box-shadows
+$box_shadow_base: 0 0 2rem -1rem rgba($color_black, 0.2);
+$box_shadow_30: 0 0 2rem -1rem rgba($color_black, 0.3);
+$box_shadow_40: 0 0 2rem -1rem rgba($color_black, 0.4);
+$box_shadow_50: 0 0 2rem -1rem rgba($color_black, 0.5);
+$box_shadow_bottom_base: 0 0.5rem 2rem -1rem rgba($color_black, 0.2);
+
+// typography
+$font_family_base: "Red Hat Display", sans-serif;
+$font_size_base: 0.9rem;
+$font_lineheight_base: 1.3;
+$font_weight_base: 400;
+
+// mixins
+@import "mixins";
