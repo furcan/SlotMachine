@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { VscSettings as IconSpin } from 'react-icons/vsc';
 
 import { constants } from 'application/constants';
-import { ESymbols } from 'application/enumerations/symbols';
+import { ESymbols, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
 import { elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
 import { rdxSlotSelector, rdxSlotIsSpinningAsync, rdxSlotHasEndedAsync, rdxSlotAchievementsAsync } from 'application/redux';
 
@@ -29,7 +29,7 @@ function ButtonSpin({
   refsSymbolsRight,
 }: IButtonSpin): JSX.Element {
   const dispatch = useDispatch();
-  const { stateDebugMode, stateSlotCanBePlayed, stateSlotData } = useSelector(rdxSlotSelector);
+  const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
 
 
   const spinButtonOnClickHandlerAsync = async (): Promise<void> => {
@@ -48,13 +48,12 @@ function ButtonSpin({
     // Get/Set the Lucky Lines: end
 
     // Get/Set the Lucky Numbers: Begin
-    const symbolsLength = Object.keys(ESymbols).length / 2;
-    const randomMin = symbolsLength * 2;
-    const randomMax = stateSlotData.length - (2 * symbolsLength);
+    const minSymbolsCountForRandom = symbolsValuesAsArrayOfNumber.length * 2;
+    const maxSymbolsCountForRandom = (symbolsValuesAsArrayOfNumber.length * constants.settings.dataDuplication) - (2 * symbolsValuesAsArrayOfNumber.length);
     const luckyNumbers = {
-      left: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.left : generateRandomNumberBetween(randomMin, randomMax),
-      center: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.center : generateRandomNumberBetween(randomMin, randomMax),
-      right: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.right : generateRandomNumberBetween(randomMin, randomMax),
+      left: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.left : generateRandomNumberBetween(minSymbolsCountForRandom, maxSymbolsCountForRandom),
+      center: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.center : generateRandomNumberBetween(minSymbolsCountForRandom, maxSymbolsCountForRandom),
+      right: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.right : generateRandomNumberBetween(minSymbolsCountForRandom, maxSymbolsCountForRandom),
     };
     // Get/Set the Lucky Numbers: end
 

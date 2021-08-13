@@ -8,10 +8,14 @@ import {
   IReduxSlotAchievements,
   IReduxSlotActionTypes,
   IReduxSlotActions,
+  IReduxSlotLuckyLines,
+  IReduxSlotLuckyNumbers,
 } from 'application/redux';
 
 const rdxSlotActionTypes: IReduxSlotActionTypes = {
   SLOT_ISDEBUGMODE: 'SLOT_ISDEBUGMODE',
+  SLOT_DEBUGMODELUCKYLINES: 'SLOT_DEBUGMODELUCKYLINES',
+  SLOT_DEBUGMODELUCKYNUMBERS: 'SLOT_DEBUGMODELUCKYNUMBERS',
   SLOT_WELLCOME: 'SLOT_START',
   SLOT_START: 'SLOT_START',
   SLOT_ISSPINNING: 'SLOT_ISSPINNING',
@@ -48,6 +52,16 @@ const slotSwitchToDebugMode = (toggle: boolean): IReduxSlotActions => ({
   actionIsDebugMode: toggle,
 });
 
+const slotLuckyLinesForDebugMode = (lines: IReduxSlotLuckyLines): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_DEBUGMODELUCKYLINES,
+  actionDebugLuckyLines: lines,
+});
+
+const slotLuckyNumbersForDebugMode = (numbers: IReduxSlotLuckyNumbers): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_DEBUGMODELUCKYNUMBERS,
+  actionDebugLuckyNumbers: numbers,
+});
+
 
 const rdxSlotWelcomeAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
   dispatch(slotWelcome());
@@ -75,6 +89,14 @@ const rdxSlotSwitchToDebugModeAsync = (toggle: boolean): IReduxSlotDispatch => a
   dispatch(slotSwitchToDebugMode(toggle));
 };
 
+const rdxSlotLuckyLinesForDebugModeAsync = (lines: IReduxSlotLuckyLines): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotLuckyLinesForDebugMode(lines));
+};
+
+const rdxSlotLuckyNumbersForDebugModeAsync = (numbers: IReduxSlotLuckyNumbers): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotLuckyNumbersForDebugMode(numbers));
+};
+
 const rdxSlotSelector = (state: IReduxSlotState): IReduxSlotState => state.slotReducer;
 
 export {
@@ -85,5 +107,7 @@ export {
   rdxSlotHasEndedAsync,
   rdxSlotAchievementsAsync,
   rdxSlotSwitchToDebugModeAsync,
+  rdxSlotLuckyLinesForDebugModeAsync,
+  rdxSlotLuckyNumbersForDebugModeAsync,
   rdxSlotSelector,
 };

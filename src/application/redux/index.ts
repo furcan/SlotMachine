@@ -21,6 +21,8 @@ import {
   rdxSlotHasEndedAsync,
   rdxSlotAchievementsAsync,
   rdxSlotSwitchToDebugModeAsync,
+  rdxSlotLuckyLinesForDebugModeAsync,
+  rdxSlotLuckyNumbersForDebugModeAsync,
   rdxSlotSelector,
 } from 'application/redux/actions/slotActions';
 
@@ -46,5 +48,7 @@ export {
   rdxSlotHasEndedAsync,
   rdxSlotAchievementsAsync,
   rdxSlotSwitchToDebugModeAsync,
+  rdxSlotLuckyLinesForDebugModeAsync,
+  rdxSlotLuckyNumbersForDebugModeAsync,
   rdxSlotSelector,
 };

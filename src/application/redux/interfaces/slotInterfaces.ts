@@ -46,11 +46,14 @@ interface IReduxSlotState {
   stateSlotSpinningHasEnded: boolean;
   stateSlotData: TReduxSlotData;
   stateSlotAchievements: IReduxSlotAchievements,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   slotReducer?: any;
 }
 
 interface IReduxSlotActionTypes {
   SLOT_ISDEBUGMODE: string;
+  SLOT_DEBUGMODELUCKYLINES: string;
+  SLOT_DEBUGMODELUCKYNUMBERS: string;
   SLOT_WELLCOME: string;
   SLOT_START: string;
   SLOT_ISSPINNING: string;
@@ -61,10 +64,10 @@ interface IReduxSlotActionTypes {
 interface IReduxSlotActions {
   type: string;
   actionIsDebugMode?: boolean;
+  actionDebugLuckyLines?: IReduxSlotLuckyLines;
+  actionDebugLuckyNumbers?: IReduxSlotLuckyNumbers;
   actionIsSpinning?: boolean;
   actionHasEnded?: boolean;
-  actionLuckyLines?: IReduxSlotLuckyLines;
-  actionLuckyNumbers?: IReduxSlotLuckyNumbers;
   actionAchievements?: IReduxSlotAchievements;
 }
 
@@ -83,4 +86,4 @@ export type {
   IReduxSlotActions,
   IReduxSlotDispatch,
   Dispatch,
-}
+};

@@ -8,7 +8,7 @@ interface IConstants {
     version: string;
   };
   settings: {
-    dataDuplication: 6 | 8 | 10 | 12;
+    dataDuplication: 14 | 16 | 18 | 20;
     animationDurationAsMS: number;
     animationDurationStepAsMs: number;
   };
@@ -27,7 +27,7 @@ const constants: IConstants = {
     version: packageJSON.version,
   },
   settings: {
-    dataDuplication: 6, // Symbol's counts multiplied by this
+    dataDuplication: 16, // Symbol's counts multiplied by this
     animationDurationAsMS: 2000,
     animationDurationStepAsMs: 500,
   },

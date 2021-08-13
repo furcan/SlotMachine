@@ -42,6 +42,24 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         },
       };
 
+    case rdxSlotActionTypes.SLOT_DEBUGMODELUCKYLINES:
+      return {
+        ...state,
+        stateDebugMode: {
+          ...state.stateDebugMode,
+          luckyLines: action.actionDebugLuckyLines || state.stateDebugMode.luckyLines,
+        },
+      };
+
+    case rdxSlotActionTypes.SLOT_DEBUGMODELUCKYNUMBERS:
+      return {
+        ...state,
+        stateDebugMode: {
+          ...state.stateDebugMode,
+          luckyNumbers: action.actionDebugLuckyNumbers || state.stateDebugMode.luckyNumbers,
+        },
+      };
+
     default:
       return state;
   }

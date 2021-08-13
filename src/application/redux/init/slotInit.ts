@@ -1,11 +1,11 @@
 import { constants } from 'application/constants';
-import { ESymbols } from 'application/enumerations/symbols';
+import { symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
 import { IReduxSlotState } from 'application/redux';
 
 
 const rdxSlotInitialState: IReduxSlotState = {
   stateDebugMode: {
-    isActive: false,
+    isActive: true, // TODO: will be false after dev
     luckyLines: {
       left: 0,
       center: 0,
@@ -21,7 +21,7 @@ const rdxSlotInitialState: IReduxSlotState = {
   stateSlotCanBePlayed: true,
   stateSlotIsSpinning: false,
   stateSlotSpinningHasEnded: false,
-  stateSlotData: Array((Object.keys(ESymbols).length / 2) * constants.settings.dataDuplication).fill([ESymbols.THREEXBAR, ESymbols.BAR, ESymbols.TWOXBAR, ESymbols.SEVEN, ESymbols.CHERRY]).flat(),
+  stateSlotData: Array(constants.settings.dataDuplication).fill([...symbolsValuesAsArrayOfNumber]).flat(),
   stateSlotAchievements: {
     lineTopAchievements: [],
     lineCenterAchievements: [],

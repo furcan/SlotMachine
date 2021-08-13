@@ -1,3 +1,6 @@
+import { constants } from 'application/constants';
+import { symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
+
 const addSomeDelayAsync = (milliseconds?: number): Promise<void> => new Promise(resolve => setTimeout(() => { resolve(); }, milliseconds || 1000));
 
 const elementScrollToWithDurationAsync = async (element: HTMLElement, to: number, duration: number): Promise<void> => new Promise(resolve => {
@@ -34,8 +37,16 @@ const elementScrollToWithDurationAsync = async (element: HTMLElement, to: number
 
 const generateRandomNumberBetween = (from: number, to: number): number => Math.floor(Math.random() * (to + 1)) + from;
 
+const generateRandomThresholdNumberForDebugMode = (): number => {
+  const minSymbolsCountForRandom = symbolsValuesAsArrayOfNumber.length * 2;
+  const maxSymbolsCountForRandom = (symbolsValuesAsArrayOfNumber.length * constants.settings.dataDuplication) - (4 * symbolsValuesAsArrayOfNumber.length);
+  const randomThreshold = 10 * Math.ceil(generateRandomNumberBetween(minSymbolsCountForRandom, maxSymbolsCountForRandom) / 10);
+  return randomThreshold;
+};
+
 export {
   addSomeDelayAsync,
   elementScrollToWithDurationAsync,
   generateRandomNumberBetween,
+  generateRandomThresholdNumberForDebugMode,
 };

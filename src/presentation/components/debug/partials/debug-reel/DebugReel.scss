@@ -1,0 +1,19 @@
+@import "presentation/styles/variables";
+
+.machine__debug {
+  &__reel {
+    width: 33%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background: red;
+
+    &__symbol {
+      background: green;
+
+      &--active {
+        background: yellow;
+      }
+    }
+  }
+}
