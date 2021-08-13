@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/SlotMachine/static/css/main.cceb00dd.chunk.css",
-    "main.js": "/SlotMachine/static/js/main.831f77b3.chunk.js",
-    "main.js.map": "/SlotMachine/static/js/main.831f77b3.chunk.js.map",
+    "main.css": "/SlotMachine/static/css/main.73d8bac4.chunk.css",
+    "main.js": "/SlotMachine/static/js/main.c43e1f04.chunk.js",
+    "main.js.map": "/SlotMachine/static/js/main.c43e1f04.chunk.js.map",
     "runtime-main.js": "/SlotMachine/static/js/runtime-main.461d2fa2.js",
     "runtime-main.js.map": "/SlotMachine/static/js/runtime-main.461d2fa2.js.map",
-    "static/js/2.84968309.chunk.js": "/SlotMachine/static/js/2.84968309.chunk.js",
-    "static/js/2.84968309.chunk.js.map": "/SlotMachine/static/js/2.84968309.chunk.js.map",
+    "static/js/2.b8c78e87.chunk.js": "/SlotMachine/static/js/2.b8c78e87.chunk.js",
+    "static/js/2.b8c78e87.chunk.js.map": "/SlotMachine/static/js/2.b8c78e87.chunk.js.map",
     "index.html": "/SlotMachine/index.html",
-    "static/css/main.cceb00dd.chunk.css.map": "/SlotMachine/static/css/main.cceb00dd.chunk.css.map",
-    "static/js/2.84968309.chunk.js.LICENSE.txt": "/SlotMachine/static/js/2.84968309.chunk.js.LICENSE.txt"
+    "static/css/main.73d8bac4.chunk.css.map": "/SlotMachine/static/css/main.73d8bac4.chunk.css.map",
+    "static/js/2.b8c78e87.chunk.js.LICENSE.txt": "/SlotMachine/static/js/2.b8c78e87.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.461d2fa2.js",
-    "static/js/2.84968309.chunk.js",
-    "static/css/main.cceb00dd.chunk.css",
-    "static/js/main.831f77b3.chunk.js"
+    "static/js/2.b8c78e87.chunk.js",
+    "static/css/main.73d8bac4.chunk.css",
+    "static/js/main.c43e1f04.chunk.js"
   ]
 }
