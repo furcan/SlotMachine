@@ -1,6 +1,6 @@
 import { constants } from 'application/constants';
-import { EReelsPositions, getReelsPositionsValue } from 'application/enumerations/reels';
-import { ESymbols, getSymbolsValue } from 'application/enumerations/symbols';
+import { EReelsAlignments, getReelsAlignmentsValue } from 'application/enumerations/reels';
+import { ESymbols, getSymbolsValue, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
 import { generateRandomThresholdNumberForDebugMode } from 'application/helpers';
 
 import 'presentation/components/game/partials/machine-debug-reel/MachineDebugReel.scss';
@@ -8,16 +8,15 @@ import 'presentation/components/game/partials/machine-debug-reel/MachineDebugRee
 
 interface IMachineDebugReel {
   classNamePrefix: string;
-  position: EReelsPositions;
-  symbols: ESymbols[];
+  alignment: EReelsAlignments;
   symbolActive: number;
   symbolOnClickHandler: React.Dispatch<React.SetStateAction<ESymbols>>;
 }
 
-function MachineDebugReel({ classNamePrefix, position, symbols, symbolActive, symbolOnClickHandler }: IMachineDebugReel): JSX.Element {
+function MachineDebugReel({ classNamePrefix, alignment, symbolActive, symbolOnClickHandler }: IMachineDebugReel): JSX.Element {
   return (
-    <div className={[`${classNamePrefix}__reel`, `${classNamePrefix}__reel--${getReelsPositionsValue(position)}`].join(' ').trim()}>
-      {symbols.map((symbol: ESymbols, index: number) => {
+    <div className={[`${classNamePrefix}__reel`, `${classNamePrefix}__reel--${getReelsAlignmentsValue(alignment)}`].join(' ').trim()}>
+      {symbolsValuesAsArrayOfNumber.map((symbol: ESymbols, index: number) => {
         return (
           <button
             key={index}

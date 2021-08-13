@@ -1,5 +1,5 @@
 import { constants } from 'application/constants';
-import { EReelsPositions, getReelsPositionsValue } from 'application/enumerations/reels';
+import { EReelsAlignments, getReelsAlignmentsValue } from 'application/enumerations/reels';
 import { ESymbols, getSymbolsValue } from 'application/enumerations/symbols';
 import { TReduxSlotData, IReduxSlotVisibleIndexes } from 'application/redux';
 
@@ -12,13 +12,13 @@ interface IMachineReel {
   refReel: React.RefObject<HTMLDivElement>;
   refsSymbols: React.MutableRefObject<(HTMLDivElement | null)[]>;
   achievedIndexes: IReduxSlotVisibleIndexes;
-  position: EReelsPositions,
+  alignment: EReelsAlignments,
   hasEnded: boolean;
 }
 
-function MachineReel({ classNamePrefix, slotData, refReel, refsSymbols, achievedIndexes, position, hasEnded }: IMachineReel): JSX.Element {
+function MachineReel({ classNamePrefix, slotData, refReel, refsSymbols, achievedIndexes, alignment, hasEnded }: IMachineReel): JSX.Element {
   return (
-    <div className={`${classNamePrefix}__reel ${classNamePrefix}__reel--${getReelsPositionsValue(position)}`} ref={refReel}>
+    <div className={`${classNamePrefix}__reel ${classNamePrefix}__reel--${getReelsAlignmentsValue(alignment)}`} ref={refReel}>
       {slotData?.map((symbol: ESymbols, index: number) => {
         const classNameTop = hasEnded && achievedIndexes.top === index ? 'state--top' : '';
         const classNameCenter = hasEnded && achievedIndexes.center === index ? 'state--center' : '';
@@ -29,7 +29,6 @@ function MachineReel({ classNamePrefix, slotData, refReel, refsSymbols, achieved
             key={index}
             ref={_this => refsSymbols.current[index] = _this}
             data-achievement={symbol}
-            data-index={index} // TODO: will be removed after dev, just an indicator
             className={[`${classNamePrefix}__reel__symbol`, classNameTop, classNameCenter, classNameBottom].join(' ').trim()}
           >
             <img className={`${classNamePrefix}__reel__symbol__image`} src={getSymbolsValue(symbol)} width="90" height="77" alt={constants.app.name} />

@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { constants } from 'application/constants';
-import { EReelsPositions } from 'application/enumerations/reels';
+import { EReelsAlignments } from 'application/enumerations/reels';
 import { rdxSlotSelector } from 'application/redux';
 
 import MachineReel from 'presentation/components/game/partials/machine-reel/MachineReel';
@@ -40,7 +40,7 @@ function Machine(): JSX.Element { // TODO:
           refReel={refReelLeft}
           refsSymbols={refsSymbolsLeft}
           achievedIndexes={stateSlotAchievements.reelLeftVisibleIndexes}
-          position={EReelsPositions.LEFT}
+          alignment={EReelsAlignments.LEFT}
           hasEnded={stateSlotSpinningHasEnded}
         />
         <MachineReel
@@ -49,7 +49,7 @@ function Machine(): JSX.Element { // TODO:
           refReel={refReelCenter}
           refsSymbols={refsSymbolsCenter}
           achievedIndexes={stateSlotAchievements.reelCenterVisibleIndexes}
-          position={EReelsPositions.CENTER}
+          alignment={EReelsAlignments.CENTER}
           hasEnded={stateSlotSpinningHasEnded}
         />
         <MachineReel
@@ -58,7 +58,7 @@ function Machine(): JSX.Element { // TODO:
           refReel={refReelRight}
           refsSymbols={refsSymbolsRight}
           achievedIndexes={stateSlotAchievements.reelRightVisibleIndexes}
-          position={EReelsPositions.RIGHT}
+          alignment={EReelsAlignments.RIGHT}
           hasEnded={stateSlotSpinningHasEnded}
         />
       </div>

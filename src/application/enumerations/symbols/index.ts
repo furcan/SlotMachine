@@ -1,3 +1,10 @@
+import {
+  AiOutlineVerticalAlignTop as IconTop,
+  AiOutlineVerticalAlignMiddle as IconCenter,
+  AiOutlineVerticalAlignBottom as IconBottom,
+  AiOutlineQuestionCircle as IconFallback,
+} from 'react-icons/ai';
+
 // Symbols Definitions: begin
 enum ESymbols {
   THREEXBAR = 1,
@@ -30,14 +37,17 @@ enum ESymbolsPositions {
   BOTTOM = 2,
 }
 
-const mapSymbolsPositions = new Map<number, string>([
-  [ESymbolsPositions.TOP, `Top`],
-  [ESymbolsPositions.CENTER, `Center`],
-  [ESymbolsPositions.BOTTOM, `Bottom`],
+const symbolsPositionsKeysAsArrayOfString = Object.keys(ESymbolsPositions).splice(Math.floor(Object.keys(ESymbolsPositions).length / 2));
+const symbolsPositionsValuesAsArrayOfNumber = Object.keys(ESymbolsPositions).splice(0, Math.floor(Object.keys(ESymbolsPositions).length / 2)).map(x => +x);
+
+const mapSymbolsPositions = new Map<number, React.FC>([
+  [ESymbolsPositions.TOP, IconTop],
+  [ESymbolsPositions.CENTER, IconCenter],
+  [ESymbolsPositions.BOTTOM, IconBottom],
 ]);
 
-const getSymbolsPositionsValue = (enumeration: number): string => {
-  return mapSymbolsPositions.get(enumeration) || '';
+const getSymbolsPositionsValue = (enumeration: number): React.FC => {
+  return mapSymbolsPositions.get(enumeration) || IconFallback;
 };
 // Symbols Positions: end
 
@@ -47,5 +57,7 @@ export {
   symbolsValuesAsArrayOfNumber,
   getSymbolsValue,
   ESymbolsPositions,
+  symbolsPositionsKeysAsArrayOfString,
+  symbolsPositionsValuesAsArrayOfNumber,
   getSymbolsPositionsValue,
 };
