@@ -17,6 +17,12 @@ interface IConstants {
     buttonAuto: string;
     buttonDebug: string;
     buttonSpin: string;
+    debugMode: {
+      title: string;
+      description: string;
+      positions: string;
+      symbols: string;
+    };
   };
 }
 
@@ -36,6 +42,12 @@ const constants: IConstants = {
     buttonDebug: 'Debug Mode',
     buttonAuto: 'Auto Mode',
     buttonSpin: 'SPIN',
+    debugMode: {
+      title: 'Debug Mode',
+      description: 'You can select the types of symbols, and positions for each reel.',
+      positions: 'Positions',
+      symbols: 'Symbols',
+    },
   },
 };
 

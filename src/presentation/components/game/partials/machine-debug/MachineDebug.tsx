@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { constants } from 'application/constants';
 import { EReelsPositions } from 'application/enumerations/reels';
 import { ESymbols, ESymbolsPositions, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
 import { generateRandomThresholdNumberForDebugMode } from 'application/helpers';
@@ -68,7 +69,6 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
 
   return (
     <div className={[`${classNamePrefix}__content`, `${!stateSlotCanBePlayed ? `${classNamePrefix}__content--disabled` : ''}`].join(' ').trim()}>
-      <h1>DEBUG MODE</h1>
       <div>
         luckyLines will be: ({`${stateDebugMode.luckyLines.left}, ${stateDebugMode.luckyLines.center}, ${stateDebugMode.luckyLines.right}`})
       </div>
@@ -76,7 +76,13 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
         luckyNumbers will be: ({`${stateDebugMode.luckyNumbers.left}, ${stateDebugMode.luckyNumbers.center}, ${stateDebugMode.luckyNumbers.right}`})
       </div>
 
-      <div className={`${classNamePrefix}__reels`}>
+      <div className={`${classNamePrefix}__head`}>
+        <h2 className={`${classNamePrefix}__head__title`}>{constants.text.debugMode.title}</h2>
+        <p className={`${classNamePrefix}__head__description`}>{constants.text.debugMode.description}</p>
+      </div>
+
+      <div className={`${classNamePrefix}__symbols`}>
+        <h3 className={`${classNamePrefix}__symbols__title`}>{constants.text.debugMode.symbols}</h3>
         <MachineDebugReel
           classNamePrefix={classNamePrefix}
           position={EReelsPositions.LEFT}
@@ -100,6 +106,10 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
         />
       </div>
 
+      <div className={`${classNamePrefix}__positions`}>
+        <h3 className={`${classNamePrefix}__positions__title`}>{constants.text.debugMode.positions}</h3>
+
+      </div>
     </div>
   );
 }

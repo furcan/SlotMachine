@@ -2,17 +2,22 @@
 
 .machine__debug {
   &__reel {
-    width: 33%;
+    width: 30%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    background: red;
+    border-radius: 0.5rem;
+    background: $color_gray_light;
 
     &__symbol {
-      background: green;
+      transition: $transition_background, $transition_opacity;
+      height: 3.5rem;
+      opacity: 0.5;
+      border-radius: inherit;
 
       &--active {
-        background: yellow;
+        opacity: 1;
+        background: $color_dark;
       }
     }
   }
