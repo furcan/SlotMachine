@@ -29,7 +29,7 @@ function ButtonSpin({
   refsSymbolsRight,
 }: IButtonSpin): JSX.Element {
   const dispatch = useDispatch();
-  const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
+  const { stateDebugMode, stateSlotCanBePlayed, stateSlotData } = useSelector(rdxSlotSelector);
 
 
   const spinButtonOnClickHandlerAsync = async (): Promise<void> => {
@@ -48,10 +48,13 @@ function ButtonSpin({
     // Get/Set the Lucky Lines: end
 
     // Get/Set the Lucky Numbers: Begin
+    const symbolsLength = Object.keys(ESymbols).length / 2;
+    const randomMin = symbolsLength * 2;
+    const randomMax = stateSlotData.length - (2 * symbolsLength);
     const luckyNumbers = {
-      left: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.left : generateRandomNumberBetween(6, 94),
-      center: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.center : generateRandomNumberBetween(6, 94),
-      right: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.right : generateRandomNumberBetween(6, 94),
+      left: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.left : generateRandomNumberBetween(randomMin, randomMax),
+      center: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.center : generateRandomNumberBetween(randomMin, randomMax),
+      right: stateDebugMode.isActive ? stateDebugMode.luckyNumbers.right : generateRandomNumberBetween(randomMin, randomMax),
     };
     // Get/Set the Lucky Numbers: end
 
@@ -68,7 +71,6 @@ function ButtonSpin({
     if (symbolLeft && symbolCenter && symbolRight && reelLeft && reelCenter && reelRight) {
       // Spining effect
       dispatch(rdxSlotIsSpinningAsync());
-
 
       // Achievements: begin
       const topLineSymbol1 = refsSymbolsLeft.current[luckyNumbers.left - luckyLines.left - 1];
