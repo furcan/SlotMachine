@@ -5,8 +5,10 @@ import { constants } from 'application/constants';
 import { EReelsPositions } from 'application/enumerations/reels';
 import { rdxSlotSelector } from 'application/redux';
 
+import ButtonDebug from 'presentation/components/buttons/button-debug/ButtonDebug';
+import ButtonAuto from 'presentation/components/buttons/button-auto/ButtonAuto';
+import ButtonSpin from 'presentation/components/buttons/button-spin/ButtonSpin';
 import Reel from 'presentation/components/game/partials/reel/Reel';
-import SpinButton from 'presentation/components/game/partials/spin-button/SpinButton';
 
 import 'presentation/components/game/partials/machine/Machine.scss';
 
@@ -60,7 +62,13 @@ function Machine(): JSX.Element { // TODO:
       </div>
 
       <div className="machine__buttons">
-        <SpinButton
+        <ButtonDebug
+          classNamePrefix={'machine__buttons'}
+        />
+        <ButtonAuto
+          classNamePrefix={'machine__buttons'}
+        />
+        <ButtonSpin
           classNamePrefix={'machine__buttons'}
           refReelLeft={refReelLeft}
           refReelCenter={refReelCenter}

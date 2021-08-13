@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { VscSettings as IconSpin } from 'react-icons/vsc';
 
+import { constants } from 'application/constants';
 import { elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
 import {
   rdxSlotSelector,
@@ -11,10 +13,10 @@ import {
   rdxSlotAchievementsAsync,
 } from 'application/redux';
 
-import 'presentation/components/game/partials/spin-button/SpinButton.scss';
+import 'presentation/components/buttons/button-spin/ButtonSpin.scss';
 
 
-interface ISpinButton {
+interface IButtonSpin {
   classNamePrefix: string;
   refReelLeft: React.RefObject<HTMLDivElement>;
   refReelCenter: React.RefObject<HTMLDivElement>;
@@ -24,7 +26,7 @@ interface ISpinButton {
   refsSymbolsRight: React.MutableRefObject<(HTMLDivElement | null)[]>;
 }
 
-function SpinButton({
+function ButtonSpin({
   classNamePrefix,
   refReelLeft,
   refReelCenter,
@@ -32,7 +34,7 @@ function SpinButton({
   refsSymbolsLeft,
   refsSymbolsCenter,
   refsSymbolsRight,
-}: ISpinButton): JSX.Element {
+}: IButtonSpin): JSX.Element {
   const dispatch = useDispatch();
   const {
     stateSlotCanBePlayed,
@@ -150,14 +152,15 @@ function SpinButton({
       className={[
         `${classNamePrefix}__button`,
         `${classNamePrefix}__button--spin`,
-        `${!stateSlotCanBePlayed ? `${classNamePrefix}__button--passive` : ''}`,
+        `${!stateSlotCanBePlayed ? `${classNamePrefix}__button--disabled` : ''}`,
       ].join(' ').trim()}
       onClick={stateSlotCanBePlayed ? spinOnClickHandlerAsync : undefined}
     >
-      <span>SPIN BUTTON (TODO) - ({`${stateSlotLuckyNumbers.left}, ${stateSlotLuckyNumbers.center}, ${stateSlotLuckyNumbers.right}`})</span>
+      <IconSpin className={`${classNamePrefix}__button__icon`} />
+      <span>{constants.text.buttonSpin} - ({`${stateSlotLuckyNumbers.left}, ${stateSlotLuckyNumbers.center}, ${stateSlotLuckyNumbers.right}`})</span>
     </button>
   );
 
 }
 
-export default SpinButton;
+export default ButtonSpin;

@@ -16,10 +16,12 @@ $color_gray_dark: #333333;
 $color_gray_medium: #919191;
 $color_gray_light: #eee;
 $color_theme_dark: #2b3b42;
-$color_theme_light: #f4f4f4;
+$color_theme_light: #ececec;
 $color_theme_green: #00e089;
 $color_theme_red: #ff5549;
+$color_theme_red_dark: #da473d;
 $color_theme_yellow: #ffcc00;
+$color_theme_yellow_dark: #edbe00;
 $color_theme_blue: #26c0d3;
 
 // transitions
@@ -37,7 +39,20 @@ $box_shadow_base: 0 0 2rem -1rem rgba($color_black, 0.2);
 $box_shadow_30: 0 0 2rem -1rem rgba($color_black, 0.3);
 $box_shadow_40: 0 0 2rem -1rem rgba($color_black, 0.4);
 $box_shadow_50: 0 0 2rem -1rem rgba($color_black, 0.5);
+$box_shadow_60: 0 0 2rem -1rem rgba($color_black, 0.6);
+$box_shadow_70: 0 0 2rem -1rem rgba($color_black, 0.7);
+$box_shadow_80: 0 0 2rem -1rem rgba($color_black, 0.8);
+$box_shadow_90: 0 0 2rem -1rem rgba($color_black, 0.9);
+$box_shadow_100: 0 0 2rem -1rem rgba($color_black, 1);
 $box_shadow_bottom_base: 0 0.5rem 2rem -1rem rgba($color_black, 0.2);
+$box_shadow_bottom_30: 0 0.5rem 2rem -1rem rgba($color_black, 0.3);
+$box_shadow_bottom_40: 0 0.5rem 2rem -1rem rgba($color_black, 0.4);
+$box_shadow_bottom_50: 0 0.5rem 2rem -1rem rgba($color_black, 0.5);
+$box_shadow_bottom_60: 0 0.5rem 2rem -1rem rgba($color_black, 0.6);
+$box_shadow_bottom_70: 0 0.5rem 2rem -1rem rgba($color_black, 0.7);
+$box_shadow_bottom_80: 0 0.5rem 2rem -1rem rgba($color_black, 0.8);
+$box_shadow_bottom_90: 0 0.5rem 2rem -1rem rgba($color_black, 0.9);
+$box_shadow_bottom_100: 0 0.5rem 2rem -1rem rgba($color_black, 1);
 
 // typography
 $font_family_base: "Red Hat Display", sans-serif;

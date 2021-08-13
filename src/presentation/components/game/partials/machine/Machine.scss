@@ -18,6 +18,7 @@
     align-items: flex-start;
     justify-content: center;
     margin: 4rem auto 1rem;
+    filter: drop-shadow(0 0.5rem 1rem rgba($color_black, 0.2));
 
     @include media_up($breakpoint_tablet) {
       max-width: $size_symbol_desktop * $count_reels;
@@ -63,10 +64,58 @@
 
   &__buttons {
     width: 100%;
-    margin: 1rem auto;
+    margin: 1.25rem auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    transform: perspective(30rem) rotateX(5deg);
+    background: $color_theme_light;
+    padding: 0.5rem 0.75rem 1rem;
+    border-radius: 1rem 1rem 2rem 2rem;
+    border-bottom: 0.75rem solid rgba($color_black, 0.2);
+    box-shadow: $box_shadow_bottom_50;
+
+    &__button {
+      transition: $transition_base;
+      position: relative;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      color: $color_dark;
+      background: $color_theme_yellow;
+      padding: 0.8rem 1.2rem 0.85rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      box-shadow: $box_shadow_bottom_50;
+      border-radius: 2rem;
+      border-bottom: 0.7rem solid $color_theme_yellow_dark;
+
+      &:hover {
+        transform: translateY(0.05rem);
+      }
+
+      &:active {
+        transform: translateY(0.4rem);
+      }
+
+      &--disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      &--passive {
+        opacity: 0.75;
+        filter: grayscale(1);
+      }
+
+      &__icon {
+        transform: scale(1.25);
+        margin: 0 0.75rem 0 0;
+      }
+    }
   }
 }

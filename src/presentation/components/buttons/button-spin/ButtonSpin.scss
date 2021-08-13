@@ -1,0 +1,24 @@
+@import "presentation/styles/variables";
+
+.machine__buttons {
+  &__button {
+    &--spin {
+      order: 1;
+      color: $color_white !important;
+      background: $color_theme_red !important;
+      padding: 1.25rem 1.75rem 1.3rem !important;
+      border-color: $color_theme_red_dark !important;
+      border-radius: 3rem !important;
+      font-size: 1.25rem !important;
+
+      @include media_up($breakpoint_mobile) {
+        order: 3;
+      }
+    }
+
+    &--spin &__icon {
+      transform: scale(1.6);
+      margin-right: 1rem;
+    }
+  }
+}
