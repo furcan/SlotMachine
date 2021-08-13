@@ -6,16 +6,16 @@ import { ESymbols, ESymbolsPositions, symbolsValuesAsArrayOfNumber } from 'appli
 import { generateRandomThresholdNumberForDebugMode } from 'application/helpers';
 import { rdxSlotSelector, rdxSlotLuckyLinesForDebugModeAsync, rdxSlotLuckyNumbersForDebugModeAsync } from 'application/redux';
 
-import DebugReel from 'presentation/components/debug/partials/debug-reel/DebugReel';
+import MachineDebugReel from 'presentation/components/game/partials/machine-debug-reel/MachineDebugReel';
 
-import 'presentation/components/debug/Debug.scss';
+import 'presentation/components/game/partials/machine-debug/MachineDebug.scss';
 
 
-interface IDebug {
+interface IMachineDebug {
   classNamePrefix: string;
 }
 
-function Debug({ classNamePrefix }: IDebug): JSX.Element {
+function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
   const dispatch = useDispatch();
   const { stateSlotCanBePlayed, stateDebugMode } = useSelector(rdxSlotSelector);
 
@@ -77,21 +77,21 @@ function Debug({ classNamePrefix }: IDebug): JSX.Element {
       </div>
 
       <div className={`${classNamePrefix}__reels`}>
-        <DebugReel
+        <MachineDebugReel
           classNamePrefix={classNamePrefix}
           position={EReelsPositions.LEFT}
           symbols={symbolsValuesAsArrayOfNumber}
           symbolActive={symbolLeft % 10}
           symbolOnClickHandler={setSymbolLeft}
         />
-        <DebugReel
+        <MachineDebugReel
           classNamePrefix={classNamePrefix}
           position={EReelsPositions.CENTER}
           symbols={symbolsValuesAsArrayOfNumber}
           symbolActive={symbolCenter % 10}
           symbolOnClickHandler={setSymbolCenter}
         />
-        <DebugReel
+        <MachineDebugReel
           classNamePrefix={classNamePrefix}
           position={EReelsPositions.RIGHT}
           symbols={symbolsValuesAsArrayOfNumber}
@@ -104,4 +104,4 @@ function Debug({ classNamePrefix }: IDebug): JSX.Element {
   );
 }
 
-export default Debug;
+export default MachineDebug;

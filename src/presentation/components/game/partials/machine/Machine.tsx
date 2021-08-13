@@ -5,12 +5,11 @@ import { constants } from 'application/constants';
 import { EReelsPositions } from 'application/enumerations/reels';
 import { rdxSlotSelector } from 'application/redux';
 
-import Debug from 'presentation/components/debug/Debug';
-import ButtonDebug from 'presentation/components/buttons/button-debug/ButtonDebug';
-import ButtonAuto from 'presentation/components/buttons/button-auto/ButtonAuto';
-import ButtonSpin from 'presentation/components/buttons/button-spin/ButtonSpin';
-
-import Reel from 'presentation/components/game/partials/reel/Reel';
+import MachineReel from 'presentation/components/game/partials/machine-reel/MachineReel';
+import MachineDebug from 'presentation/components/game/partials/machine-debug/MachineDebug';
+import MachineButtonDebug from 'presentation/components/game/partials/machine-button-debug/MachineButtonDebug';
+import MachineButtonAuto from 'presentation/components/game/partials/machine-button-auto/MachineButtonAuto';
+import MachineButtonSpin from 'presentation/components/game/partials/machine-button-spin/MachineButtonSpin';
 
 import 'presentation/components/game/partials/machine/Machine.scss';
 
@@ -35,7 +34,7 @@ function Machine(): JSX.Element { // TODO:
     <div className="machine">
       <div className={[`machine__reels`, `${stateSlotIsSpinning ? 'machine__reels--spinning' : ''}`].join(' ').trim()}>
         <h2 className="machine__reels__title">{constants.text.machineName}</h2>
-        <Reel
+        <MachineReel
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
           refReel={refReelLeft}
@@ -44,7 +43,7 @@ function Machine(): JSX.Element { // TODO:
           position={EReelsPositions.LEFT}
           hasEnded={stateSlotSpinningHasEnded}
         />
-        <Reel
+        <MachineReel
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
           refReel={refReelCenter}
@@ -53,7 +52,7 @@ function Machine(): JSX.Element { // TODO:
           position={EReelsPositions.CENTER}
           hasEnded={stateSlotSpinningHasEnded}
         />
-        <Reel
+        <MachineReel
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
           refReel={refReelRight}
@@ -66,18 +65,18 @@ function Machine(): JSX.Element { // TODO:
 
       {stateDebugMode.isActive &&
         <div className="machine__debug">
-          <Debug classNamePrefix={'machine__debug'} />
+          <MachineDebug classNamePrefix={'machine__debug'} />
         </div>
       }
 
       <div className="machine__buttons">
-        <ButtonDebug
+        <MachineButtonDebug
           classNamePrefix={'machine__buttons'}
         />
-        <ButtonAuto
+        <MachineButtonAuto
           classNamePrefix={'machine__buttons'}
         />
-        <ButtonSpin
+        <MachineButtonSpin
           classNamePrefix={'machine__buttons'}
           refReelLeft={refReelLeft}
           refReelCenter={refReelCenter}

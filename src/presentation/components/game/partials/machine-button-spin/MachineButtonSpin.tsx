@@ -6,10 +6,10 @@ import { ESymbols, symbolsValuesAsArrayOfNumber } from 'application/enumerations
 import { elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
 import { rdxSlotSelector, rdxSlotIsSpinningAsync, rdxSlotHasEndedAsync, rdxSlotAchievementsAsync } from 'application/redux';
 
-import 'presentation/components/buttons/button-spin/ButtonSpin.scss';
+import 'presentation/components/game/partials/machine-button-spin/MachineButtonSpin.scss';
 
 
-interface IButtonSpin {
+interface IMachineButtonSpin {
   classNamePrefix: string;
   refReelLeft: React.RefObject<HTMLDivElement>;
   refReelCenter: React.RefObject<HTMLDivElement>;
@@ -19,7 +19,7 @@ interface IButtonSpin {
   refsSymbolsRight: React.MutableRefObject<(HTMLDivElement | null)[]>;
 }
 
-function ButtonSpin({
+function MachineButtonSpin({
   classNamePrefix,
   refReelLeft,
   refReelCenter,
@@ -27,7 +27,7 @@ function ButtonSpin({
   refsSymbolsLeft,
   refsSymbolsCenter,
   refsSymbolsRight,
-}: IButtonSpin): JSX.Element {
+}: IMachineButtonSpin): JSX.Element {
   const dispatch = useDispatch();
   const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
 
@@ -150,4 +150,4 @@ function ButtonSpin({
 
 }
 
-export default ButtonSpin;
+export default MachineButtonSpin;

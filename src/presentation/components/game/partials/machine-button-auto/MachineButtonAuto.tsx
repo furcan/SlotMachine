@@ -4,14 +4,14 @@ import { VscSync as IconAuto } from 'react-icons/vsc';
 import { constants } from 'application/constants';
 import { rdxSlotSelector, rdxSlotSwitchToDebugModeAsync } from 'application/redux';
 
-import 'presentation/components/buttons/button-auto/ButtonAuto.scss';
+import 'presentation/components/game/partials/machine-button-auto/MachineButtonAuto.scss';
 
 
-interface IButtonAuto {
+interface IMachineButtonAuto {
   classNamePrefix: string;
 }
 
-function ButtonAuto({ classNamePrefix }: IButtonAuto): JSX.Element {
+function MachineButtonAuto({ classNamePrefix }: IMachineButtonAuto): JSX.Element {
   const dispatch = useDispatch();
   const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
 
@@ -38,4 +38,4 @@ function ButtonAuto({ classNamePrefix }: IButtonAuto): JSX.Element {
 
 }
 
-export default ButtonAuto;
+export default MachineButtonAuto;

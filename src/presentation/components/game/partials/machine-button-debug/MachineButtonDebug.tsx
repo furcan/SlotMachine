@@ -4,14 +4,14 @@ import { VscDebugAlt as IconDebug } from 'react-icons/vsc';
 import { constants } from 'application/constants';
 import { rdxSlotSelector, rdxSlotSwitchToDebugModeAsync } from 'application/redux';
 
-import 'presentation/components/buttons/button-debug/ButtonDebug.scss';
+import 'presentation/components/game/partials/machine-button-debug/MachineButtonDebug.scss';
 
 
-interface IButtonDebug {
+interface IMachineButtonDebug {
   classNamePrefix: string;
 }
 
-function ButtonDebug({ classNamePrefix }: IButtonDebug): JSX.Element {
+function MachineButtonDebug({ classNamePrefix }: IMachineButtonDebug): JSX.Element {
   const dispatch = useDispatch();
   const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
 
@@ -38,4 +38,4 @@ function ButtonDebug({ classNamePrefix }: IButtonDebug): JSX.Element {
 
 }
 
-export default ButtonDebug;
+export default MachineButtonDebug;

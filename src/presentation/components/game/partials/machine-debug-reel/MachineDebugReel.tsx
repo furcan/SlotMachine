@@ -3,10 +3,10 @@ import { EReelsPositions, getReelsPositionsValue } from 'application/enumeration
 import { ESymbols, getSymbolsValue } from 'application/enumerations/symbols';
 import { generateRandomThresholdNumberForDebugMode } from 'application/helpers';
 
-import 'presentation/components/debug/partials/debug-reel/DebugReel.scss';
+import 'presentation/components/game/partials/machine-debug-reel/MachineDebugReel.scss';
 
 
-interface IDebugReel {
+interface IMachineDebugReel {
   classNamePrefix: string;
   position: EReelsPositions;
   symbols: ESymbols[];
@@ -14,8 +14,7 @@ interface IDebugReel {
   symbolOnClickHandler: React.Dispatch<React.SetStateAction<ESymbols>>;
 }
 
-function DebugReel({ classNamePrefix, position, symbols, symbolActive, symbolOnClickHandler }: IDebugReel): JSX.Element {
-  console.log(symbolActive);
+function MachineDebugReel({ classNamePrefix, position, symbols, symbolActive, symbolOnClickHandler }: IMachineDebugReel): JSX.Element {
   return (
     <div className={[`${classNamePrefix}__reel`, `${classNamePrefix}__reel--${getReelsPositionsValue(position)}`].join(' ').trim()}>
       {symbols.map((symbol: ESymbols, index: number) => {
@@ -34,4 +33,4 @@ function DebugReel({ classNamePrefix, position, symbols, symbolActive, symbolOnC
   );
 }
 
-export default DebugReel;
+export default MachineDebugReel;

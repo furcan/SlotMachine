@@ -3,10 +3,10 @@ import { EReelsPositions, getReelsPositionsValue } from 'application/enumeration
 import { ESymbols, getSymbolsValue } from 'application/enumerations/symbols';
 import { TReduxSlotData, IReduxSlotVisibleIndexes } from 'application/redux';
 
-import 'presentation/components/game/partials/reel/Reel.scss';
+import 'presentation/components/game/partials/machine-reel/MachineReel.scss';
 
 
-interface IReel {
+interface IMachineReel {
   classNamePrefix: string;
   slotData: TReduxSlotData;
   refReel: React.RefObject<HTMLDivElement>;
@@ -16,7 +16,7 @@ interface IReel {
   hasEnded: boolean;
 }
 
-function Reel({ classNamePrefix, slotData, refReel, refsSymbols, achievedIndexes, position, hasEnded }: IReel): JSX.Element {
+function MachineReel({ classNamePrefix, slotData, refReel, refsSymbols, achievedIndexes, position, hasEnded }: IMachineReel): JSX.Element {
   return (
     <div className={`${classNamePrefix}__reel ${classNamePrefix}__reel--${getReelsPositionsValue(position)}`} ref={refReel}>
       {slotData?.map((symbol: ESymbols, index: number) => {
@@ -41,4 +41,4 @@ function Reel({ classNamePrefix, slotData, refReel, refsSymbols, achievedIndexes
 
 }
 
-export default Reel;
+export default MachineReel;
