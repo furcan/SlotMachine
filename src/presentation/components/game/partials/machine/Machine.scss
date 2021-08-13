@@ -17,7 +17,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    margin: 4rem auto 1rem;
+    margin: 4rem auto 3rem;
     filter: drop-shadow(0 0.5rem 1rem rgba($color_black, 0.2));
 
     @include media_up($breakpoint_tablet) {
@@ -62,9 +62,18 @@
     }
   }
 
+  &__debug {
+    width: 100%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__buttons {
     width: 100%;
-    margin: 1.25rem auto;
+    margin: 0 auto 1.5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -93,18 +102,17 @@
       border-radius: 2rem;
       border-bottom: 0.7rem solid $color_theme_yellow_dark;
 
-      &:hover {
+      &:not(:disabled):hover {
         transform: translateY(0.05rem);
       }
 
-      &:active {
+      &:not(:disabled):active {
         transform: translateY(0.4rem);
       }
 
       &--disabled {
-        cursor: not-allowed;
+        cursor: wait;
         opacity: 0.5;
-        pointer-events: none;
       }
 
       &--passive {

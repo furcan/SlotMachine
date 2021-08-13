@@ -38,7 +38,11 @@
     justify-content: center;
 
     @include media_up($breakpoint_tablet) {
-      padding: 2rem;
+      padding: 2rem 3rem;
+    }
+
+    @include media_up($breakpoint_minibook) {
+      padding: 2rem 4rem;
     }
   }
 }

@@ -1,9 +1,9 @@
 enum ESymbols {
-  THREEXBAR = 0,
-  BAR = 1,
-  TWOXBAR = 2,
-  SEVEN = 3,
-  CHERRY = 4,
+  THREEXBAR = 1,
+  BAR = 2,
+  TWOXBAR = 3,
+  SEVEN = 4,
+  CHERRY = 5,
 }
 
 const mapSymbols = new Map<number, string>([

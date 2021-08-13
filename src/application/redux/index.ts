@@ -11,6 +11,8 @@ import {
   IReduxSlotAchievements,
 } from 'application/redux/interfaces/slotInterfaces';
 
+import { rdxSlotInitialState } from 'application/redux/init/slotInit';
+
 import {
   rdxSlotActionTypes,
   rdxSlotWelcomeAsync,
@@ -21,6 +23,7 @@ import {
   rdxSlotLuckyLinesAsync,
   rdxSlotLuckyNumbersAsync,
   rdxSlotAchievementsAsync,
+  rdxSlotSwitchToDebugModeAsync,
   rdxSlotSelector,
 } from 'application/redux/actions/slotActions';
 
@@ -38,6 +41,7 @@ export type {
 };
 
 export {
+  rdxSlotInitialState,
   rdxSlotActionTypes,
   rdxSlotWelcomeAsync,
   rdxSlotStartAsync,
@@ -47,5 +51,6 @@ export {
   rdxSlotLuckyLinesAsync,
   rdxSlotLuckyNumbersAsync,
   rdxSlotAchievementsAsync,
+  rdxSlotSwitchToDebugModeAsync,
   rdxSlotSelector,
 };

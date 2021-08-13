@@ -42,7 +42,7 @@ function ButtonSpin({
     stateSlotLuckyNumbers,
   } = useSelector(rdxSlotSelector);
 
-  const spinOnClickHandlerAsync = async (): Promise<void> => {
+  const spinButtonOnClickHandlerAsync = async (): Promise<void> => {
     // Reset the Reels: begin
     dispatch(rdxSlotRestartAsync());
     refReelLeft.current?.scrollTo({ top: 0 });
@@ -154,10 +154,11 @@ function ButtonSpin({
         `${classNamePrefix}__button--spin`,
         `${!stateSlotCanBePlayed ? `${classNamePrefix}__button--disabled` : ''}`,
       ].join(' ').trim()}
-      onClick={stateSlotCanBePlayed ? spinOnClickHandlerAsync : undefined}
+      onClick={stateSlotCanBePlayed ? spinButtonOnClickHandlerAsync : undefined}
+      disabled={!stateSlotCanBePlayed}
     >
       <IconSpin className={`${classNamePrefix}__button__icon`} />
-      <span>{constants.text.buttonSpin} - ({`${stateSlotLuckyNumbers.left}, ${stateSlotLuckyNumbers.center}, ${stateSlotLuckyNumbers.right}`})</span>
+      <span>{constants.text.buttonSpin}</span>
     </button>
   );
 

@@ -8,6 +8,8 @@ import { rdxSlotSelector } from 'application/redux';
 import ButtonDebug from 'presentation/components/buttons/button-debug/ButtonDebug';
 import ButtonAuto from 'presentation/components/buttons/button-auto/ButtonAuto';
 import ButtonSpin from 'presentation/components/buttons/button-spin/ButtonSpin';
+
+import DebugMode from 'presentation/components/game/partials/debug-mode/DebugMode';
 import Reel from 'presentation/components/game/partials/reel/Reel';
 
 import 'presentation/components/game/partials/machine/Machine.scss';
@@ -15,6 +17,7 @@ import 'presentation/components/game/partials/machine/Machine.scss';
 
 function Machine(): JSX.Element { // TODO:
   const {
+    stateDebugMode,
     stateSlotIsSpinning,
     stateSlotSpinningHasEnded,
     stateSlotData,
@@ -36,7 +39,7 @@ function Machine(): JSX.Element { // TODO:
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
           refReel={refReelLeft}
-          refsSymbol={refsSymbolsLeft}
+          refsSymbols={refsSymbolsLeft}
           achievedIndexes={stateSlotAchievements.reelLeftVisibleIndexes}
           position={EReelsPositions.LEFT}
           hasEnded={stateSlotSpinningHasEnded}
@@ -45,7 +48,7 @@ function Machine(): JSX.Element { // TODO:
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
           refReel={refReelCenter}
-          refsSymbol={refsSymbolsCenter}
+          refsSymbols={refsSymbolsCenter}
           achievedIndexes={stateSlotAchievements.reelCenterVisibleIndexes}
           position={EReelsPositions.CENTER}
           hasEnded={stateSlotSpinningHasEnded}
@@ -54,12 +57,20 @@ function Machine(): JSX.Element { // TODO:
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
           refReel={refReelRight}
-          refsSymbol={refsSymbolsRight}
+          refsSymbols={refsSymbolsRight}
           achievedIndexes={stateSlotAchievements.reelRightVisibleIndexes}
           position={EReelsPositions.RIGHT}
           hasEnded={stateSlotSpinningHasEnded}
         />
       </div>
+
+      {stateDebugMode.isActive &&
+        <div className="machine__debug">
+          <DebugMode
+            classNamePrefix={'machine__debug'}
+          />
+        </div>
+      }
 
       <div className="machine__buttons">
         <ButtonDebug

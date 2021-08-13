@@ -71,6 +71,24 @@
         width: 5.5rem;
         height: auto;
       }
+
+      &.state--center &__image {
+        animation: animation_symbol_center_bounce 0.7s ease-in-out 0s 1;
+
+        @keyframes animation_symbol_center_bounce {
+          0% {
+            transform: scale(1);
+          }
+
+          50% {
+            transform: scale(1.1);
+          }
+
+          100% {
+            transform: scale(1);
+          }
+        }
+      }
     }
   }
 

@@ -1,6 +1,13 @@
 import { Dispatch } from 'redux';
 
-type TReduxSlotData = number[];
+import { ESymbols } from 'application/enumerations/symbols';
+
+
+interface IReduxSlotDebugMode {
+  isActive: boolean;
+}
+
+type TReduxSlotData = ESymbols[];
 
 interface IReduxSlotVisibleIndexes {
   top: number;
@@ -30,6 +37,7 @@ interface IReduxSlotAchievements {
 }
 
 interface IReduxSlotState {
+  stateDebugMode: IReduxSlotDebugMode;
   stateSlotIsWelcome: boolean;
   stateSlotCanBePlayed: boolean;
   stateSlotIsSpinning: boolean;
@@ -42,6 +50,7 @@ interface IReduxSlotState {
 }
 
 interface IReduxSlotActionTypes {
+  SLOT_ISDEBUGMODE: string;
   SLOT_WELLCOME: string;
   SLOT_START: string;
   SLOT_RESTART: string;
@@ -54,6 +63,7 @@ interface IReduxSlotActionTypes {
 
 interface IReduxSlotActions {
   type: string;
+  actionIsDebugMode?: boolean;
   actionIsSpinning?: boolean;
   actionHasEnded?: boolean;
   actionLuckyLines?: IReduxSlotLuckyLines;

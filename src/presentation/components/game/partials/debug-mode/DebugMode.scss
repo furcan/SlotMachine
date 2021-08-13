@@ -1,0 +1,25 @@
+@import "presentation/styles/variables";
+
+.machine__debug {
+  &__content {
+    transition: $transition_opacity;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    background: $color_theme_light;
+    border-radius: 1rem;
+
+    @include media_up($breakpoint_tablet) {
+      max-width: 25rem;
+    }
+
+    &--disabled {
+      cursor: wait;
+      opacity: 0.5;
+
+      * {
+        pointer-events: none;
+      }
+    }
+  }
+}
