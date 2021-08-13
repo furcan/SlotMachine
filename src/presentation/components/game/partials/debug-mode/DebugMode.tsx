@@ -10,16 +10,16 @@ interface IDebugMode {
 }
 
 function DebugMode({ classNamePrefix }: IDebugMode): JSX.Element {
-  const { stateSlotCanBePlayed, stateSlotLuckyNumbers, stateSlotLuckyLines } = useSelector(rdxSlotSelector);
+  const { stateSlotCanBePlayed, stateDebugMode } = useSelector(rdxSlotSelector);
 
   return (
     <div className={[`${classNamePrefix}__content`, `${!stateSlotCanBePlayed ? `${classNamePrefix}__content--disabled` : ''}`].join(' ').trim()}>
       <h1>DEBUG MODE</h1>
       <div>
-        NEXT numbers will be: ({`${stateSlotLuckyNumbers.left}, ${stateSlotLuckyNumbers.center}, ${stateSlotLuckyNumbers.right}`})
+        NEXT numbers will be: ({`${stateDebugMode.luckyNumbers.left}, ${stateDebugMode.luckyNumbers.center}, ${stateDebugMode.luckyNumbers.right}`})
       </div>
       <div>
-        NEXT lines will be: ({`${stateSlotLuckyLines.left}, ${stateSlotLuckyLines.center}, ${stateSlotLuckyLines.right}`})
+        NEXT lines will be: ({`${stateDebugMode.luckyLines.left}, ${stateDebugMode.luckyLines.center}, ${stateDebugMode.luckyLines.right}`})
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import * as packageJSON from '../../../package.json';
 
+
 interface IConstants {
   app: {
     name: string;
@@ -7,7 +8,9 @@ interface IConstants {
     version: string;
   };
   settings: {
-    dataDuplication: number;
+    dataDuplication: 6 | 8 | 10 | 12;
+    animationDurationAsMS: number;
+    animationDurationStepAsMs: number;
   };
   text: {
     machineName: string;
@@ -24,7 +27,9 @@ const constants: IConstants = {
     version: packageJSON.version,
   },
   settings: {
-    dataDuplication: 30,
+    dataDuplication: 6, // Symbol's counts multiplied by this
+    animationDurationAsMS: 2000,
+    animationDurationStepAsMs: 500,
   },
   text: {
     machineName: 'JACKPOT',

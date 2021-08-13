@@ -72,10 +72,12 @@
         height: auto;
       }
 
-      &.state--center &__image {
-        animation: animation_symbol_center_bounce 0.7s ease-in-out 0s 1;
+      &.state--top &__image,
+      &.state--center &__image,
+      &.state--bottom &__image {
+        animation: animation_symbol_bounce 0.7s ease-in-out 0s 1;
 
-        @keyframes animation_symbol_center_bounce {
+        @keyframes animation_symbol_bounce {
           0% {
             transform: scale(1);
           }
@@ -88,6 +90,14 @@
             transform: scale(1);
           }
         }
+      }
+
+      &.state--center &__image {
+        animation-delay: 0.25s;
+      }
+
+      &.state--bottom &__image {
+        animation-delay: 0.5s;
       }
     }
   }

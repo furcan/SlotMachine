@@ -3,10 +3,6 @@ import { Dispatch } from 'redux';
 import { ESymbols } from 'application/enumerations/symbols';
 
 
-interface IReduxSlotDebugMode {
-  isActive: boolean;
-}
-
 type TReduxSlotData = ESymbols[];
 
 interface IReduxSlotVisibleIndexes {
@@ -28,12 +24,18 @@ interface IReduxSlotLuckyNumbers {
 }
 
 interface IReduxSlotAchievements {
-  lineTopAchievements: string;
-  lineCenterAchievements: string;
-  lineBottomAchievements: string;
+  lineTopAchievements: ESymbols[];
+  lineCenterAchievements: ESymbols[];
+  lineBottomAchievements: ESymbols[];
   reelLeftVisibleIndexes: IReduxSlotVisibleIndexes;
   reelCenterVisibleIndexes: IReduxSlotVisibleIndexes;
   reelRightVisibleIndexes: IReduxSlotVisibleIndexes;
+}
+
+interface IReduxSlotDebugMode {
+  isActive: boolean;
+  luckyLines: IReduxSlotLuckyLines;
+  luckyNumbers: IReduxSlotLuckyNumbers;
 }
 
 interface IReduxSlotState {
@@ -43,8 +45,6 @@ interface IReduxSlotState {
   stateSlotIsSpinning: boolean;
   stateSlotSpinningHasEnded: boolean;
   stateSlotData: TReduxSlotData;
-  stateSlotLuckyLines: IReduxSlotLuckyLines,
-  stateSlotLuckyNumbers: IReduxSlotLuckyNumbers,
   stateSlotAchievements: IReduxSlotAchievements,
   slotReducer?: any;
 }
@@ -53,11 +53,8 @@ interface IReduxSlotActionTypes {
   SLOT_ISDEBUGMODE: string;
   SLOT_WELLCOME: string;
   SLOT_START: string;
-  SLOT_RESTART: string;
   SLOT_ISSPINNING: string;
   SLOT_SPINNINGHASENDED: string;
-  SLOT_LUCKYLINES: string;
-  SLOT_LUCKYNUMBERS: string;
   SLOT_ACHIEVEMENTS: string;
 }
 
