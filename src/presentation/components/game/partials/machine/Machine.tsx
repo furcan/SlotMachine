@@ -63,12 +63,6 @@ function Machine(): JSX.Element { // TODO:
         />
       </div>
 
-      {stateDebugMode.isActive &&
-        <div className="machine__debug">
-          <MachineDebug classNamePrefix={'machine__debug'} />
-        </div>
-      }
-
       <div className="machine__buttons">
         <MachineButtonDebug
           classNamePrefix={'machine__buttons'}
@@ -86,6 +80,12 @@ function Machine(): JSX.Element { // TODO:
           refsSymbolsRight={refsSymbolsRight}
         />
       </div>
+
+      {stateDebugMode.isActive &&
+        <div className="machine__debug">
+          <MachineDebug classNamePrefix={'machine__debug'} />
+        </div>
+      }
     </div>
   );
 }

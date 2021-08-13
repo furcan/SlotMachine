@@ -8,7 +8,7 @@
       background: $color_theme_red !important;
       padding: 1.25rem 1.75rem 1.3rem !important;
       border-color: $color_theme_red_dark !important;
-      border-radius: 3rem !important;
+      border-radius: 3rem 3rem 2.75rem 2.75rem !important;
       font-size: 1.25rem !important;
 
       @include media_up($breakpoint_mobile) {

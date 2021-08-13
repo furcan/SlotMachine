@@ -11,13 +11,14 @@
 
   &__reels {
     position: relative;
+    z-index: 1;
     width: 100%;
     max-width: $size_symbol_mobile * $count_reels;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    margin: 4rem auto 3rem;
+    margin: 4rem auto 0.5rem;
     filter: drop-shadow(0 0.5rem 1rem rgba($color_black, 0.2));
 
     @include media_up($breakpoint_tablet) {
@@ -31,11 +32,20 @@
       left: -1rem;
       top: -1rem;
       width: calc(100% + 2rem);
-      height: calc(100% + 2rem);
+      height: calc(100% + 3rem);
       background: $color_dark;
-      border-radius: 16%/2rem;
-      border-left: 0.5rem solid $color_gray_dark;
-      border-right: 0.5rem solid $color_gray_dark;
+      border-radius: 12.5%/2.5rem;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+
+      @include media_up($breakpoint_tablet) {
+        left: -1.25rem;
+        top: -1.25rem;
+        width: calc(100% + 2.5rem);
+        height: calc(100% + 2.5rem);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
     }
 
     &__title {
@@ -47,7 +57,7 @@
       top: -4rem;
       width: 100%;
       max-width: 14rem;
-      padding: 0.75rem 1.6rem;
+      padding: 0.8rem 1.6rem;
       border-radius: 24%/4rem;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -59,31 +69,34 @@
       letter-spacing: 0.1rem;
       border-left: 0.6rem solid $color_gray_dark;
       border-right: 0.6rem solid $color_gray_dark;
+
+      @include media_up($breakpoint_tablet) {
+        top: -4.5rem;
+      }
     }
   }
 
-  &__debug {
-    width: 100%;
-    margin: 0 auto 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-
   &__buttons {
+    position: relative;
+    z-index: 2;
     width: 100%;
+    max-width: 34rem;
     margin: 0 auto 1.5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    transform: perspective(30rem) rotateX(5deg);
-    background: $color_theme_light;
+    background: $color_dark;
     padding: 0.5rem 0.75rem 1rem;
     border-radius: 1rem 1rem 2rem 2rem;
-    border-bottom: 0.75rem solid rgba($color_black, 0.2);
+    border-bottom: 0.75rem solid $color_gray_dark;
     box-shadow: $box_shadow_bottom_50;
+    transform: perspective(30rem) rotateX(6deg);
+
+    @include media_up($breakpoint_tablet) {
+      transform: perspective(30rem) rotateX(12deg);
+      min-height: 8.5rem;
+    }
 
     &__button {
       transition: $transition_base;
@@ -99,15 +112,23 @@
       font-size: 1rem;
       font-weight: 500;
       box-shadow: $box_shadow_bottom_50;
-      border-radius: 2rem;
+      border-radius: 2rem 2rem 1.75rem 1.75rem;
       border-bottom: 0.7rem solid $color_theme_yellow_dark;
+
+      @include media_up($breakpoint_tablet) {
+        border-bottom-width: 0.8rem;
+      }
 
       &:not(:disabled):hover {
         transform: translateY(0.05rem);
       }
 
       &:not(:disabled):active {
-        transform: translateY(0.4rem);
+        transform: translateY(0.2rem);
+
+        @include media_up($breakpoint_tablet) {
+          border-bottom-width: 0.4rem;
+        }
       }
 
       &--disabled {
@@ -125,5 +146,16 @@
         margin: 0 0.75rem 0 0;
       }
     }
+  }
+
+  &__debug {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 }

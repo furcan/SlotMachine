@@ -3,7 +3,7 @@
 .machine__buttons {
   &__button {
     &--auto {
-      order: 3;
+      order: 2;
 
       @include media_up($breakpoint_mobile) {
         order: 2;
