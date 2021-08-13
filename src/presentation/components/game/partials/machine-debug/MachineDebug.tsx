@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FiSave as IconClose } from 'react-icons/fi';
 
 import { constants } from 'application/constants';
 import { EReelsAlignments } from 'application/enumerations/reels';
 import { ESymbols, ESymbolsPositions } from 'application/enumerations/symbols';
 import { generateRandomThresholdNumberForDebugMode } from 'application/helpers';
-import { rdxSlotSelector, rdxSlotLuckyLinesForDebugModeAsync, rdxSlotLuckyNumbersForDebugModeAsync } from 'application/redux';
+import { rdxSlotSelector, rdxSlotDebugModeLuckyPositionsAsync, rdxSlotDebugModeLuckyNumbersAsync, rdxSlotDebugModeCloseModalAsync } from 'application/redux';
 
 import MachineDebugReel from 'presentation/components/game/partials/machine-debug-reel/MachineDebugReel';
 import MachineDebugPosition from 'presentation/components/game/partials/machine-debug-position/MachineDebugPosition';
@@ -28,13 +29,13 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
   const [symbolCenter, setSymbolCenter] = useState<number>(generateRandomThresholdNumberForDebugMode() + ESymbols.SEVEN);
   const [symbolRight, setSymbolRight] = useState<number>(generateRandomThresholdNumberForDebugMode() + ESymbols.SEVEN);
 
-  const luckyLinesOnClickHandlerAsync = useCallback(async (): Promise<void> => {
-    const debugLuckyLines = {
+  const luckyPositionsOnClickHandlerAsync = useCallback(async (): Promise<void> => {
+    const debugLuckyPositions = {
       left: positionTop,
       center: positionCenter,
       right: positionBottom,
     };
-    dispatch(rdxSlotLuckyLinesForDebugModeAsync(debugLuckyLines));
+    dispatch(rdxSlotDebugModeLuckyPositionsAsync(debugLuckyPositions));
   }, [positionTop, positionCenter, positionBottom, dispatch]);
 
 
@@ -44,14 +45,18 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
       center: symbolCenter,
       right: symbolRight,
     };
-    dispatch(rdxSlotLuckyNumbersForDebugModeAsync(debugLuckyNumbers));
+    dispatch(rdxSlotDebugModeLuckyNumbersAsync(debugLuckyNumbers));
   }, [symbolLeft, symbolCenter, symbolRight, dispatch]);
 
+  const closeDebugModalOnClickHandlerAsync = async (): Promise<void> => {
+    dispatch(rdxSlotDebugModeCloseModalAsync());
+  };
+
   useEffect(() => {
-    luckyLinesOnClickHandlerAsync();
+    luckyPositionsOnClickHandlerAsync();
     luckyNumbersOnClickHandlerAsync();
   }, [
-    luckyLinesOnClickHandlerAsync,
+    luckyPositionsOnClickHandlerAsync,
     luckyNumbersOnClickHandlerAsync,
   ]);
 
@@ -60,6 +65,9 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
       <div className={`${classNamePrefix}__head`}>
         <h2 className={`${classNamePrefix}__head__title`}>{constants.text.debugMode.title}</h2>
         <p className={`${classNamePrefix}__head__description`}>{constants.text.debugMode.description}</p>
+        <button type="button" className={`${classNamePrefix}__head__close`} onClick={closeDebugModalOnClickHandlerAsync}>
+          <IconClose />
+        </button>
       </div>
 
       <div className={`${classNamePrefix}__symbols`}>

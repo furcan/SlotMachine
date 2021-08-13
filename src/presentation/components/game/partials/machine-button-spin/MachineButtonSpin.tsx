@@ -4,7 +4,7 @@ import { VscSettings as IconSpin } from 'react-icons/vsc';
 import { constants } from 'application/constants';
 import { ESymbols, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
 import { elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
-import { rdxSlotSelector, rdxSlotIsSpinningAsync, rdxSlotHasEndedAsync, rdxSlotAchievementsAsync } from 'application/redux';
+import { rdxSlotSelector, rdxSlotSpinningAnimationAsync, rdxSlotSpinningHasEndedAsync, rdxSlotAchievementsAsync } from 'application/redux';
 
 import 'presentation/components/game/partials/machine-button-spin/MachineButtonSpin.scss';
 
@@ -39,13 +39,13 @@ function MachineButtonSpin({
     refReelRight.current?.scrollTo({ top: 0 });
     // Reset the Reels: end
 
-    // Get/Set the Lucky Lines: Begin
-    const luckyLines = {
-      left: stateDebugMode.isActive ? stateDebugMode.luckyLines.left : generateRandomNumberBetween(0, 2),
-      center: stateDebugMode.isActive ? stateDebugMode.luckyLines.center : generateRandomNumberBetween(0, 2),
-      right: stateDebugMode.isActive ? stateDebugMode.luckyLines.right : generateRandomNumberBetween(0, 2),
+    // Get/Set the Lucky Positions: Begin
+    const luckyPositions = {
+      left: stateDebugMode.isActive ? stateDebugMode.luckyPositions.left : generateRandomNumberBetween(0, 2),
+      center: stateDebugMode.isActive ? stateDebugMode.luckyPositions.center : generateRandomNumberBetween(0, 2),
+      right: stateDebugMode.isActive ? stateDebugMode.luckyPositions.right : generateRandomNumberBetween(0, 2),
     };
-    // Get/Set the Lucky Lines: end
+    // Get/Set the Lucky Positions: end
 
     // Get/Set the Lucky Numbers: Begin
     const minSymbolsCountForRandom = symbolsValuesAsArrayOfNumber.length * 2;
@@ -58,9 +58,9 @@ function MachineButtonSpin({
     // Get/Set the Lucky Numbers: end
 
     // Reels and Symbols Definition: begin
-    const symbolLeft = refsSymbolsLeft.current[luckyNumbers.left - 1];
-    const symbolCenter = refsSymbolsCenter.current[luckyNumbers.center - 1];
-    const symbolRight = refsSymbolsRight.current[luckyNumbers.right - 1];
+    const symbolLeft = refsSymbolsLeft.current[luckyNumbers.left];
+    const symbolCenter = refsSymbolsCenter.current[luckyNumbers.center];
+    const symbolRight = refsSymbolsRight.current[luckyNumbers.right];
     const reelLeft = refReelLeft.current;
     const reelCenter = refReelCenter.current;
     const reelRight = refReelRight.current;
@@ -68,58 +68,59 @@ function MachineButtonSpin({
 
     // Reels and Symbols are existed
     if (symbolLeft && symbolCenter && symbolRight && reelLeft && reelCenter && reelRight) {
-      // Spining effect
-      dispatch(rdxSlotIsSpinningAsync());
+      // Reset && Spining effect
+      dispatch(rdxSlotSpinningHasEndedAsync(false));
+      dispatch(rdxSlotSpinningAnimationAsync());
 
       // Achievements: begin
-      const topLineSymbol1 = refsSymbolsLeft.current[luckyNumbers.left - luckyLines.left - 1];
-      const topLineSymbol2 = refsSymbolsCenter.current[luckyNumbers.center - luckyLines.center - 1];
-      const topLineSymbol3 = refsSymbolsRight.current[luckyNumbers.right - luckyLines.right - 1];
-      const centerLineSymbol1 = refsSymbolsLeft.current[luckyNumbers.left - luckyLines.left];
-      const centerLineSymbol2 = refsSymbolsCenter.current[luckyNumbers.center - luckyLines.center];
-      const centerLineSymbol3 = refsSymbolsRight.current[luckyNumbers.right - luckyLines.right];
-      const bottomLineSymbol1 = refsSymbolsLeft.current[luckyNumbers.left - luckyLines.left + 1];
-      const bottomLineSymbol2 = refsSymbolsCenter.current[luckyNumbers.center - luckyLines.center + 1];
-      const bottomLineSymbol3 = refsSymbolsRight.current[luckyNumbers.right - luckyLines.right + 1];
+      const topSymbol1 = refsSymbolsLeft.current[luckyNumbers.left - luckyPositions.left];
+      const topSymbol2 = refsSymbolsCenter.current[luckyNumbers.center - luckyPositions.center];
+      const topSymbol3 = refsSymbolsRight.current[luckyNumbers.right - luckyPositions.right];
+      const centerSymbol1 = refsSymbolsLeft.current[luckyNumbers.left - luckyPositions.left + 1];
+      const centerSymbol2 = refsSymbolsCenter.current[luckyNumbers.center - luckyPositions.center + 1];
+      const centerSymbol3 = refsSymbolsRight.current[luckyNumbers.right - luckyPositions.right + 1];
+      const bottomSymbol1 = refsSymbolsLeft.current[luckyNumbers.left - luckyPositions.left + 2];
+      const bottomSymbol2 = refsSymbolsCenter.current[luckyNumbers.center - luckyPositions.center + 2];
+      const bottomSymbol3 = refsSymbolsRight.current[luckyNumbers.right - luckyPositions.right + 2];
       const achievements = {
-        lineTopAchievements: [
-          +(topLineSymbol1?.dataset.achievement || 0) as ESymbols,
-          +(topLineSymbol2?.dataset.achievement || 0) as ESymbols,
-          +(topLineSymbol3?.dataset.achievement || 0) as ESymbols,
+        achievementsTop: [
+          +(topSymbol1?.dataset.achievement || 0) as ESymbols,
+          +(topSymbol2?.dataset.achievement || 0) as ESymbols,
+          +(topSymbol3?.dataset.achievement || 0) as ESymbols,
         ],
-        lineCenterAchievements: [
-          +(centerLineSymbol1?.dataset.achievement || 0) as ESymbols,
-          +(centerLineSymbol2?.dataset.achievement || 0) as ESymbols,
-          +(centerLineSymbol3?.dataset.achievement || 0) as ESymbols,
+        achievementsCenter: [
+          +(centerSymbol1?.dataset.achievement || 0) as ESymbols,
+          +(centerSymbol2?.dataset.achievement || 0) as ESymbols,
+          +(centerSymbol3?.dataset.achievement || 0) as ESymbols,
         ],
-        lineBottomAchievements: [
-          +(bottomLineSymbol1?.dataset.achievement || 0) as ESymbols,
-          +(bottomLineSymbol2?.dataset.achievement || 0) as ESymbols,
-          +(bottomLineSymbol3?.dataset.achievement || 0) as ESymbols,
+        achievementsBottom: [
+          +(bottomSymbol1?.dataset.achievement || 0) as ESymbols,
+          +(bottomSymbol2?.dataset.achievement || 0) as ESymbols,
+          +(bottomSymbol3?.dataset.achievement || 0) as ESymbols,
         ],
-        reelLeftVisibleIndexes: {
-          top: (luckyNumbers.left - luckyLines.left - 1),
-          center: (luckyNumbers.left - luckyLines.left),
-          bottom: (luckyNumbers.left - luckyLines.left + 1),
+        visibleIndexesLeft: {
+          top: (luckyNumbers.left - luckyPositions.left),
+          center: (luckyNumbers.left - luckyPositions.left + 1),
+          bottom: (luckyNumbers.left - luckyPositions.left + 2),
         },
-        reelCenterVisibleIndexes: {
-          top: (luckyNumbers.center - luckyLines.center - 1),
-          center: (luckyNumbers.center - luckyLines.center),
-          bottom: (luckyNumbers.center - luckyLines.center + 1),
+        visibleIndexesCenter: {
+          top: (luckyNumbers.center - luckyPositions.center),
+          center: (luckyNumbers.center - luckyPositions.center + 1),
+          bottom: (luckyNumbers.center - luckyPositions.center + 2),
         },
-        reelRightVisibleIndexes: {
-          top: (luckyNumbers.right - luckyLines.right - 1),
-          center: (luckyNumbers.right - luckyLines.right),
-          bottom: (luckyNumbers.right - luckyLines.right + 1),
+        visibleIndexesRight: {
+          top: (luckyNumbers.right - luckyPositions.right),
+          center: (luckyNumbers.right - luckyPositions.right + 1),
+          bottom: (luckyNumbers.right - luckyPositions.right + 2),
         },
       };
       dispatch(rdxSlotAchievementsAsync(achievements));
       // Achievements: end
 
       // Spin the Reels: begin
-      const scrollTopLeft = (symbolLeft.offsetTop - reelLeft.offsetTop) - (luckyLines.left * symbolLeft.offsetHeight);
-      const scrollTopCenter = (symbolCenter.offsetTop - reelCenter.offsetTop) - (luckyLines.center * symbolCenter.offsetHeight);
-      const scrollTopRight = (symbolRight.offsetTop - reelRight.offsetTop) - (luckyLines.right * symbolRight.offsetHeight);
+      const scrollTopLeft = (symbolLeft.offsetTop - reelLeft.offsetTop) - (luckyPositions.left * symbolLeft.offsetHeight);
+      const scrollTopCenter = (symbolCenter.offsetTop - reelCenter.offsetTop) - (luckyPositions.center * symbolCenter.offsetHeight);
+      const scrollTopRight = (symbolRight.offsetTop - reelRight.offsetTop) - (luckyPositions.right * symbolRight.offsetHeight);
       await Promise.all([
         elementScrollToWithDurationAsync(reelLeft, scrollTopLeft, (constants.settings.animationDurationAsMS - (2 * constants.settings.animationDurationStepAsMs))),
         elementScrollToWithDurationAsync(reelCenter, scrollTopCenter, (constants.settings.animationDurationAsMS - constants.settings.animationDurationStepAsMs)),
@@ -128,7 +129,7 @@ function MachineButtonSpin({
       // Spin the Reels: end
 
       // Spin has ended
-      dispatch(rdxSlotHasEndedAsync(true));
+      dispatch(rdxSlotSpinningHasEndedAsync(true));
     }
   };
 

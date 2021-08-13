@@ -149,14 +149,38 @@
   }
 
   &__debug {
-    position: relative;
+    position: fixed;
     z-index: 3;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     max-width: 34rem;
-    margin: 0 auto 1.5rem;
+    max-height: 100%;
+    overflow: hidden auto;
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &::before {
+      content: "";
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba($color_black, 0.8);
+      backdrop-filter: blur(0.25rem);
+    }
   }
 }

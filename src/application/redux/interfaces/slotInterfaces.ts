@@ -11,7 +11,7 @@ interface IReduxSlotVisibleIndexes {
   bottom: number;
 }
 
-interface IReduxSlotLuckyLines {
+interface IReduxSlotLuckyPositions {
   left: number;
   center: number;
   right: number;
@@ -24,17 +24,18 @@ interface IReduxSlotLuckyNumbers {
 }
 
 interface IReduxSlotAchievements {
-  lineTopAchievements: ESymbols[];
-  lineCenterAchievements: ESymbols[];
-  lineBottomAchievements: ESymbols[];
-  reelLeftVisibleIndexes: IReduxSlotVisibleIndexes;
-  reelCenterVisibleIndexes: IReduxSlotVisibleIndexes;
-  reelRightVisibleIndexes: IReduxSlotVisibleIndexes;
+  achievementsTop: ESymbols[];
+  achievementsCenter: ESymbols[];
+  achievementsBottom: ESymbols[];
+  visibleIndexesLeft: IReduxSlotVisibleIndexes;
+  visibleIndexesCenter: IReduxSlotVisibleIndexes;
+  visibleIndexesRight: IReduxSlotVisibleIndexes;
 }
 
 interface IReduxSlotDebugMode {
   isActive: boolean;
-  luckyLines: IReduxSlotLuckyLines;
+  isOpen: boolean;
+  luckyPositions: IReduxSlotLuckyPositions;
   luckyNumbers: IReduxSlotLuckyNumbers;
 }
 
@@ -51,12 +52,13 @@ interface IReduxSlotState {
 }
 
 interface IReduxSlotActionTypes {
-  SLOT_ISDEBUGMODE: string;
-  SLOT_DEBUGMODELUCKYLINES: string;
+  SLOT_DEBUGMODE: string;
+  SLOT_DEBUGMODEMODAL: string;
+  SLOT_DEBUGMODELUCKYPOSITONS: string;
   SLOT_DEBUGMODELUCKYNUMBERS: string;
   SLOT_WELLCOME: string;
   SLOT_START: string;
-  SLOT_ISSPINNING: string;
+  SLOT_SPINNINGANIMATION: string;
   SLOT_SPINNINGHASENDED: string;
   SLOT_ACHIEVEMENTS: string;
 }
@@ -64,7 +66,7 @@ interface IReduxSlotActionTypes {
 interface IReduxSlotActions {
   type: string;
   actionIsDebugMode?: boolean;
-  actionDebugLuckyLines?: IReduxSlotLuckyLines;
+  actionDebugLuckyPositions?: IReduxSlotLuckyPositions;
   actionDebugLuckyNumbers?: IReduxSlotLuckyNumbers;
   actionIsSpinning?: boolean;
   actionHasEnded?: boolean;
@@ -78,7 +80,7 @@ interface IReduxSlotDispatch {
 export type {
   IReduxSlotVisibleIndexes,
   TReduxSlotData,
-  IReduxSlotLuckyLines,
+  IReduxSlotLuckyPositions,
   IReduxSlotLuckyNumbers,
   IReduxSlotAchievements,
   IReduxSlotState,

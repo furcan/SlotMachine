@@ -32,9 +32,9 @@ const getSymbolsValue = (enumeration: number): string => {
 
 // Symbols Positions: begin
 enum ESymbolsPositions {
-  TOP = 0,
-  CENTER = 1,
-  BOTTOM = 2,
+  TOP = 1,
+  CENTER = 2,
+  BOTTOM = 3,
 }
 
 const symbolsPositionsKeysAsArrayOfString = Object.keys(ESymbolsPositions).splice(Math.floor(Object.keys(ESymbolsPositions).length / 2));

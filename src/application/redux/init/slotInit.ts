@@ -6,7 +6,8 @@ import { IReduxSlotState } from 'application/redux';
 const rdxSlotInitialState: IReduxSlotState = {
   stateDebugMode: {
     isActive: true, // TODO: will be false after dev
-    luckyLines: {
+    isOpen: false,
+    luckyPositions: {
       left: 0,
       center: 0,
       right: 0,
@@ -23,20 +24,20 @@ const rdxSlotInitialState: IReduxSlotState = {
   stateSlotSpinningHasEnded: false,
   stateSlotData: Array(constants.settings.dataDuplication).fill([...symbolsValuesAsArrayOfNumber]).flat(),
   stateSlotAchievements: {
-    lineTopAchievements: [],
-    lineCenterAchievements: [],
-    lineBottomAchievements: [],
-    reelLeftVisibleIndexes: {
+    achievementsTop: [],
+    achievementsCenter: [],
+    achievementsBottom: [],
+    visibleIndexesLeft: {
       top: 0,
       center: 0,
       bottom: 0,
     },
-    reelCenterVisibleIndexes: {
+    visibleIndexesCenter: {
       top: 0,
       center: 0,
       bottom: 0,
     },
-    reelRightVisibleIndexes: {
+    visibleIndexesRight: {
       top: 0,
       center: 0,
       bottom: 0,

@@ -39,7 +39,7 @@ function Machine(): JSX.Element { // TODO:
           slotData={stateSlotData}
           refReel={refReelLeft}
           refsSymbols={refsSymbolsLeft}
-          achievedIndexes={stateSlotAchievements.reelLeftVisibleIndexes}
+          achievedIndexes={stateSlotAchievements.visibleIndexesLeft}
           alignment={EReelsAlignments.LEFT}
           hasEnded={stateSlotSpinningHasEnded}
         />
@@ -48,7 +48,7 @@ function Machine(): JSX.Element { // TODO:
           slotData={stateSlotData}
           refReel={refReelCenter}
           refsSymbols={refsSymbolsCenter}
-          achievedIndexes={stateSlotAchievements.reelCenterVisibleIndexes}
+          achievedIndexes={stateSlotAchievements.visibleIndexesCenter}
           alignment={EReelsAlignments.CENTER}
           hasEnded={stateSlotSpinningHasEnded}
         />
@@ -57,7 +57,7 @@ function Machine(): JSX.Element { // TODO:
           slotData={stateSlotData}
           refReel={refReelRight}
           refsSymbols={refsSymbolsRight}
-          achievedIndexes={stateSlotAchievements.reelRightVisibleIndexes}
+          achievedIndexes={stateSlotAchievements.visibleIndexesRight}
           alignment={EReelsAlignments.RIGHT}
           hasEnded={stateSlotSpinningHasEnded}
         />
@@ -81,7 +81,7 @@ function Machine(): JSX.Element { // TODO:
         />
       </div>
 
-      {stateDebugMode.isActive &&
+      {(stateDebugMode.isActive && stateDebugMode.isOpen) &&
         <div className="machine__debug">
           <MachineDebug classNamePrefix={'machine__debug'} />
         </div>

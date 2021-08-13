@@ -1,7 +1,7 @@
 enum EReelsAlignments {
-  LEFT = 0,
-  CENTER = 1,
-  RIGHT = 2,
+  LEFT = 1,
+  CENTER = 2,
+  RIGHT = 3,
 }
 
 const mapReelsAlignments = new Map<number, string>([

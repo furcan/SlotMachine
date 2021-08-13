@@ -8,17 +8,18 @@ import {
   IReduxSlotAchievements,
   IReduxSlotActionTypes,
   IReduxSlotActions,
-  IReduxSlotLuckyLines,
+  IReduxSlotLuckyPositions,
   IReduxSlotLuckyNumbers,
 } from 'application/redux';
 
 const rdxSlotActionTypes: IReduxSlotActionTypes = {
-  SLOT_ISDEBUGMODE: 'SLOT_ISDEBUGMODE',
-  SLOT_DEBUGMODELUCKYLINES: 'SLOT_DEBUGMODELUCKYLINES',
+  SLOT_DEBUGMODE: 'SLOT_DEBUGMODE',
+  SLOT_DEBUGMODEMODAL: 'SLOT_DEBUGMODEMODAL',
+  SLOT_DEBUGMODELUCKYPOSITONS: 'SLOT_DEBUGMODELUCKYPOSITONS',
   SLOT_DEBUGMODELUCKYNUMBERS: 'SLOT_DEBUGMODELUCKYNUMBERS',
   SLOT_WELLCOME: 'SLOT_START',
   SLOT_START: 'SLOT_START',
-  SLOT_ISSPINNING: 'SLOT_ISSPINNING',
+  SLOT_SPINNINGANIMATION: 'SLOT_SPINNINGANIMATION',
   SLOT_SPINNINGHASENDED: 'SLOT_SPINNINGHASENDED',
   SLOT_ACHIEVEMENTS: 'SLOT_ACHIEVEMENTS',
 };
@@ -32,12 +33,12 @@ const slotStart = (): IReduxSlotActions => ({
   type: rdxSlotActionTypes.SLOT_START,
 });
 
-const slotIsSpinning = (toggle: boolean): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_ISSPINNING,
+const slotSpinningAnimation = (toggle: boolean): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_SPINNINGANIMATION,
   actionIsSpinning: toggle,
 });
 
-const slotHasEnded = (toggle: boolean): IReduxSlotActions => ({
+const slotSpinningHasEnded = (toggle: boolean): IReduxSlotActions => ({
   type: rdxSlotActionTypes.SLOT_SPINNINGHASENDED,
   actionHasEnded: toggle,
 });
@@ -47,17 +48,21 @@ const slotAchievements = (achievements: IReduxSlotAchievements): IReduxSlotActio
   actionAchievements: achievements,
 });
 
-const slotSwitchToDebugMode = (toggle: boolean): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_ISDEBUGMODE,
+const slotDebugModeSwitch = (toggle: boolean): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_DEBUGMODE,
   actionIsDebugMode: toggle,
 });
 
-const slotLuckyLinesForDebugMode = (lines: IReduxSlotLuckyLines): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_DEBUGMODELUCKYLINES,
-  actionDebugLuckyLines: lines,
+const slotDebugModeCloseModal = (): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_DEBUGMODEMODAL,
 });
 
-const slotLuckyNumbersForDebugMode = (numbers: IReduxSlotLuckyNumbers): IReduxSlotActions => ({
+const slotDebugModeLuckyPositions = (positions: IReduxSlotLuckyPositions): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_DEBUGMODELUCKYPOSITONS,
+  actionDebugLuckyPositions: positions,
+});
+
+const slotDebugModeLuckyNumbers = (numbers: IReduxSlotLuckyNumbers): IReduxSlotActions => ({
   type: rdxSlotActionTypes.SLOT_DEBUGMODELUCKYNUMBERS,
   actionDebugLuckyNumbers: numbers,
 });
@@ -71,30 +76,34 @@ const rdxSlotStartAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IR
   dispatch(slotStart());
 };
 
-const rdxSlotIsSpinningAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotIsSpinning(true));
+const rdxSlotSpinningAnimationAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotSpinningAnimation(true));
   await addSomeDelayAsync(constants.settings.animationDurationAsMS - (2 * constants.settings.animationDurationStepAsMs));
-  dispatch(slotIsSpinning(false));
+  dispatch(slotSpinningAnimation(false));
 };
 
-const rdxSlotHasEndedAsync = (toggle: boolean): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotHasEnded(toggle));
+const rdxSlotSpinningHasEndedAsync = (toggle: boolean): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotSpinningHasEnded(toggle));
 };
 
 const rdxSlotAchievementsAsync = (achievements: IReduxSlotAchievements): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
   dispatch(slotAchievements(achievements));
 };
 
-const rdxSlotSwitchToDebugModeAsync = (toggle: boolean): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotSwitchToDebugMode(toggle));
+const rdxSlotDebugModeSwitchAsync = (toggle: boolean): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotDebugModeSwitch(toggle));
 };
 
-const rdxSlotLuckyLinesForDebugModeAsync = (lines: IReduxSlotLuckyLines): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotLuckyLinesForDebugMode(lines));
+const rdxSlotDebugModeCloseModalAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotDebugModeCloseModal());
 };
 
-const rdxSlotLuckyNumbersForDebugModeAsync = (numbers: IReduxSlotLuckyNumbers): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotLuckyNumbersForDebugMode(numbers));
+const rdxSlotDebugModeLuckyPositionsAsync = (positions: IReduxSlotLuckyPositions): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotDebugModeLuckyPositions(positions));
+};
+
+const rdxSlotDebugModeLuckyNumbersAsync = (numbers: IReduxSlotLuckyNumbers): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotDebugModeLuckyNumbers(numbers));
 };
 
 const rdxSlotSelector = (state: IReduxSlotState): IReduxSlotState => state.slotReducer;
@@ -103,11 +112,12 @@ export {
   rdxSlotActionTypes,
   rdxSlotWelcomeAsync,
   rdxSlotStartAsync,
-  rdxSlotIsSpinningAsync,
-  rdxSlotHasEndedAsync,
+  rdxSlotSpinningAnimationAsync,
+  rdxSlotSpinningHasEndedAsync,
   rdxSlotAchievementsAsync,
-  rdxSlotSwitchToDebugModeAsync,
-  rdxSlotLuckyLinesForDebugModeAsync,
-  rdxSlotLuckyNumbersForDebugModeAsync,
+  rdxSlotDebugModeSwitchAsync,
+  rdxSlotDebugModeCloseModalAsync,
+  rdxSlotDebugModeLuckyPositionsAsync,
+  rdxSlotDebugModeLuckyNumbersAsync,
   rdxSlotSelector,
 };

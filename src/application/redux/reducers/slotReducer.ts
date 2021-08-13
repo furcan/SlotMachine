@@ -13,7 +13,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         stateSlotIsWelcome: false,
       };
 
-    case rdxSlotActionTypes.SLOT_ISSPINNING:
+    case rdxSlotActionTypes.SLOT_SPINNINGANIMATION:
       return {
         ...state,
         stateSlotCanBePlayed: false,
@@ -33,21 +33,31 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         stateSlotAchievements: action.actionAchievements || rdxSlotInitialState.stateSlotAchievements,
       };
 
-    case rdxSlotActionTypes.SLOT_ISDEBUGMODE:
+    case rdxSlotActionTypes.SLOT_DEBUGMODE:
       return {
         ...state,
         stateDebugMode: {
           ...state.stateDebugMode,
           isActive: action.actionIsDebugMode === true,
+          isOpen: true,
         },
       };
 
-    case rdxSlotActionTypes.SLOT_DEBUGMODELUCKYLINES:
+    case rdxSlotActionTypes.SLOT_DEBUGMODEMODAL:
       return {
         ...state,
         stateDebugMode: {
           ...state.stateDebugMode,
-          luckyLines: action.actionDebugLuckyLines || state.stateDebugMode.luckyLines,
+          isOpen: false,
+        },
+      };
+
+    case rdxSlotActionTypes.SLOT_DEBUGMODELUCKYPOSITONS:
+      return {
+        ...state,
+        stateDebugMode: {
+          ...state.stateDebugMode,
+          luckyPositions: action.actionDebugLuckyPositions || state.stateDebugMode.luckyPositions,
         },
       };
 

@@ -55,18 +55,6 @@
         height: $size_symbol_desktop;
       }
 
-      &.state--top {
-        color: green;
-      }
-
-      &.state--center {
-        color: red;
-      }
-
-      &.state--bottom {
-        color: cyan;
-      }
-
       &__image {
         width: 5.5rem;
         height: auto;

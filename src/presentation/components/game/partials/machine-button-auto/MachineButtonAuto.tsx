@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { VscSync as IconAuto } from 'react-icons/vsc';
 
 import { constants } from 'application/constants';
-import { rdxSlotSelector, rdxSlotSwitchToDebugModeAsync } from 'application/redux';
+import { rdxSlotSelector, rdxSlotDebugModeSwitchAsync } from 'application/redux';
 
 import 'presentation/components/game/partials/machine-button-auto/MachineButtonAuto.scss';
 
@@ -16,7 +16,7 @@ function MachineButtonAuto({ classNamePrefix }: IMachineButtonAuto): JSX.Element
   const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
 
   const autoButtonOnClickHandlerAsync = async (): Promise<void> => {
-    dispatch(rdxSlotSwitchToDebugModeAsync(false));
+    dispatch(rdxSlotDebugModeSwitchAsync(false));
   };
 
   return (
