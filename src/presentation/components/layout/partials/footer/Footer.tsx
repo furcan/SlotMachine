@@ -1,6 +1,6 @@
 import { constants } from 'application/constants';
 
-import 'presentation/components/footer/Footer.scss';
+import 'presentation/components/layout/partials/footer/Footer.scss';
 
 function Footer(): JSX.Element {
   return (

@@ -1,5 +1,5 @@
-import Header from 'presentation/components/header/Header';
-import Footer from 'presentation/components/footer/Footer';
+import Header from 'presentation/components/layout/partials/header/Header';
+import Footer from 'presentation/components/layout/partials/footer/Footer';
 
 import 'presentation/components/layout/Layout.scss';
 

@@ -1,4 +1,4 @@
-import 'presentation/components/header/Header.scss';
+import 'presentation/components/layout/partials/header/Header.scss';
 
 function Header(): JSX.Element {
   return (
