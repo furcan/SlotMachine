@@ -20,23 +20,23 @@ interface IMachineDebug {
 
 function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
   const dispatch = useDispatch();
-  const { stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
+  const { stateSlotCanBePlayed, stateDebugMode } = useSelector(rdxSlotSelector);
 
-  const [positionTop, setPositionTop] = useState<ESymbolsPositions>(ESymbolsPositions.CENTER);
-  const [positionCenter, setPositionCenter] = useState<ESymbolsPositions>(ESymbolsPositions.CENTER);
-  const [positionBottom, setPositionBottom] = useState<ESymbolsPositions>(ESymbolsPositions.CENTER);
-  const [symbolLeft, setSymbolLeft] = useState<number>(generateRandomThresholdNumberForDebugMode() + ESymbols.SEVEN);
-  const [symbolCenter, setSymbolCenter] = useState<number>(generateRandomThresholdNumberForDebugMode() + ESymbols.SEVEN);
-  const [symbolRight, setSymbolRight] = useState<number>(generateRandomThresholdNumberForDebugMode() + ESymbols.SEVEN);
+  const [positionLeft, setPositionLeft] = useState<ESymbolsPositions>(stateDebugMode.luckyPositions.left || ESymbolsPositions.CENTER);
+  const [positionCenter, setPositionCenter] = useState<ESymbolsPositions>(stateDebugMode.luckyPositions.center || ESymbolsPositions.CENTER);
+  const [positionRight, setPositionRight] = useState<ESymbolsPositions>(stateDebugMode.luckyPositions.right || ESymbolsPositions.CENTER);
+  const [symbolLeft, setSymbolLeft] = useState<number>(generateRandomThresholdNumberForDebugMode() + (stateDebugMode.luckyNumbers.left || ESymbols.SEVEN));
+  const [symbolCenter, setSymbolCenter] = useState<number>(generateRandomThresholdNumberForDebugMode() + (stateDebugMode.luckyNumbers.center || ESymbols.SEVEN));
+  const [symbolRight, setSymbolRight] = useState<number>(generateRandomThresholdNumberForDebugMode() + (stateDebugMode.luckyNumbers.right || ESymbols.SEVEN));
 
   const luckyPositionsOnClickHandlerAsync = useCallback(async (): Promise<void> => {
     const debugLuckyPositions = {
-      left: positionTop,
+      left: positionLeft,
       center: positionCenter,
-      right: positionBottom,
+      right: positionRight,
     };
     dispatch(rdxSlotDebugModeLuckyPositionsAsync(debugLuckyPositions));
-  }, [positionTop, positionCenter, positionBottom, dispatch]);
+  }, [positionLeft, positionCenter, positionRight, dispatch]);
 
 
   const luckyNumbersOnClickHandlerAsync = useCallback(async (): Promise<void> => {
@@ -97,8 +97,8 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
         <MachineDebugPosition
           classNamePrefix={classNamePrefix}
           alignment={EReelsAlignments.LEFT}
-          positionActive={positionTop}
-          positionOnClickHandler={setPositionTop}
+          positionActive={positionLeft}
+          positionOnClickHandler={setPositionLeft}
         />
         <MachineDebugPosition
           classNamePrefix={classNamePrefix}
@@ -109,8 +109,8 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
         <MachineDebugPosition
           classNamePrefix={classNamePrefix}
           alignment={EReelsAlignments.RIGHT}
-          positionActive={positionBottom}
-          positionOnClickHandler={setPositionBottom}
+          positionActive={positionRight}
+          positionOnClickHandler={setPositionRight}
         />
       </div>
     </div>
