@@ -25,9 +25,9 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
   const [positionLeft, setPositionLeft] = useState<ESymbolsPositions>(stateDebugMode.luckyPositions.left || ESymbolsPositions.CENTER);
   const [positionCenter, setPositionCenter] = useState<ESymbolsPositions>(stateDebugMode.luckyPositions.center || ESymbolsPositions.CENTER);
   const [positionRight, setPositionRight] = useState<ESymbolsPositions>(stateDebugMode.luckyPositions.right || ESymbolsPositions.CENTER);
-  const [symbolLeft, setSymbolLeft] = useState<number>(generateRandomThresholdNumberForDebugMode() + (stateDebugMode.luckyNumbers.left || ESymbols.SEVEN));
-  const [symbolCenter, setSymbolCenter] = useState<number>(generateRandomThresholdNumberForDebugMode() + (stateDebugMode.luckyNumbers.center || ESymbols.SEVEN));
-  const [symbolRight, setSymbolRight] = useState<number>(generateRandomThresholdNumberForDebugMode() + (stateDebugMode.luckyNumbers.right || ESymbols.SEVEN));
+  const [symbolLeft, setSymbolLeft] = useState<number>(stateDebugMode.luckyNumbers.left || (generateRandomThresholdNumberForDebugMode() + ESymbols.SEVEN));
+  const [symbolCenter, setSymbolCenter] = useState<number>(stateDebugMode.luckyNumbers.center || (generateRandomThresholdNumberForDebugMode() + ESymbols.SEVEN));
+  const [symbolRight, setSymbolRight] = useState<number>(stateDebugMode.luckyNumbers.right || (generateRandomThresholdNumberForDebugMode() + ESymbols.SEVEN));
 
   const luckyPositionsOnClickHandlerAsync = useCallback(async (): Promise<void> => {
     const debugLuckyPositions = {
@@ -53,10 +53,20 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
   };
 
   useEffect(() => {
-    luckyPositionsOnClickHandlerAsync();
-    luckyNumbersOnClickHandlerAsync();
+    if (positionLeft || positionCenter || positionRight) {
+      luckyPositionsOnClickHandlerAsync();
+    }
+    if (symbolLeft || symbolCenter || symbolRight) {
+      luckyNumbersOnClickHandlerAsync();
+    }
   }, [
+    positionLeft,
+    positionCenter,
+    positionRight,
     luckyPositionsOnClickHandlerAsync,
+    symbolLeft,
+    symbolCenter,
+    symbolRight,
     luckyNumbersOnClickHandlerAsync,
   ]);
 
