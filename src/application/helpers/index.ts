@@ -1,5 +1,7 @@
 import { constants } from 'application/constants';
-import { symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
+import { ESymbols, ESymbolsPositions, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
+import { EAchievements } from 'application/enumerations/achievements';
+
 
 const addSomeDelayAsync = (milliseconds?: number): Promise<void> => new Promise(resolve => setTimeout(() => { resolve(); }, milliseconds || 1000));
 
@@ -47,9 +49,71 @@ const generateRandomThresholdNumberForDebugMode = (): number => {
   return randomThreshold;
 };
 
+const calcTheAchievementsAndPayIt = (position: ESymbolsPositions, achievement: number[]): number => {
+  // TOP
+  if (position === ESymbolsPositions.TOP) {
+    // "3 CHERRY symbols on top line => 2000"
+    if (achievement.every(x => x === ESymbols.CHERRY)) {
+      return EAchievements.THREE_CHERRY_ONTOP;
+    }
+  }
+
+  // CENTER
+  if (position === ESymbolsPositions.CENTER) {
+    // "3 CHERRY symbols on center line => 1000"
+    if (achievement.every(x => x === ESymbols.CHERRY)) {
+      return EAchievements.THREE_CHERRY_ONCENTER;
+    }
+  }
+
+  // BOTTOM
+  if (position === ESymbolsPositions.BOTTOM) {
+    // "3 CHERRY symbols on bottom line => 4000"
+    if (achievement.every(x => x === ESymbols.CHERRY)) {
+      return EAchievements.THREE_CHERRY_ONBOTTOM;
+    }
+  }
+
+  // ANY LINE
+  // "3 7 symbols on any line => 150"
+  if (achievement.every(x => x === ESymbols.SEVEN)) {
+    return EAchievements.THREE_SEVEN_ONANY;
+  }
+
+  // "3 3xBAR symbols on any line => 50"
+  if (achievement.every(x => x === ESymbols.THREEXBAR)) {
+    return EAchievements.THREE_3xBAR_ONANY;
+  }
+
+  // "3 2xBAR symbols on any line => 20"
+  if (achievement.every(x => x === ESymbols.TWOXBAR)) {
+    return EAchievements.THREE_2xBAR_ONANY;
+  }
+
+  // "3 BAR symbols on any line => 10"
+  if (achievement.every(x => x === ESymbols.BAR)) {
+    return EAchievements.THREE_BAR_ONANY;
+  }
+
+  // ANY COMBINATIONS
+  if (achievement.includes(ESymbols.BAR) || (achievement.includes(ESymbols.CHERRY) && achievement.includes(ESymbols.SEVEN))) {
+    // IF => "Any combination of CHERRY and 7 on any line => 75"
+    if (achievement.includes(ESymbols.CHERRY) && achievement.includes(ESymbols.SEVEN)) {
+      return EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY;
+    }
+
+    // ELSE => "Combination of any BAR symbols on any line => 5"
+    return EAchievements.COMBINATION_BAR_ONANY;
+  }
+
+  // else, "Game Over"
+  return EAchievements.GAME_OVER;
+};
+
 export {
   addSomeDelayAsync,
   elementScrollToWithDurationAsync,
   generateRandomNumberBetween,
   generateRandomThresholdNumberForDebugMode,
+  calcTheAchievementsAndPayIt,
 };
