@@ -20,9 +20,9 @@ function MachineReel({ classNamePrefix, slotData, refReel, refsSymbols, achieved
   return (
     <div className={`${classNamePrefix}__reel ${classNamePrefix}__reel--${getReelsAlignmentsValue(alignment)}`} ref={refReel}>
       {slotData?.map((symbol: ESymbols, index: number) => {
-        const classNameTop = hasEnded && achievedIndexes.top === index ? 'state--top' : '';
-        const classNameCenter = hasEnded && achievedIndexes.center === index ? 'state--center' : '';
-        const classNameBottom = hasEnded && achievedIndexes.bottom === index ? 'state--bottom' : '';
+        const classNameTop = hasEnded && achievedIndexes.top === index && index > 0 ? 'state--top' : '';
+        const classNameCenter = hasEnded && achievedIndexes.center === index && index > 0 ? 'state--center' : '';
+        const classNameBottom = hasEnded && achievedIndexes.bottom === index && index > 0 ? 'state--bottom' : '';
 
         return (
           <div
