@@ -35,7 +35,10 @@ const elementScrollToWithDurationAsync = async (element: HTMLElement, to: number
   animatedScroll();
 });
 
-const generateRandomNumberBetween = (from: number, to: number): number => Math.floor(Math.random() * (to + 1)) + from;
+const generateRandomNumberBetween = (from: number, to: number): number => {
+  if (to <= from) { return from; }
+  return Math.floor(Math.random() * (Math.floor(to) - Math.ceil(from) + 1)) + Math.ceil(from);
+};
 
 const generateRandomThresholdNumberForDebugMode = (): number => {
   const minSymbolsCountForRandom = symbolsValuesAsArrayOfNumber.length * 2;
