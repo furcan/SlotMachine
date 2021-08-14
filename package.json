@@ -38,7 +38,7 @@
     "lint:eslint": "eslint src",
     "lint": "yarn lint:stylelint && yarn lint:eslint",
     "start": "yarn lint && react-scripts start",
-    "build": "yarn lint && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
