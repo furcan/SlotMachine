@@ -8,7 +8,7 @@ enum EAchievements {
   THREE_2xBAR_ONANY = 20,
   THREE_BAR_ONANY = 10,
   COMBINATION_CHERRYANDSEVEN_ONANY = 75,
-  COMBINATION_BAR_ONANY = 5,
+  COMBINATION_ALLBARS_ONANY = 5,
 }
 
 const achievementsKeysAsArrayOfString = Object.keys(EAchievements).splice(Math.floor(Object.keys(EAchievements).length / 2));
@@ -24,7 +24,7 @@ const mapAchievements = new Map<number, string>([
   [EAchievements.THREE_2xBAR_ONANY, `TODO: 20`],
   [EAchievements.THREE_BAR_ONANY, `TODO: 10`],
   [EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY, `TODO: 75`],
-  [EAchievements.COMBINATION_BAR_ONANY, `TODO: 5`],
+  [EAchievements.COMBINATION_ALLBARS_ONANY, `TODO: 5`],
 ]);
 
 const getAchievementsValue = (enumeration: number): string => {

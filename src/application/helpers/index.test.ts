@@ -119,53 +119,25 @@ describe('Helper functions should be work as epected.', () => {
     });
 
     it('Combination of any BAR symbols on any line => 5', () => {
-      const anyBarAchievements = [
-        ESymbols.BAR,
-        generateRandomNumberBetween(ESymbols.THREEXBAR, ESymbols.CHERRY),
-        generateRandomNumberBetween(ESymbols.THREEXBAR, ESymbols.CHERRY),
-      ];
+      const anyAllBarsOnTop = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, [ESymbols.BAR, ESymbols.TWOXBAR, ESymbols.THREEXBAR]);
+      expect(anyAllBarsOnTop).toBe(EAchievements.COMBINATION_ALLBARS_ONANY);
 
-      const isAchievementsIncludesAllBars = anyBarAchievements.every(x => x === ESymbols.BAR);
-      const isAchievementsIncludesAnyCherryAndSeven = anyBarAchievements.includes(ESymbols.CHERRY) && anyBarAchievements.includes(ESymbols.SEVEN);
+      const anyAllBarsOnCenter = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, [ESymbols.BAR, ESymbols.TWOXBAR, ESymbols.THREEXBAR]);
+      expect(anyAllBarsOnCenter).toBe(EAchievements.COMBINATION_ALLBARS_ONANY);
 
-      const anyBarOnTop = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, anyBarAchievements);
-      if (isAchievementsIncludesAnyCherryAndSeven) {
-        expect(anyBarOnTop).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
-      } else if (isAchievementsIncludesAllBars) {
-        expect(anyBarOnTop).toBe(EAchievements.THREE_BAR_ONANY);
-      } else {
-        expect(anyBarOnTop).toBe(EAchievements.COMBINATION_BAR_ONANY);
-      }
-
-      const anyBarOnCenter = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, anyBarAchievements);
-      if (isAchievementsIncludesAnyCherryAndSeven) {
-        expect(anyBarOnCenter).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
-      } else if (isAchievementsIncludesAllBars) {
-        expect(anyBarOnCenter).toBe(EAchievements.THREE_BAR_ONANY);
-      } else {
-        expect(anyBarOnCenter).toBe(EAchievements.COMBINATION_BAR_ONANY);
-      }
-
-      const anyBarOnBottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, anyBarAchievements);
-      if (isAchievementsIncludesAnyCherryAndSeven) {
-        expect(anyBarOnBottom).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
-      } else if (isAchievementsIncludesAllBars) {
-        expect(anyBarOnBottom).toBe(EAchievements.THREE_BAR_ONANY);
-      } else {
-        expect(anyBarOnBottom).toBe(EAchievements.COMBINATION_BAR_ONANY);
-      }
+      const anyAllBarsOnBottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, [ESymbols.BAR, ESymbols.TWOXBAR, ESymbols.THREEXBAR]);
+      expect(anyAllBarsOnBottom).toBe(EAchievements.COMBINATION_ALLBARS_ONANY);
     });
 
     it('Game Over', () => {
-      const gameOverOnTop = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, [0, 0, 0]);
+      const gameOverOnTop = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, [ESymbols.THREEXBAR, ESymbols.TWOXBAR, ESymbols.THREEXBAR]);
       expect(gameOverOnTop).toBe(EAchievements.GAME_OVER);
 
-      const gameOverOnCenter = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, [0, 0, 0]);
+      const gameOverOnCenter = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, [ESymbols.BAR, ESymbols.SEVEN, ESymbols.BAR]);
       expect(gameOverOnCenter).toBe(EAchievements.GAME_OVER);
 
-      const gameOverOnBottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, [0, 0, 0]);
+      const gameOverOnBottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, [ESymbols.TWOXBAR, ESymbols.CHERRY, ESymbols.TWOXBAR]);
       expect(gameOverOnBottom).toBe(EAchievements.GAME_OVER);
     });
-
   });
 });

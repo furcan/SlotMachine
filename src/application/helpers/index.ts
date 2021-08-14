@@ -95,15 +95,14 @@ const calcTheAchievementsAndPayIt = (position: ESymbolsPositions, achievement: n
     return EAchievements.THREE_BAR_ONANY;
   }
 
-  // ANY COMBINATIONS
-  if (achievement.includes(ESymbols.BAR) || (achievement.includes(ESymbols.CHERRY) && achievement.includes(ESymbols.SEVEN))) {
-    // IF => "Any combination of CHERRY and 7 on any line => 75"
-    if (achievement.includes(ESymbols.CHERRY) && achievement.includes(ESymbols.SEVEN)) {
-      return EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY;
-    }
+  // "Any combination of CHERRY and 7 on any line => 75"
+  if (achievement.includes(ESymbols.CHERRY) && achievement.includes(ESymbols.SEVEN)) {
+    return EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY;
+  }
 
-    // ELSE => "Combination of any BAR symbols on any line => 5"
-    return EAchievements.COMBINATION_BAR_ONANY;
+  // "Combination of any BAR symbols on any line => 5"
+  if (achievement.includes(ESymbols.BAR) && achievement.includes(ESymbols.TWOXBAR) && achievement.includes(ESymbols.THREEXBAR)) {
+    return EAchievements.COMBINATION_ALLBARS_ONANY;
   }
 
   // else, "Game Over"
