@@ -13,7 +13,7 @@ interface IMachineButtonDebug {
 
 function MachineButtonDebug({ classNamePrefix }: IMachineButtonDebug): JSX.Element {
   const dispatch = useDispatch();
-  const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
+  const { stateDebugMode, stateSlotSpinningHasEnded } = useSelector(rdxSlotSelector);
 
   const debugButtonOnClickHandlerAsync = async (): Promise<void> => {
     dispatch(rdxSlotDebugModeSwitchAsync(true));
@@ -26,10 +26,10 @@ function MachineButtonDebug({ classNamePrefix }: IMachineButtonDebug): JSX.Eleme
         `${classNamePrefix}__button`,
         `${classNamePrefix}__button--debug`,
         `${!stateDebugMode.isActive ? `${classNamePrefix}__button--passive` : ''}`,
-        `${!stateSlotCanBePlayed ? `${classNamePrefix}__button--disabled` : ''}`,
+        `${!stateSlotSpinningHasEnded ? `${classNamePrefix}__button--disabled` : ''}`,
       ].join(' ').trim()}
-      onClick={stateSlotCanBePlayed ? debugButtonOnClickHandlerAsync : undefined}
-      disabled={!stateSlotCanBePlayed}
+      onClick={stateSlotSpinningHasEnded ? debugButtonOnClickHandlerAsync : undefined}
+      disabled={!stateSlotSpinningHasEnded}
     >
       <IconDebug className={`${classNamePrefix}__button__icon`} />
       <span>{constants.text.buttonDebug}</span>

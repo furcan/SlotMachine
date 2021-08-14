@@ -13,7 +13,7 @@ interface IMachineButtonAuto {
 
 function MachineButtonAuto({ classNamePrefix }: IMachineButtonAuto): JSX.Element {
   const dispatch = useDispatch();
-  const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
+  const { stateDebugMode, stateSlotSpinningHasEnded } = useSelector(rdxSlotSelector);
 
   const autoButtonOnClickHandlerAsync = async (): Promise<void> => {
     dispatch(rdxSlotDebugModeSwitchAsync(false));
@@ -26,10 +26,10 @@ function MachineButtonAuto({ classNamePrefix }: IMachineButtonAuto): JSX.Element
         `${classNamePrefix}__button`,
         `${classNamePrefix}__button--auto`,
         `${stateDebugMode.isActive ? `${classNamePrefix}__button--passive` : ''}`,
-        `${!stateSlotCanBePlayed ? `${classNamePrefix}__button--disabled` : ''}`,
+        `${!stateSlotSpinningHasEnded ? `${classNamePrefix}__button--disabled` : ''}`,
       ].join(' ').trim()}
-      onClick={stateSlotCanBePlayed ? autoButtonOnClickHandlerAsync : undefined}
-      disabled={!stateSlotCanBePlayed}
+      onClick={stateSlotSpinningHasEnded ? autoButtonOnClickHandlerAsync : undefined}
+      disabled={!stateSlotSpinningHasEnded}
     >
       <IconAuto className={`${classNamePrefix}__button__icon`} />
       <span>{constants.text.buttonAuto}</span>

@@ -20,7 +20,7 @@ interface IMachineDebug {
 
 function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
   const dispatch = useDispatch();
-  const { stateSlotCanBePlayed, stateDebugMode } = useSelector(rdxSlotSelector);
+  const { stateSlotSpinningHasEnded, stateDebugMode } = useSelector(rdxSlotSelector);
 
   const [positionLeft, setPositionLeft] = useState<ESymbolsPositions>(stateDebugMode.luckyPositions.left || ESymbolsPositions.CENTER);
   const [positionCenter, setPositionCenter] = useState<ESymbolsPositions>(stateDebugMode.luckyPositions.center || ESymbolsPositions.CENTER);
@@ -71,7 +71,7 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
   ]);
 
   return (
-    <div className={[`${classNamePrefix}__content`, `${!stateSlotCanBePlayed ? `${classNamePrefix}__content--disabled` : ''}`].join(' ').trim()}>
+    <div className={[`${classNamePrefix}__content`, `${!stateSlotSpinningHasEnded ? `${classNamePrefix}__content--disabled` : ''}`].join(' ').trim()}>
       <div className={`${classNamePrefix}__head`}>
         <h2 className={`${classNamePrefix}__head__title`}>{constants.text.debugMode.title}</h2>
         <p className={`${classNamePrefix}__head__description`}>{constants.text.debugMode.description}</p>

@@ -23,7 +23,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
     case rdxSlotActionTypes.SLOT_SPINNINGHASENDED:
       return {
         ...state,
-        stateSlotCanBePlayed: true,
+        stateSlotCanBePlayed: true, // TODO: will be related to the coins/balance
         stateSlotSpinningHasEnded: action.actionHasEnded === true,
       };
 

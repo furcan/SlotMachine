@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 
 import { ESymbols } from 'application/enumerations/symbols';
+import { EAchievements } from 'application/enumerations/achievements';
 
 
 type TReduxSlotData = ESymbols[];
@@ -24,9 +25,13 @@ interface IReduxSlotLuckyNumbers {
 }
 
 interface IReduxSlotAchievements {
-  achievementsTop: ESymbols[];
-  achievementsCenter: ESymbols[];
-  achievementsBottom: ESymbols[];
+  isGameOver: boolean;
+  achievementTop: EAchievements;
+  achievementCenter: EAchievements;
+  achievementBottom: EAchievements;
+  symbolsTop: ESymbols[];
+  symbolsCenter: ESymbols[];
+  symbolsBottom: ESymbols[];
   visibleIndexesLeft: IReduxSlotVisibleIndexes;
   visibleIndexesCenter: IReduxSlotVisibleIndexes;
   visibleIndexesRight: IReduxSlotVisibleIndexes;

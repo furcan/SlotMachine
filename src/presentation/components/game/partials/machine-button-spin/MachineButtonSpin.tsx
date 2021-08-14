@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { VscSettings as IconSpin } from 'react-icons/vsc';
 
 import { constants } from 'application/constants';
-import { ESymbols, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
-import { elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
-import { rdxSlotSelector, rdxSlotSpinningAnimationAsync, rdxSlotSpinningHasEndedAsync, rdxSlotAchievementsAsync } from 'application/redux';
+import { ESymbols, ESymbolsPositions, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
+import { calcTheAchievementsAndPayIt, elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
+import { rdxSlotSelector, rdxSlotSpinningAnimationAsync, rdxSlotSpinningHasEndedAsync, rdxSlotAchievementsAsync, IReduxSlotAchievements } from 'application/redux';
 
 import 'presentation/components/game/partials/machine-button-spin/MachineButtonSpin.scss';
 
@@ -82,22 +82,30 @@ function MachineButtonSpin({
       const bottomSymbol1 = refsSymbolsLeft.current[luckyNumbers.left - luckyPositions.left + 2];
       const bottomSymbol2 = refsSymbolsCenter.current[luckyNumbers.center - luckyPositions.center + 2];
       const bottomSymbol3 = refsSymbolsRight.current[luckyNumbers.right - luckyPositions.right + 2];
-      const achievements = {
-        achievementsTop: [
-          +(topSymbol1?.dataset.achievement || 0) as ESymbols,
-          +(topSymbol2?.dataset.achievement || 0) as ESymbols,
-          +(topSymbol3?.dataset.achievement || 0) as ESymbols,
-        ],
-        achievementsCenter: [
-          +(centerSymbol1?.dataset.achievement || 0) as ESymbols,
-          +(centerSymbol2?.dataset.achievement || 0) as ESymbols,
-          +(centerSymbol3?.dataset.achievement || 0) as ESymbols,
-        ],
-        achievementsBottom: [
-          +(bottomSymbol1?.dataset.achievement || 0) as ESymbols,
-          +(bottomSymbol2?.dataset.achievement || 0) as ESymbols,
-          +(bottomSymbol3?.dataset.achievement || 0) as ESymbols,
-        ],
+
+      const topSymbol1Achievement = +(topSymbol1?.dataset.achievement || 0) as ESymbols;
+      const topSymbol2Achievement = +(topSymbol2?.dataset.achievement || 0) as ESymbols;
+      const topSymbol3Achievement = +(topSymbol3?.dataset.achievement || 0) as ESymbols;
+      const centerSymbol1Achievement = +(centerSymbol1?.dataset.achievement || 0) as ESymbols;
+      const centerSymbol2Achievement = +(centerSymbol2?.dataset.achievement || 0) as ESymbols;
+      const centerSymbol3Achievement = +(centerSymbol3?.dataset.achievement || 0) as ESymbols;
+      const bottomSymbol1Achievement = +(bottomSymbol1?.dataset.achievement || 0) as ESymbols;
+      const bottomSymbol2Achievement = +(bottomSymbol2?.dataset.achievement || 0) as ESymbols;
+      const bottomSymbol3Achievement = +(bottomSymbol3?.dataset.achievement || 0) as ESymbols;
+
+      const achievementTop = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, [topSymbol1Achievement, topSymbol2Achievement, topSymbol3Achievement]);
+      const achievementCenter = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, [centerSymbol1Achievement, centerSymbol2Achievement, centerSymbol3Achievement]);
+      const achievementBottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, [bottomSymbol1Achievement, bottomSymbol2Achievement, bottomSymbol3Achievement]);
+      const isGameOver = (achievementTop + achievementCenter + achievementBottom) === 0;
+
+      const achievements: IReduxSlotAchievements = {
+        isGameOver: isGameOver,
+        achievementTop: achievementTop,
+        achievementCenter: achievementCenter,
+        achievementBottom: achievementBottom,
+        symbolsTop: [topSymbol1Achievement, topSymbol2Achievement, topSymbol3Achievement],
+        symbolsCenter: [centerSymbol1Achievement, centerSymbol2Achievement, centerSymbol3Achievement],
+        symbolsBottom: [bottomSymbol1Achievement, bottomSymbol2Achievement, bottomSymbol3Achievement],
         visibleIndexesLeft: {
           top: (luckyNumbers.left - luckyPositions.left),
           center: (luckyNumbers.left - luckyPositions.left + 1),
