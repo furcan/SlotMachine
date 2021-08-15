@@ -21,7 +21,7 @@ function MachineCoinsModal({ classNamePrefix }: IMachineCoinsModal): JSX.Element
   const [coinsCount, setCoinsCount] = useState<number>(1);
 
   const saveAndCloseCoinsModalOnClickHandlerAsync = async (): Promise<void> => {
-    dispatch(rdxSlotCoinsBalanceIncreaseAsync((coinsCount + stateSlotCoinsBalance)));
+    dispatch(rdxSlotCoinsBalanceIncreaseAsync((coinsCount)));
   };
 
   const saveButtonDisabledOnClickHandler = (): void => {

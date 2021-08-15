@@ -78,7 +78,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
     case rdxSlotActionTypes.SLOT_COINSBALANCEINCREASE:
       return {
         ...state,
-        stateSlotCoinsBalance: action.actionCoinsBalanceIncrase || state.stateSlotCoinsBalance,
+        stateSlotCoinsBalance: state.stateSlotCoinsBalance + (action.actionCoinsBalanceIncrase || 0),
         stateSlotCoinsModalIsOpen: false,
         stateSlotCanBePlayed: true,
       };
