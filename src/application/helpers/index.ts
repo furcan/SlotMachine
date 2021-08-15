@@ -96,21 +96,12 @@ const calcTheAchievementsAndPayIt = (position: ESymbolsPositions, achievement: n
   }
 
   // "Any combination of CHERRY and 7 on any line => 75"
-  // TODO: Should be a better way to do this... :/
-  const achievementCombined = achievement.reduce((x, y) => (x.toString() + y.toString()), '');
-  const cherryCherrySeven = [ESymbols.CHERRY, ESymbols.CHERRY, ESymbols.SEVEN].join('');
-  const cherrySevenCherry = [ESymbols.CHERRY, ESymbols.SEVEN, ESymbols.CHERRY].join('');
-  const cherrySevenSeven = [ESymbols.CHERRY, ESymbols.SEVEN, ESymbols.SEVEN].join('');
-  const sevenSevenCherry = [ESymbols.SEVEN, ESymbols.SEVEN, ESymbols.CHERRY].join('');
-  const sevenCherrySeven = [ESymbols.SEVEN, ESymbols.CHERRY, ESymbols.SEVEN].join('');
-  const sevenCherryCherry = [ESymbols.SEVEN, ESymbols.CHERRY, ESymbols.CHERRY].join('');
   if (
-    (achievementCombined === cherryCherrySeven) ||
-    (achievementCombined === cherrySevenCherry) ||
-    (achievementCombined === cherrySevenSeven) ||
-    (achievementCombined === sevenSevenCherry) ||
-    (achievementCombined === sevenCherrySeven) ||
-    (achievementCombined === sevenCherryCherry)
+    achievement.includes(ESymbols.CHERRY) &&
+    achievement.includes(ESymbols.SEVEN) &&
+    !achievement.includes(ESymbols.BAR) &&
+    !achievement.includes(ESymbols.TWOXBAR) &&
+    !achievement.includes(ESymbols.THREEXBAR)
   ) {
     return EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY;
   }
