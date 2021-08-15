@@ -6,7 +6,7 @@ import { IReduxSlotState } from 'application/redux';
 const rdxSlotInitialState: IReduxSlotState = {
   stateDebugMode: {
     isActive: false,
-    isOpen: false,
+    isModalOpen: false,
     luckyPositions: {
       left: 0,
       center: 0,
@@ -18,8 +18,10 @@ const rdxSlotInitialState: IReduxSlotState = {
       right: 0,
     },
   },
+  stateSlotCoinsModalIsOpen: false,
+  stateSlotCoinsBalance: 0,
   stateSlotIsWelcome: false, // TODO: will be true after dev
-  stateSlotCanBePlayed: true, // TODO: will be related to the coins/balance
+  stateSlotCanBePlayed: false,
   stateSlotIsSpinning: false,
   stateSlotSpinningHasEnded: true,
   stateSlotData: Array(constants.settings.dataDuplication).fill([...symbolsValuesAsArrayOfNumber]).flat(),

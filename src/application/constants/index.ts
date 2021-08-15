@@ -12,12 +12,19 @@ interface IConstants {
     animationDurationAsMS: number;
     animationDurationStepAsMs: number;
     showSucceededIndicatior: boolean;
+    maxCoinsCount: number;
+    notifyOptions: {
+      cssAnimationStyle: 'fade' | 'zoom' | 'from-right' | 'from-top' | 'from-bottom' | 'from-left';
+      fontFamily: string;
+      fontSize: string;
+    },
   };
   text: {
     machineName: string;
-    buttonAuto: string;
     buttonDebug: string;
+    buttonAuto: string;
     buttonSpin: string;
+    buttonAddCoin: string;
     debugMode: {
       title: string;
       description: string;
@@ -34,6 +41,11 @@ interface IConstants {
       lineBottom: string;
       lineAny: string;
     };
+    coins: {
+      modalTitle: string;
+      modalDescription: string;
+      coinsRequired: string;
+    };
   };
 }
 
@@ -48,12 +60,19 @@ const constants: IConstants = {
     animationDurationAsMS: 2000,
     animationDurationStepAsMs: 500,
     showSucceededIndicatior: true,
+    maxCoinsCount: 5000,
+    notifyOptions: {
+      cssAnimationStyle: 'from-top',
+      fontFamily: 'Red Hat Display',
+      fontSize: '14px',
+    },
   },
   text: {
     machineName: 'JACKPOT',
     buttonDebug: 'Debug Mode',
     buttonAuto: 'Auto Mode',
     buttonSpin: 'SPIN',
+    buttonAddCoin: 'Add Coin',
     debugMode: {
       title: 'Debug Mode',
       description: 'You can select the types of symbols, and positions for each reel.',
@@ -69,6 +88,11 @@ const constants: IConstants = {
       lineCenter: 'Center Line',
       lineBottom: 'Bottom Line',
       lineAny: 'Any Line',
+    },
+    coins: {
+      modalTitle: 'Add Coins',
+      modalDescription: 'You can add coins between 1 and 5000. Your current balance is:',
+      coinsRequired: 'Please add some Coins to play.',
     },
   },
 };

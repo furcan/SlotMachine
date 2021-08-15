@@ -39,13 +39,15 @@ interface IReduxSlotAchievements {
 
 interface IReduxSlotDebugMode {
   isActive: boolean;
-  isOpen: boolean;
+  isModalOpen: boolean;
   luckyPositions: IReduxSlotLuckyPositions;
   luckyNumbers: IReduxSlotLuckyNumbers;
 }
 
 interface IReduxSlotState {
   stateDebugMode: IReduxSlotDebugMode;
+  stateSlotCoinsModalIsOpen: boolean;
+  stateSlotCoinsBalance: number;
   stateSlotIsWelcome: boolean;
   stateSlotCanBePlayed: boolean;
   stateSlotIsSpinning: boolean;
@@ -61,6 +63,9 @@ interface IReduxSlotActionTypes {
   SLOT_DEBUGMODEMODAL: string;
   SLOT_DEBUGMODELUCKYPOSITONS: string;
   SLOT_DEBUGMODELUCKYNUMBERS: string;
+  SLOT_COINSMODAL: string;
+  SLOT_COINSBALANCEINCREASE: string;
+  SLOT_COINSBALANCEDECREASE: string;
   SLOT_WELLCOME: string;
   SLOT_START: string;
   SLOT_SPINNINGANIMATION: string;
@@ -76,6 +81,7 @@ interface IReduxSlotActions {
   actionIsSpinning?: boolean;
   actionHasEnded?: boolean;
   actionAchievements?: IReduxSlotAchievements;
+  actionCoinsBalanceIncrase?: number;
 }
 
 interface IReduxSlotDispatch {

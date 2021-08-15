@@ -26,13 +26,12 @@ function MachineButtonDebug({ classNamePrefix }: IMachineButtonDebug): JSX.Eleme
         `${classNamePrefix}__button`,
         `${classNamePrefix}__button--debug`,
         `${!stateDebugMode.isActive ? `${classNamePrefix}__button--passive` : ''}`,
-        `${!stateSlotSpinningHasEnded ? `${classNamePrefix}__button--disabled` : ''}`,
+        `${!stateSlotSpinningHasEnded ? `${classNamePrefix}__button--loading` : ''}`,
       ].join(' ').trim()}
       onClick={stateSlotSpinningHasEnded ? debugButtonOnClickHandlerAsync : undefined}
-      disabled={!stateSlotSpinningHasEnded}
     >
       <IconDebug className={`${classNamePrefix}__button__icon`} />
-      <span>{constants.text.buttonDebug}</span>
+      <span className={`${classNamePrefix}__button__text`}>{constants.text.buttonDebug}</span>
     </button>
   );
 

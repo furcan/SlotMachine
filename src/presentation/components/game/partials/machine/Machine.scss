@@ -12,6 +12,25 @@
     width: 50%;
   }
 
+  &__lever {
+    display: none;
+
+    @include media_up($breakpoint_mobile) {
+      position: absolute;
+      z-index: 10;
+      right: -5.5rem;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 5.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
   &__reels {
     position: relative;
     z-index: 1;
@@ -22,7 +41,7 @@
     align-items: flex-start;
     justify-content: center;
     margin: 4.5rem auto 0.5rem;
-    filter: drop-shadow(0 0.5rem 1rem rgba($color_black, 0.2));
+    filter: drop-shadow(0 0.5rem 1rem rgba($color_black, 0.15));
 
     @include media_up($breakpoint_tablet) {
       max-width: $size_symbol_desktop * $count_reels;
@@ -218,7 +237,7 @@
         }
       }
 
-      &--disabled {
+      &--loading {
         cursor: wait;
         opacity: 0.5;
       }
@@ -235,9 +254,10 @@
     }
   }
 
+  &__coinsmodal,
   &__debug {
     position: fixed;
-    z-index: 3;
+    z-index: 100;
     left: 0;
     top: 0;
     right: 0;
@@ -268,6 +288,31 @@
       height: 100%;
       background: rgba($color_black, 0.8);
       backdrop-filter: blur(0.25rem);
+      animation: animation_modal_filter_opacity 0.5s ease-in-out 0s 1;
+
+      @keyframes animation_modal_filter_opacity {
+        0% {
+          opacity: 0.5;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+
+    &__content {
+      animation: animation_modal_bounce 0.5s ease-in-out 0s 1;
+
+      @keyframes animation_modal_bounce {
+        0% {
+          transform: scale(0.75);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
     }
   }
 }

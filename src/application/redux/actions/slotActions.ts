@@ -17,6 +17,9 @@ const rdxSlotActionTypes: IReduxSlotActionTypes = {
   SLOT_DEBUGMODEMODAL: 'SLOT_DEBUGMODEMODAL',
   SLOT_DEBUGMODELUCKYPOSITONS: 'SLOT_DEBUGMODELUCKYPOSITONS',
   SLOT_DEBUGMODELUCKYNUMBERS: 'SLOT_DEBUGMODELUCKYNUMBERS',
+  SLOT_COINSMODAL: 'SLOT_COINSMODAL',
+  SLOT_COINSBALANCEINCREASE: 'SLOT_COINSBALANCEINCREASE',
+  SLOT_COINSBALANCEDECREASE: 'SLOT_COINSBALANCEDECREASE',
   SLOT_WELLCOME: 'SLOT_START',
   SLOT_START: 'SLOT_START',
   SLOT_SPINNINGANIMATION: 'SLOT_SPINNINGANIMATION',
@@ -67,6 +70,19 @@ const slotDebugModeLuckyNumbers = (numbers: IReduxSlotLuckyNumbers): IReduxSlotA
   actionDebugLuckyNumbers: numbers,
 });
 
+const slotCoinsModalOpen = (): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_COINSMODAL,
+});
+
+const slotCoinsBalanceIncrase = (balance: number): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_COINSBALANCEINCREASE,
+  actionCoinsBalanceIncrase: balance,
+});
+
+const slotCoinsBalanceDecrease = (): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_COINSBALANCEDECREASE,
+});
+
 
 const rdxSlotWelcomeAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
   dispatch(slotWelcome());
@@ -106,6 +122,18 @@ const rdxSlotDebugModeLuckyNumbersAsync = (numbers: IReduxSlotLuckyNumbers): IRe
   dispatch(slotDebugModeLuckyNumbers(numbers));
 };
 
+const rdxSlotCoinsModalOpenAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotCoinsModalOpen());
+};
+
+const rdxSlotCoinsBalanceIncreaseAsync = (balance: number): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotCoinsBalanceIncrase(balance));
+};
+
+const rdxSlotCoinsBalanceDecreaseAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotCoinsBalanceDecrease());
+};
+
 const rdxSlotSelector = (state: IReduxSlotState): IReduxSlotState => state.slotReducer;
 
 export {
@@ -119,5 +147,8 @@ export {
   rdxSlotDebugModeCloseModalAsync,
   rdxSlotDebugModeLuckyPositionsAsync,
   rdxSlotDebugModeLuckyNumbersAsync,
+  rdxSlotCoinsModalOpenAsync,
+  rdxSlotCoinsBalanceIncreaseAsync,
+  rdxSlotCoinsBalanceDecreaseAsync,
   rdxSlotSelector,
 };

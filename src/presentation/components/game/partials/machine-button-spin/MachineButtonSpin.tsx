@@ -1,10 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { VscSettings as IconSpin } from 'react-icons/vsc';
+import { Notify } from 'notiflix';
 
 import { constants } from 'application/constants';
 import { ESymbols, ESymbolsPositions, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
 import { calcTheAchievementsAndPayIt, elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
-import { rdxSlotSelector, rdxSlotSpinningAnimationAsync, rdxSlotSpinningHasEndedAsync, rdxSlotAchievementsAsync, IReduxSlotAchievements } from 'application/redux';
+import {
+  rdxSlotSelector,
+  IReduxSlotAchievements,
+  rdxSlotSpinningAnimationAsync,
+  rdxSlotAchievementsAsync,
+  rdxSlotSpinningHasEndedAsync,
+  rdxSlotCoinsBalanceDecreaseAsync,
+} from 'application/redux';
 
 import 'presentation/components/game/partials/machine-button-spin/MachineButtonSpin.scss';
 
@@ -29,7 +37,7 @@ function MachineButtonSpin({
   refsSymbolsRight,
 }: IMachineButtonSpin): JSX.Element {
   const dispatch = useDispatch();
-  const { stateDebugMode, stateSlotCanBePlayed } = useSelector(rdxSlotSelector);
+  const { stateDebugMode, stateSlotCanBePlayed, stateSlotSpinningHasEnded } = useSelector(rdxSlotSelector);
 
 
   const spinButtonOnClickHandlerAsync = async (): Promise<void> => {
@@ -138,7 +146,14 @@ function MachineButtonSpin({
 
       // Spin has ended
       dispatch(rdxSlotSpinningHasEndedAsync(true));
+
+      // Decrease the ballance
+      dispatch(rdxSlotCoinsBalanceDecreaseAsync());
     }
+  };
+
+  const spinButtonDisabledOnClickHandler = (): void => {
+    Notify.info(constants.text.coins.coinsRequired, constants.settings.notifyOptions);
   };
 
   return (
@@ -147,13 +162,13 @@ function MachineButtonSpin({
       className={[
         `${classNamePrefix}__button`,
         `${classNamePrefix}__button--spin`,
+        `${!stateSlotSpinningHasEnded ? `${classNamePrefix}__button--spinning` : ''}`,
         `${!stateSlotCanBePlayed ? `${classNamePrefix}__button--disabled` : ''}`,
       ].join(' ').trim()}
-      onClick={stateSlotCanBePlayed ? spinButtonOnClickHandlerAsync : undefined}
-      disabled={!stateSlotCanBePlayed}
+      onClick={stateSlotCanBePlayed ? spinButtonOnClickHandlerAsync : (stateSlotSpinningHasEnded ? spinButtonDisabledOnClickHandler : undefined)}
     >
       <IconSpin className={`${classNamePrefix}__button__icon`} />
-      <span>{constants.text.buttonSpin}</span>
+      <span className={`${classNamePrefix}__button__text`}>{constants.text.buttonSpin}</span>
     </button>
   );
 

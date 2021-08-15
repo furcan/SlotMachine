@@ -24,6 +24,9 @@ import {
   rdxSlotDebugModeCloseModalAsync,
   rdxSlotDebugModeLuckyPositionsAsync,
   rdxSlotDebugModeLuckyNumbersAsync,
+  rdxSlotCoinsModalOpenAsync,
+  rdxSlotCoinsBalanceIncreaseAsync,
+  rdxSlotCoinsBalanceDecreaseAsync,
   rdxSlotSelector,
 } from 'application/redux/actions/slotActions';
 
@@ -52,5 +55,8 @@ export {
   rdxSlotDebugModeCloseModalAsync,
   rdxSlotDebugModeLuckyPositionsAsync,
   rdxSlotDebugModeLuckyNumbersAsync,
+  rdxSlotCoinsModalOpenAsync,
+  rdxSlotCoinsBalanceIncreaseAsync,
+  rdxSlotCoinsBalanceDecreaseAsync,
   rdxSlotSelector,
 };

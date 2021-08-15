@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FiSave as IconClose } from 'react-icons/fi';
+import { FiSave as IconSave } from 'react-icons/fi';
 
 import { constants } from 'application/constants';
 import { EReelsAlignments } from 'application/enumerations/reels';
@@ -75,8 +75,8 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
       <div className={`${classNamePrefix}__head`}>
         <h2 className={`${classNamePrefix}__head__title`}>{constants.text.debugMode.title}</h2>
         <p className={`${classNamePrefix}__head__description`}>{constants.text.debugMode.description}</p>
-        <button type="button" className={`${classNamePrefix}__head__close`} onClick={closeDebugModalOnClickHandlerAsync}>
-          <IconClose />
+        <button type="button" className={`${classNamePrefix}__head__save`} onClick={closeDebugModalOnClickHandlerAsync}>
+          <IconSave />
         </button>
       </div>
 

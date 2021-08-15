@@ -1,0 +1,15 @@
+@import "presentation/styles/variables";
+
+.machine__buttons {
+  &__button {
+    &--addcoin {
+      order: 2;
+      background: $color_theme_green !important;
+      border-color: $color_theme_green_dark !important;
+
+      @include media_up($breakpoint_mobile) {
+        order: 3;
+      }
+    }
+  }
+}

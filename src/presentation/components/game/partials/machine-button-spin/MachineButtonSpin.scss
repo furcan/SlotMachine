@@ -12,13 +12,89 @@
       font-size: 1.25rem !important;
 
       @include media_up($breakpoint_mobile) {
-        order: 3;
+        display: none !important;
       }
+    }
+
+    &--spinning {
+      cursor: wait;
+      filter: grayscale(1);
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      filter: grayscale(1);
     }
 
     &--spin &__icon {
       transform: scale(1.6);
       margin-right: 1rem;
+    }
+  }
+}
+
+.machine__lever {
+  &__button {
+    transition: $transition_base;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $color_white;
+    background: $color_theme_red;
+    border-radius: 1rem 1.75rem 1.75rem 0.5rem;
+    padding: 0.85rem 0.85rem 0.85rem 0.75rem;
+    border-bottom: 0.6rem solid $color_theme_red_dark;
+    margin: 0 0 4rem;
+
+    &::before {
+      transition: $transition_base;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4.6rem;
+      width: 45%;
+      height: 4rem;
+      background: $color_dark;
+      border-radius: 0 0 5rem 0;
+    }
+
+    &:not(:disabled):hover {
+      transform: translateY(0.05rem);
+    }
+
+    &:not(:disabled):active {
+      transform: translateY(0.5rem);
+      border-bottom-width: 0.4rem;
+
+      &::before {
+        bottom: -4.4rem;
+      }
+    }
+
+    &--passive {
+      cursor: wait;
+      transform: none !important;
+      filter: grayscale(1);
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      filter: grayscale(1);
+    }
+
+    &__icon {
+      width: 2rem;
+      height: 2rem;
+      margin: 0 0 0.25rem;
+    }
+
+    &__text {
+      font-size: 0.9rem;
+      font-weight: 600;
     }
   }
 }
