@@ -38,12 +38,19 @@ interface IConstants {
     };
   };
   text: {
+    gitHubName: string;
+    gitHubUrl: string;
+    copyright: string;
     machineName: string;
     buttonDebug: string;
     buttonAuto: string;
     buttonSpin: string;
     buttonAddCoin: string;
     buttonWithdraw: string;
+    game: {
+      isOver: string;
+      isSuccess: string;
+    };
     debugMode: {
       title: string;
       description: string;
@@ -107,12 +114,19 @@ const constants: IConstants = {
     },
   },
   text: {
+    gitHubName: '/furcan',
+    gitHubUrl: 'https://github.com/furcan',
+    copyright: 'All rights reserved.',
     machineName: 'JACKPOT',
     buttonDebug: 'Debug Mode',
     buttonAuto: 'Auto Mode',
     buttonSpin: 'SPIN',
     buttonAddCoin: 'Add Coin',
     buttonWithdraw: 'Withdraw',
+    game: {
+      isOver: 'Uppsss. You have lost...',
+      isSuccess: 'Wow! You have won!',
+    },
     debugMode: {
       title: 'Debug Mode',
       description: 'You can select the types of symbols, and positions for each reel.',

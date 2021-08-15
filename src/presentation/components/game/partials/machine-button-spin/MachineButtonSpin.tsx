@@ -155,6 +155,13 @@ function MachineButtonSpin({
 
       // 2- Decrease the balance (Each spin costs 1 coin)
       dispatch(rdxSlotCoinsBalanceDecreaseOneCoinAsync());
+
+      // Notifications
+      if (isGameOver) {
+        Notify.failure(constants.text.game.isOver, constants.settings.notifyOptions);
+      } else {
+        Notify.success(constants.text.game.isSuccess, constants.settings.notifyOptions);
+      }
     }
   };
 

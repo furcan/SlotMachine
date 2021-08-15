@@ -28,7 +28,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 1.5rem;
-    border-radius: 1rem;
+    border-radius: 0 0 1.5rem 1.5rem;
     color: $color_dark;
     background: $color_white;
     display: flex;
@@ -36,9 +36,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: $box_shadow_30;
 
     @include media_up($breakpoint_tablet) {
       padding: 2rem;
+      border-radius: 0 0 2rem 2rem;
+      box-shadow: $box_shadow_80;
     }
   }
 }

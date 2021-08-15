@@ -14,7 +14,47 @@
     width: 100%;
     max-width: $breakpoint_pc;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 3rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include media_up($breakpoint_tablet) {
+      width: 50%;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.02rem;
+      margin: 0 0 0.25rem;
+    }
+
+    &__link {
+      transition: $transition_color;
+      font-size: 1rem;
+      letter-spacing: 0.02rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+
+      &:hover {
+        color: $color_theme_yellow;
+      }
+    }
   }
 
   &__copyright {
@@ -24,10 +64,17 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem 1rem;
+    margin: 2rem 0 0;
+
+    @include media_up($breakpoint_tablet) {
+      width: 50%;
+      margin: 0;
+      justify-content: flex-end;
+    }
 
     &__text {
       font-size: 0.75rem;
+      opacity: 0.5;
     }
   }
 }

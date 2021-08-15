@@ -1,4 +1,3 @@
-import Header from 'presentation/components/layout/partials/header/Header';
 import Footer from 'presentation/components/layout/partials/footer/Footer';
 
 import 'presentation/components/layout/Layout.scss';
@@ -18,7 +17,6 @@ interface ILayout {
 function Layout({ children }: ILayout): JSX.Element {
   return (
     <>
-      <Header />
       <main className="layout">
         <div className="layout__container">
           <div className="layout__content">
