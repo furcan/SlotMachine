@@ -43,7 +43,7 @@ interface IConstants {
     buttonAuto: string;
     buttonSpin: string;
     buttonAddCoin: string;
-    buttonCheckout: string;
+    buttonWithdraw: string;
     debugMode: {
       title: string;
       description: string;
@@ -66,12 +66,13 @@ interface IConstants {
       description: string;
       loading: string;
       noBalance: string;
-      checkoutSuccess: string;
+      withdrawSuccess: string;
     };
     coins: {
       modalTitle: string;
       modalDescription: string;
       modalSavedAndClosed: string;
+      modalCoinsCanNotBeAdded: string;
       coinsRequired: string;
     };
   };
@@ -111,7 +112,7 @@ const constants: IConstants = {
     buttonAuto: 'Auto Mode',
     buttonSpin: 'SPIN',
     buttonAddCoin: 'Add Coin',
-    buttonCheckout: 'Checkout',
+    buttonWithdraw: 'Withdraw',
     debugMode: {
       title: 'Debug Mode',
       description: 'You can select the types of symbols, and positions for each reel.',
@@ -133,13 +134,14 @@ const constants: IConstants = {
       title: 'Balance',
       description: 'Your current balance is:',
       loading: 'Please wait...',
-      noBalance: 'You have no coin to checkout...',
-      checkoutSuccess: 'We hope you have enjoyed it. Please come again.',
+      noBalance: 'You have no coin to withdraw...',
+      withdrawSuccess: 'We hope you have enjoyed it. Please come again.',
     },
     coins: {
       modalTitle: 'Add Coins',
       modalDescription: 'You can add coins between 1 and 5000. Your current balance is:',
       modalSavedAndClosed: 'Thanks. Now, you can play!',
+      modalCoinsCanNotBeAdded: 'You have the coins that max allowed. You have to withdraw your current coins first to add new coins.',
       coinsRequired: 'Please add some coins to play.',
     },
   },

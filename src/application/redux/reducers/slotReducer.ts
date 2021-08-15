@@ -72,7 +72,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
     case rdxSlotActionTypes.SLOT_COINSMODAL:
       return {
         ...state,
-        stateSlotCoinsModalIsOpen: true,
+        stateSlotCoinsModalIsOpen: action.actionIsCoinsModalOpen === true,
       };
 
     case rdxSlotActionTypes.SLOT_COINSBALANCEINCREASE:
@@ -83,18 +83,11 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         stateSlotCanBePlayed: true,
       };
 
-    case rdxSlotActionTypes.SLOT_COINSBALANCEDECREASE:
+    case rdxSlotActionTypes.SLOT_COINSBALANCEDECREASEONE:
       return {
         ...state,
         stateSlotCoinsBalance: (state.stateSlotCoinsBalance - 1) < 0 ? 0 : (state.stateSlotCoinsBalance - 1),
         stateSlotCanBePlayed: (state.stateSlotCoinsBalance - 1) > 0,
-      };
-
-    case rdxSlotActionTypes.SLOT_CHECKOUT:
-      return {
-        ...state,
-        stateSlotCoinsBalance: 0,
-        stateSlotCanBePlayed: false,
       };
 
     default:

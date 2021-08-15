@@ -4,14 +4,15 @@ import { Notify } from 'notiflix';
 
 import { constants } from 'application/constants';
 import { ESymbols, ESymbolsPositions, symbolsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
-import { calcTheAchievementsAndPayIt, elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
+import { calcTheAchievementsForThePayment, combineTheAchievementsByTheCurrentBalance, elementScrollToWithDurationAsync, generateRandomNumberBetween } from 'application/helpers';
 import {
   rdxSlotSelector,
   IReduxSlotAchievements,
   rdxSlotSpinningAnimationAsync,
   rdxSlotAchievementsAsync,
   rdxSlotSpinningHasEndedAsync,
-  rdxSlotCoinsBalanceDecreaseAsync,
+  rdxSlotCoinsBalanceIncreaseByAmountAsync,
+  rdxSlotCoinsBalanceDecreaseOneCoinAsync,
 } from 'application/redux';
 
 import 'presentation/components/game/partials/machine-button-spin/MachineButtonSpin.scss';
@@ -37,7 +38,7 @@ function MachineButtonSpin({
   refsSymbolsRight,
 }: IMachineButtonSpin): JSX.Element {
   const dispatch = useDispatch();
-  const { stateDebugMode, stateSlotCanBePlayed, stateSlotSpinningHasEnded } = useSelector(rdxSlotSelector);
+  const { stateDebugMode, stateSlotCanBePlayed, stateSlotSpinningHasEnded, stateSlotCoinsBalance } = useSelector(rdxSlotSelector);
 
 
   const spinButtonOnClickHandlerAsync = async (): Promise<void> => {
@@ -101,9 +102,9 @@ function MachineButtonSpin({
       const bottomSymbol2Achievement = +(bottomSymbol2?.dataset.achievement || 0) as ESymbols;
       const bottomSymbol3Achievement = +(bottomSymbol3?.dataset.achievement || 0) as ESymbols;
 
-      const achievementTop = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, [topSymbol1Achievement, topSymbol2Achievement, topSymbol3Achievement]);
-      const achievementCenter = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, [centerSymbol1Achievement, centerSymbol2Achievement, centerSymbol3Achievement]);
-      const achievementBottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, [bottomSymbol1Achievement, bottomSymbol2Achievement, bottomSymbol3Achievement]);
+      const achievementTop = calcTheAchievementsForThePayment(ESymbolsPositions.TOP, [topSymbol1Achievement, topSymbol2Achievement, topSymbol3Achievement]);
+      const achievementCenter = calcTheAchievementsForThePayment(ESymbolsPositions.CENTER, [centerSymbol1Achievement, centerSymbol2Achievement, centerSymbol3Achievement]);
+      const achievementBottom = calcTheAchievementsForThePayment(ESymbolsPositions.BOTTOM, [bottomSymbol1Achievement, bottomSymbol2Achievement, bottomSymbol3Achievement]);
       const isGameOver = (achievementTop + achievementCenter + achievementBottom) === 0;
 
       const achievements: IReduxSlotAchievements = {
@@ -147,8 +148,13 @@ function MachineButtonSpin({
       // Spin has ended
       dispatch(rdxSlotSpinningHasEndedAsync(true));
 
-      // Decrease the ballance
-      dispatch(rdxSlotCoinsBalanceDecreaseAsync());
+      // 1- Set the balance by the achievements
+      const achievementsForPayment = [achievementTop, achievementCenter, achievementBottom];
+      const totalOfTheAchievementsForBalance = combineTheAchievementsByTheCurrentBalance(achievementsForPayment, stateSlotCoinsBalance);
+      dispatch(rdxSlotCoinsBalanceIncreaseByAmountAsync(totalOfTheAchievementsForBalance));
+
+      // 2- Decrease the balance (Each spin costs 1 coin)
+      dispatch(rdxSlotCoinsBalanceDecreaseOneCoinAsync());
     }
   };
 

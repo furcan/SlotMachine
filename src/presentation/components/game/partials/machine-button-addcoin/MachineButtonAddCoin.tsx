@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GiTwoCoins as IconCoin } from 'react-icons/gi';
 
 import { constants } from 'application/constants';
-import { rdxSlotSelector, rdxSlotCoinsModalOpenAsync } from 'application/redux';
+import { rdxSlotSelector, rdxSlotCoinsModalToggleAsync } from 'application/redux';
 
 import 'presentation/components/game/partials/machine-button-addcoin/MachineButtonAddCoin.scss';
 
@@ -16,7 +16,7 @@ function MachineButtonAddCoin({ classNamePrefix }: IMachineButtonAddCoin): JSX.E
   const { stateSlotSpinningHasEnded } = useSelector(rdxSlotSelector);
 
   const addCoinButtonOnClickHandlerAsync = async (): Promise<void> => {
-    dispatch(rdxSlotCoinsModalOpenAsync());
+    dispatch(rdxSlotCoinsModalToggleAsync(true));
   };
 
   return (

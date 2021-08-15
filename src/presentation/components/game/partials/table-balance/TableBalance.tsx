@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { GiTwoCoins as IconCoin } from 'react-icons/gi';
-import { FiDollarSign as IconCheckout } from 'react-icons/fi';
+import { FiDollarSign as IconWithdraw } from 'react-icons/fi';
 import { Notify } from 'notiflix';
 
 import { constants } from 'application/constants';
-import { rdxSlotSelector, rdxSlotCheckoutAsync } from 'application/redux';
+import { rdxSlotSelector, rdxSlotCoinsWithdrawAsync } from 'application/redux';
 
 import 'presentation/components/game/partials/table-balance/TableBalance.scss';
 
@@ -17,12 +17,12 @@ function TableBalance({ classNamePrefix }: ITableBalance): JSX.Element {
   const dispatch = useDispatch();
   const { stateSlotSpinningHasEnded, stateSlotCoinsBalance } = useSelector(rdxSlotSelector);
 
-  const checkoutOnClickHandlerAsync = async (): Promise<void> => {
-    dispatch(rdxSlotCheckoutAsync());
-    Notify.success(constants.text.tableBalance.checkoutSuccess, constants.settings.notifyOptions);
+  const withdrawOnClickHandlerAsync = async (): Promise<void> => {
+    dispatch(rdxSlotCoinsWithdrawAsync());
+    Notify.success(constants.text.tableBalance.withdrawSuccess, constants.settings.notifyOptions);
   };
 
-  const checkoutButtonDisabledOnClickHandler = (): void => {
+  const withdrawButtonDisabledOnClickHandler = (): void => {
     Notify.info(constants.text.tableBalance.noBalance, constants.settings.notifyOptions);
   };
 
@@ -43,13 +43,13 @@ function TableBalance({ classNamePrefix }: ITableBalance): JSX.Element {
         <button
           type="button"
           className={[
-            `${classNamePrefix}__head__checkout`,
-            (!stateSlotCoinsBalance ? `${classNamePrefix}__head__checkout--passive` : ''),
+            `${classNamePrefix}__head__withdraw`,
+            (!stateSlotCoinsBalance ? `${classNamePrefix}__head__withdraw--passive` : ''),
           ].join(' ').trim()}
-          onClick={stateSlotCoinsBalance ? checkoutOnClickHandlerAsync : checkoutButtonDisabledOnClickHandler}
+          onClick={stateSlotCoinsBalance ? withdrawOnClickHandlerAsync : withdrawButtonDisabledOnClickHandler}
         >
-          <IconCheckout className={`${classNamePrefix}__head__checkout__icon`} />
-          <span className={`${classNamePrefix}__head__checkout__text`}>{constants.text.buttonCheckout}</span>
+          <IconWithdraw className={`${classNamePrefix}__head__withdraw__icon`} />
+          <span className={`${classNamePrefix}__head__withdraw__text`}>{constants.text.buttonWithdraw}</span>
         </button>
       </div>
     </div>

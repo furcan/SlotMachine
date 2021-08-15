@@ -74,6 +74,7 @@
       }
     }
 
+    &__close,
     &__save {
       transition: $transition_background, $transition_color, $transition_opacity;
       position: absolute;
@@ -130,6 +131,11 @@
 
       &:not(:last-child) {
         margin: 0 0 1rem;
+      }
+
+      &__message {
+        font-size: 0.9rem;
+        font-weight: 500;
       }
 
       &__icon {

@@ -49,7 +49,7 @@ const generateRandomThresholdNumberForDebugMode = (): number => {
   return randomThreshold;
 };
 
-const calcTheAchievementsAndPayIt = (position: ESymbolsPositions, achievement: number[]): number => {
+const calcTheAchievementsForThePayment = (position: ESymbolsPositions, achievement: number[]): number => {
   // TOP
   if (position === ESymbolsPositions.TOP) {
     // "3 CHERRY symbols on top line => 2000"
@@ -115,10 +115,15 @@ const calcTheAchievementsAndPayIt = (position: ESymbolsPositions, achievement: n
   return EAchievements.GAME_OVER;
 };
 
+const combineTheAchievementsByTheCurrentBalance = (achievements: number[], currentBalance: number): number => {
+  return achievements.map((x: number) => x * currentBalance).reduce((x: number, y: number) => (x + y), 0);
+};
+
 export {
   addSomeDelayAsync,
   elementScrollToWithDurationAsync,
   generateRandomNumberBetween,
   generateRandomThresholdNumberForDebugMode,
-  calcTheAchievementsAndPayIt,
+  calcTheAchievementsForThePayment,
+  combineTheAchievementsByTheCurrentBalance,
 };

@@ -19,8 +19,7 @@ const rdxSlotActionTypes: IReduxSlotActionTypes = {
   SLOT_DEBUGMODELUCKYNUMBERS: 'SLOT_DEBUGMODELUCKYNUMBERS',
   SLOT_COINSMODAL: 'SLOT_COINSMODAL',
   SLOT_COINSBALANCEINCREASE: 'SLOT_COINSBALANCEINCREASE',
-  SLOT_COINSBALANCEDECREASE: 'SLOT_COINSBALANCEDECREASE',
-  SLOT_CHECKOUT: 'SLOT_CHECKOUT',
+  SLOT_COINSBALANCEDECREASEONE: 'SLOT_COINSBALANCEDECREASEONE',
   SLOT_WELLCOME: 'SLOT_START',
   SLOT_START: 'SLOT_START',
   SLOT_SPINNINGANIMATION: 'SLOT_SPINNINGANIMATION',
@@ -71,21 +70,18 @@ const slotDebugModeLuckyNumbers = (numbers: IReduxSlotLuckyNumbers): IReduxSlotA
   actionDebugLuckyNumbers: numbers,
 });
 
-const slotCoinsModalOpen = (): IReduxSlotActions => ({
+const slotCoinsModalToggle = (toggle: boolean): IReduxSlotActions => ({
   type: rdxSlotActionTypes.SLOT_COINSMODAL,
+  actionIsCoinsModalOpen: toggle,
 });
 
-const slotCoinsBalanceIncrase = (balance: number): IReduxSlotActions => ({
+const slotCoinsBalanceIncraseByAmount = (balance: number): IReduxSlotActions => ({
   type: rdxSlotActionTypes.SLOT_COINSBALANCEINCREASE,
   actionCoinsBalanceIncrase: balance,
 });
 
-const slotCoinsBalanceDecrease = (): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_COINSBALANCEDECREASE,
-});
-
-const slotCheckout = (): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_CHECKOUT,
+const slotCoinsBalanceDecreaseOneCoin = (): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_COINSBALANCEDECREASEONE,
 });
 
 
@@ -127,20 +123,20 @@ const rdxSlotDebugModeLuckyNumbersAsync = (numbers: IReduxSlotLuckyNumbers): IRe
   dispatch(slotDebugModeLuckyNumbers(numbers));
 };
 
-const rdxSlotCoinsModalOpenAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotCoinsModalOpen());
+const rdxSlotCoinsModalToggleAsync = (toggle: boolean): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotCoinsModalToggle(toggle));
 };
 
-const rdxSlotCoinsBalanceIncreaseAsync = (balance: number): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotCoinsBalanceIncrase(balance));
+const rdxSlotCoinsBalanceIncreaseByAmountAsync = (balance: number): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotCoinsBalanceIncraseByAmount(balance));
 };
 
-const rdxSlotCoinsBalanceDecreaseAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotCoinsBalanceDecrease());
+const rdxSlotCoinsBalanceDecreaseOneCoinAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotCoinsBalanceDecreaseOneCoin());
 };
 
-const rdxSlotCheckoutAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotCheckout());
+const rdxSlotCoinsWithdrawAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotStart());
 };
 
 const rdxSlotSelector = (state: IReduxSlotState): IReduxSlotState => state.slotReducer;
@@ -156,9 +152,9 @@ export {
   rdxSlotDebugModeCloseModalAsync,
   rdxSlotDebugModeLuckyPositionsAsync,
   rdxSlotDebugModeLuckyNumbersAsync,
-  rdxSlotCoinsModalOpenAsync,
-  rdxSlotCoinsBalanceIncreaseAsync,
-  rdxSlotCoinsBalanceDecreaseAsync,
-  rdxSlotCheckoutAsync,
+  rdxSlotCoinsModalToggleAsync,
+  rdxSlotCoinsBalanceIncreaseByAmountAsync,
+  rdxSlotCoinsBalanceDecreaseOneCoinAsync,
+  rdxSlotCoinsWithdrawAsync,
   rdxSlotSelector,
 };

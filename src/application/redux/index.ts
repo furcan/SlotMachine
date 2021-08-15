@@ -24,10 +24,10 @@ import {
   rdxSlotDebugModeCloseModalAsync,
   rdxSlotDebugModeLuckyPositionsAsync,
   rdxSlotDebugModeLuckyNumbersAsync,
-  rdxSlotCoinsModalOpenAsync,
-  rdxSlotCoinsBalanceIncreaseAsync,
-  rdxSlotCoinsBalanceDecreaseAsync,
-  rdxSlotCheckoutAsync,
+  rdxSlotCoinsModalToggleAsync,
+  rdxSlotCoinsBalanceIncreaseByAmountAsync,
+  rdxSlotCoinsBalanceDecreaseOneCoinAsync,
+  rdxSlotCoinsWithdrawAsync,
   rdxSlotSelector,
 } from 'application/redux/actions/slotActions';
 
@@ -56,9 +56,9 @@ export {
   rdxSlotDebugModeCloseModalAsync,
   rdxSlotDebugModeLuckyPositionsAsync,
   rdxSlotDebugModeLuckyNumbersAsync,
-  rdxSlotCoinsModalOpenAsync,
-  rdxSlotCoinsBalanceIncreaseAsync,
-  rdxSlotCoinsBalanceDecreaseAsync,
-  rdxSlotCheckoutAsync,
+  rdxSlotCoinsModalToggleAsync,
+  rdxSlotCoinsBalanceIncreaseByAmountAsync,
+  rdxSlotCoinsBalanceDecreaseOneCoinAsync,
+  rdxSlotCoinsWithdrawAsync,
   rdxSlotSelector,
 };
