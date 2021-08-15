@@ -29,6 +29,10 @@ interface IConstants {
       description: string;
       loading: string;
       gameOver: string;
+      lineTop: string;
+      lineCenter: string;
+      lineBottom: string;
+      lineAny: string;
     };
   };
 }
@@ -61,6 +65,10 @@ const constants: IConstants = {
       description: 'The winning combinations and payouts.',
       loading: 'Please wait...',
       gameOver: 'You have lost...',
+      lineTop: 'Top Line',
+      lineCenter: 'Center Line',
+      lineBottom: 'Bottom Line',
+      lineAny: 'Any Line',
     },
   },
 };

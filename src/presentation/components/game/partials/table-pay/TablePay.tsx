@@ -1,5 +1,12 @@
 import { useSelector } from 'react-redux';
 import { GiTwoCoins as IconCoin } from 'react-icons/gi';
+import { HiOutlineEmojiSad as IconGameOver } from 'react-icons/hi';
+import { GrMenu as IconAny } from 'react-icons/gr';
+import {
+  AiOutlineVerticalAlignTop as IconTop,
+  AiOutlineVerticalAlignMiddle as IconCenter,
+  AiOutlineVerticalAlignBottom as IconBottom,
+} from 'react-icons/ai';
 
 import { constants } from 'application/constants';
 import {
@@ -32,62 +39,87 @@ function TablePay({ classNamePrefix }: ITablePay): JSX.Element {
         {!stateSlotSpinningHasEnded &&
           <div className={`${classNamePrefix}__content__loading`}>
             <span className={`${classNamePrefix}__content__loading__text`}>{constants.text.tablePay.loading}</span>
-          </div>
-        }
+          </div>}
+
         {achievementsValuesAsArrayOfNumber
-          .sort((a: EAchievements, b: EAchievements) => b - a)
-          .map((achievement: EAchievements, index: number) => {
+          .filter(x => x !== EAchievements.GAME_OVER)
+          ?.sort((a: EAchievements, b: EAchievements) => b - a)
+          ?.map((achievement: EAchievements, index: number) => {
             const PositionIconAsComponent = getAchievementPositionAsFC(achievement);
             const symbolsImagesAsSrc = getAchievementSymbolsImagesAsSrc(achievement);
-            const isAchievementGameOver = achievement === EAchievements.GAME_OVER;
             const isSymbolsCanBeShuffled = (achievement === EAchievements.COMBINATION_ALLBARS_ONANY) || (achievement === EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
-
-            const isGameOver = stateSlotAchievements.isGameOver;
-            const isAchieved = ((achievement === stateSlotAchievements.achievementTop) || (achievement === stateSlotAchievements.achievementCenter) || (achievement === stateSlotAchievements.achievementBottom)) && !isAchievementGameOver;
-            const isStateActive = (isAchieved || (isGameOver && isAchievementGameOver)) && stateSlotSpinningHasEnded;
-            const isShowGameOver = isAchievementGameOver && isGameOver && stateSlotSpinningHasEnded;
+            const isAchieved = ((achievement === stateSlotAchievements.achievementTop) || (achievement === stateSlotAchievements.achievementCenter) || (achievement === stateSlotAchievements.achievementBottom)) && stateSlotSpinningHasEnded;
 
             return (
               <div key={index} className={[
                 `${classNamePrefix}__content__achievement`,
-                (isStateActive ? `${classNamePrefix}__content__achievement--active` : ''),
-                (isAchievementGameOver ? `${classNamePrefix}__content__achievement--gameover` : ''),
+                (isAchieved ? `${classNamePrefix}__content__achievement--active` : ''),
                 (isSymbolsCanBeShuffled ? `${classNamePrefix}__content__achievement--shuffle` : ''),
               ].join(' ').trim()}>
                 <div className={`${classNamePrefix}__content__achievement__position`}>
-                  {isShowGameOver && <PositionIconAsComponent />}
-                  {!isAchievementGameOver && <PositionIconAsComponent />}
+                  <PositionIconAsComponent />
                 </div>
                 <div className={`${classNamePrefix}__content__achievement__symbols`}>
-                  {isShowGameOver &&
-                    <span className={`${classNamePrefix}__content__achievement__symbols__gameover`}>{constants.text.tablePay.gameOver}</span>}
-                  {!isAchievementGameOver &&
-                    symbolsImagesAsSrc.map((symbolSrc: string, index: number) => {
-                      return (
-                        <img
-                          key={index}
-                          width="20"
-                          height="18"
-                          alt={constants.app.name}
-                          src={symbolSrc}
-                          data-index={index}
-                          className={`${classNamePrefix}__content__achievement__symbols__image`}
-                        />
-                      );
-                    })
-                  }
+                  {symbolsImagesAsSrc.map((symbolSrc: string, index: number) => {
+                    return (
+                      <img
+                        key={index}
+                        width="20"
+                        height="18"
+                        alt={constants.app.name}
+                        src={symbolSrc}
+                        data-index={index}
+                        className={`${classNamePrefix}__content__achievement__symbols__image`}
+                      />
+                    );
+                  })}
                 </div>
                 <div className={`${classNamePrefix}__content__achievement__value`}>
-                  {!isAchievementGameOver &&
-                    <>
-                      <IconCoin className={`${classNamePrefix}__content__achievement__value__icon`} />
-                      <span className={`${classNamePrefix}__content__achievement__value__text`}>{`x${achievement}`}</span>
-                    </>
-                  }
+                  <IconCoin className={`${classNamePrefix}__content__achievement__value__icon`} />
+                  <span className={`${classNamePrefix}__content__achievement__value__text`}>{`x${achievement}`}</span>
                 </div>
               </div>
             );
           })}
+
+        {!stateSlotAchievements.isGameOver &&
+          <div className={[
+            `${classNamePrefix}__content__achievement`,
+            `${classNamePrefix}__content__achievement--infobar`,
+          ].join(' ').trim()}>
+            <div className={`${classNamePrefix}__content__achievement__info`}>
+              <IconTop className={`${classNamePrefix}__content__achievement__info__icon`} />
+              <span className={`${classNamePrefix}__content__achievement__info__text`}>{constants.text.tablePay.lineTop}</span>
+            </div>
+            <div className={`${classNamePrefix}__content__achievement__info`}>
+              <IconCenter className={`${classNamePrefix}__content__achievement__info__icon`} />
+              <span className={`${classNamePrefix}__content__achievement__info__text`}>{constants.text.tablePay.lineCenter}</span>
+            </div>
+            <div className={`${classNamePrefix}__content__achievement__info`}>
+              <IconBottom className={`${classNamePrefix}__content__achievement__info__icon`} />
+              <span className={`${classNamePrefix}__content__achievement__info__text`}>{constants.text.tablePay.lineBottom}</span>
+            </div>
+            <div className={`${classNamePrefix}__content__achievement__info`}>
+              <IconAny className={`${classNamePrefix}__content__achievement__info__icon`} />
+              <span className={`${classNamePrefix}__content__achievement__info__text`}>{constants.text.tablePay.lineAny}</span>
+            </div>
+          </div>}
+
+        {(stateSlotAchievements.isGameOver &&
+          stateSlotSpinningHasEnded &&
+          achievementsValuesAsArrayOfNumber.filter(x => x === EAchievements.GAME_OVER)) &&
+          <div className={[
+            `${classNamePrefix}__content__achievement`,
+            `${classNamePrefix}__content__achievement--active`,
+            `${classNamePrefix}__content__achievement--gameover`,
+          ].join(' ').trim()}>
+            <div className={`${classNamePrefix}__content__achievement__position`}>
+              <IconGameOver />
+            </div>
+            <div className={`${classNamePrefix}__content__achievement__symbols`}>
+              <span className={`${classNamePrefix}__content__achievement__symbols__gameover`}>{constants.text.tablePay.gameOver}</span>
+            </div>
+          </div>}
       </div>
     </div>
   );
