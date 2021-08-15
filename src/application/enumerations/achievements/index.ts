@@ -1,3 +1,14 @@
+import {
+  AiOutlineVerticalAlignTop as IconTop,
+  AiOutlineVerticalAlignMiddle as IconCenter,
+  AiOutlineVerticalAlignBottom as IconBottom,
+} from 'react-icons/ai';
+import { GrMenu as IconAny } from 'react-icons/gr';
+import { HiOutlineEmojiSad as IconGameOver } from 'react-icons/hi';
+
+import { ESymbols, getSymbolsImagesAsSrc } from 'application/enumerations/symbols';
+
+
 enum EAchievements {
   GAME_OVER = 0,
   THREE_CHERRY_ONTOP = 2000,
@@ -14,26 +25,83 @@ enum EAchievements {
 const achievementsKeysAsArrayOfString = Object.keys(EAchievements).splice(Math.floor(Object.keys(EAchievements).length / 2));
 const achievementsValuesAsArrayOfNumber = Object.keys(EAchievements).splice(0, Math.floor(Object.keys(EAchievements).length / 2)).map(x => +x);
 
-const mapAchievements = new Map<number, string>([
-  [EAchievements.GAME_OVER, `TODO: 0`],
-  [EAchievements.THREE_CHERRY_ONTOP, `TODO: 2000`],
-  [EAchievements.THREE_CHERRY_ONCENTER, `TODO: 1000`],
-  [EAchievements.THREE_CHERRY_ONBOTTOM, `TODO: 4000`],
-  [EAchievements.THREE_SEVEN_ONANY, `TODO: 150`],
-  [EAchievements.THREE_3xBAR_ONANY, `TODO: 50`],
-  [EAchievements.THREE_2xBAR_ONANY, `TODO: 20`],
-  [EAchievements.THREE_BAR_ONANY, `TODO: 10`],
-  [EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY, `TODO: 75`],
-  [EAchievements.COMBINATION_ALLBARS_ONANY, `TODO: 5`],
+const mapAchievementsPositionsAsFC = new Map<number, React.FC>([
+  [EAchievements.GAME_OVER, IconGameOver],
+  [EAchievements.THREE_CHERRY_ONTOP, IconTop],
+  [EAchievements.THREE_CHERRY_ONCENTER, IconCenter],
+  [EAchievements.THREE_CHERRY_ONBOTTOM, IconBottom],
+  [EAchievements.THREE_SEVEN_ONANY, IconAny],
+  [EAchievements.THREE_3xBAR_ONANY, IconAny],
+  [EAchievements.THREE_2xBAR_ONANY, IconAny],
+  [EAchievements.THREE_BAR_ONANY, IconAny],
+  [EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY, IconAny],
+  [EAchievements.COMBINATION_ALLBARS_ONANY, IconAny],
 ]);
 
-const getAchievementsValue = (enumeration: number): string => {
-  return mapAchievements.get(enumeration) || '';
+const getAchievementPositionAsFC = (enumeration: number): React.FC => {
+  return mapAchievementsPositionsAsFC.get(enumeration) || IconAny;
 };
+
+
+const mapAchievementsSymbolsImagesAsSrc = new Map<number, string[]>([
+  [EAchievements.GAME_OVER, []],
+  [EAchievements.THREE_CHERRY_ONTOP, [
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+  ]],
+  [EAchievements.THREE_CHERRY_ONCENTER, [
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+  ]],
+  [EAchievements.THREE_CHERRY_ONBOTTOM, [
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+  ]],
+  [EAchievements.THREE_SEVEN_ONANY, [
+    getSymbolsImagesAsSrc(ESymbols.SEVEN),
+    getSymbolsImagesAsSrc(ESymbols.SEVEN),
+    getSymbolsImagesAsSrc(ESymbols.SEVEN),
+  ]],
+  [EAchievements.THREE_3xBAR_ONANY, [
+    getSymbolsImagesAsSrc(ESymbols.THREEXBAR),
+    getSymbolsImagesAsSrc(ESymbols.THREEXBAR),
+    getSymbolsImagesAsSrc(ESymbols.THREEXBAR),
+  ]],
+  [EAchievements.THREE_2xBAR_ONANY, [
+    getSymbolsImagesAsSrc(ESymbols.TWOXBAR),
+    getSymbolsImagesAsSrc(ESymbols.TWOXBAR),
+    getSymbolsImagesAsSrc(ESymbols.TWOXBAR),
+  ]],
+  [EAchievements.THREE_BAR_ONANY, [
+    getSymbolsImagesAsSrc(ESymbols.BAR),
+    getSymbolsImagesAsSrc(ESymbols.BAR),
+    getSymbolsImagesAsSrc(ESymbols.BAR),
+  ]],
+  [EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY, [ // 4 symbols for UI, bcs of the combinations
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+    getSymbolsImagesAsSrc(ESymbols.SEVEN),
+    getSymbolsImagesAsSrc(ESymbols.CHERRY),
+    getSymbolsImagesAsSrc(ESymbols.SEVEN),
+  ]],
+  [EAchievements.COMBINATION_ALLBARS_ONANY, [
+    getSymbolsImagesAsSrc(ESymbols.BAR),
+    getSymbolsImagesAsSrc(ESymbols.TWOXBAR),
+    getSymbolsImagesAsSrc(ESymbols.THREEXBAR),
+  ]],
+]);
+
+const getAchievementSymbolsImagesAsSrc = (enumeration: number): string[] => {
+  return mapAchievementsSymbolsImagesAsSrc.get(enumeration) || [];
+};
+
 
 export {
   EAchievements,
   achievementsKeysAsArrayOfString,
   achievementsValuesAsArrayOfNumber,
-  getAchievementsValue,
+  getAchievementPositionAsFC,
+  getAchievementSymbolsImagesAsSrc,
 };

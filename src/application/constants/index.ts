@@ -11,6 +11,7 @@ interface IConstants {
     dataDuplication: 14 | 16 | 18 | 20;
     animationDurationAsMS: number;
     animationDurationStepAsMs: number;
+    showSucceededIndicatior: boolean;
   };
   text: {
     machineName: string;
@@ -23,6 +24,12 @@ interface IConstants {
       positions: string;
       symbols: string;
     };
+    tablePay: {
+      title: string;
+      description: string;
+      loading: string;
+      gameOver: string;
+    };
   };
 }
 
@@ -33,9 +40,10 @@ const constants: IConstants = {
     version: packageJSON.version,
   },
   settings: {
-    dataDuplication: 16, // Symbol's counts multiplied by this
+    dataDuplication: 18, // Symbol's counts multiplied by this
     animationDurationAsMS: 2000,
     animationDurationStepAsMs: 500,
+    showSucceededIndicatior: true,
   },
   text: {
     machineName: 'JACKPOT',
@@ -47,6 +55,12 @@ const constants: IConstants = {
       description: 'You can select the types of symbols, and positions for each reel.',
       positions: 'Positions',
       symbols: 'Symbols',
+    },
+    tablePay: {
+      title: 'Pay Table',
+      description: 'The winning combinations and payouts.',
+      loading: 'Please wait...',
+      gameOver: 'You have lost...',
     },
   },
 };

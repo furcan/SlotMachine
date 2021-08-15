@@ -1,5 +1,5 @@
-import { EReelsAlignments, getReelsAlignmentsValue } from 'application/enumerations/reels';
-import { ESymbolsPositions, getSymbolsPositionsValue, symbolsPositionsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
+import { EReelsAlignments, getReelsAlignmentsDescription } from 'application/enumerations/reels';
+import { ESymbolsPositions, getSymbolsPositionsAsFC, symbolsPositionsValuesAsArrayOfNumber } from 'application/enumerations/symbols';
 
 import 'presentation/components/game/partials/machine-debug-position/MachineDebugPosition.scss';
 
@@ -13,9 +13,9 @@ interface IMachineDebugPosition {
 
 function MachineDebugPositions({ classNamePrefix, alignment, positionActive, positionOnClickHandler }: IMachineDebugPosition): JSX.Element {
   return (
-    <div className={[`${classNamePrefix}__position`, `${classNamePrefix}__position--${getReelsAlignmentsValue(alignment)}`].join(' ').trim()}>
+    <div className={[`${classNamePrefix}__position`, `${classNamePrefix}__position--${getReelsAlignmentsDescription(alignment)}`].join(' ').trim()}>
       {symbolsPositionsValuesAsArrayOfNumber.map((position: ESymbolsPositions, index: number) => {
-        const IconAsComponent = getSymbolsPositionsValue(position);
+        const IconAsComponent = getSymbolsPositionsAsFC(position);
         return (
           <button
             key={index}

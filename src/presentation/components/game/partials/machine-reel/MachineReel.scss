@@ -56,8 +56,12 @@
 
       &__image {
         width: 5.5rem;
-        max-width: 100%;
+        max-width: 92%;
         height: auto;
+
+        @include media_up($breakpoint_tablet) {
+          max-width: 88%;
+        }
       }
 
       &.state--top &__image,
@@ -71,7 +75,7 @@
           }
 
           50% {
-            transform: scale(1.1);
+            transform: scale(1.05);
           }
 
           100% {

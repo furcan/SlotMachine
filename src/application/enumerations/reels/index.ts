@@ -10,11 +10,11 @@ const mapReelsAlignments = new Map<number, string>([
   [EReelsAlignments.RIGHT, `right`],
 ]);
 
-const getReelsAlignmentsValue = (enumeration: number): string => {
+const getReelsAlignmentsDescription = (enumeration: number): string => {
   return mapReelsAlignments.get(enumeration) || '';
 };
 
 export {
   EReelsAlignments,
-  getReelsAlignmentsValue,
+  getReelsAlignmentsDescription,
 };

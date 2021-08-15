@@ -108,14 +108,66 @@ describe('Helper functions should be work as epected.', () => {
     });
 
     it('Any combination of CHERRY and 7 on any line => 75', () => {
-      const anyCherryAndSevenOnTopLine = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, [ESymbols.CHERRY, ESymbols.SEVEN, generateRandomNumberBetween(ESymbols.THREEXBAR, ESymbols.CHERRY)]);
-      expect(anyCherryAndSevenOnTopLine).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+      const cherryCherrySeven = [ESymbols.CHERRY, ESymbols.CHERRY, ESymbols.SEVEN];
+      const cherrySevenCherry = [ESymbols.CHERRY, ESymbols.SEVEN, ESymbols.CHERRY];
+      const cherrySevenSeven = [ESymbols.CHERRY, ESymbols.SEVEN, ESymbols.SEVEN];
+      const sevenSevenCherry = [ESymbols.SEVEN, ESymbols.SEVEN, ESymbols.CHERRY];
+      const sevenCherrySeven = [ESymbols.SEVEN, ESymbols.CHERRY, ESymbols.SEVEN];
+      const sevenCherryCherry = [ESymbols.SEVEN, ESymbols.CHERRY, ESymbols.CHERRY];
 
-      const anyCherryAndSevenOnCenterLine = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, [ESymbols.CHERRY, ESymbols.SEVEN, generateRandomNumberBetween(ESymbols.THREEXBAR, ESymbols.CHERRY)]);
-      expect(anyCherryAndSevenOnCenterLine).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+      const scenario1Top = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, cherryCherrySeven);
+      expect(scenario1Top).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
 
-      const anyCherryAndSevenOnBottomLine = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, [ESymbols.CHERRY, ESymbols.SEVEN, generateRandomNumberBetween(ESymbols.THREEXBAR, ESymbols.CHERRY)]);
-      expect(anyCherryAndSevenOnBottomLine).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+      const scenario2Top = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, cherrySevenCherry);
+      expect(scenario2Top).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario3Top = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, cherrySevenSeven);
+      expect(scenario3Top).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario4Top = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, sevenSevenCherry);
+      expect(scenario4Top).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario5Top = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, sevenCherrySeven);
+      expect(scenario5Top).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario6Top = calcTheAchievementsAndPayIt(ESymbolsPositions.TOP, sevenCherryCherry);
+      expect(scenario6Top).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario1Center = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, cherryCherrySeven);
+      expect(scenario1Center).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario2Center = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, cherrySevenCherry);
+      expect(scenario2Center).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario3Center = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, cherrySevenSeven);
+      expect(scenario3Center).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario4Center = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, sevenSevenCherry);
+      expect(scenario4Center).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario5Center = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, sevenCherrySeven);
+      expect(scenario5Center).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario6Center = calcTheAchievementsAndPayIt(ESymbolsPositions.CENTER, sevenCherryCherry);
+      expect(scenario6Center).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario1Bottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, cherryCherrySeven);
+      expect(scenario1Bottom).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario2Bottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, cherrySevenCherry);
+      expect(scenario2Bottom).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario3Bottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, cherrySevenSeven);
+      expect(scenario3Bottom).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario4Bottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, sevenSevenCherry);
+      expect(scenario4Bottom).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario5Bottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, sevenCherrySeven);
+      expect(scenario5Bottom).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
+
+      const scenario6Bottom = calcTheAchievementsAndPayIt(ESymbolsPositions.BOTTOM, sevenCherryCherry);
+      expect(scenario6Bottom).toBe(EAchievements.COMBINATION_CHERRYANDSEVEN_ONANY);
     });
 
     it('Combination of any BAR symbols on any line => 5', () => {

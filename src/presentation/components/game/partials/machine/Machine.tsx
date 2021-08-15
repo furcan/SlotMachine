@@ -30,10 +30,14 @@ function Machine(): JSX.Element { // TODO:
   const refsSymbolsCenter = useRef<(HTMLDivElement | null)[]>([]);
   const refsSymbolsRight = useRef<(HTMLDivElement | null)[]>([]);
 
+  const showIndicators = constants.settings.showSucceededIndicatior && stateSlotSpinningHasEnded;
+
   return (
     <div className="machine">
       <div className={[`machine__reels`, `${stateSlotIsSpinning ? 'machine__reels--spinning' : ''}`].join(' ').trim()}>
         <h2 className="machine__reels__title">{constants.text.machineName}</h2>
+        {(showIndicators && stateSlotAchievements.achievementTop > 0) &&
+          <span className="machine__reels__indicator machine__reels__indicator--top"></span>}
         <MachineReel
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
@@ -43,6 +47,8 @@ function Machine(): JSX.Element { // TODO:
           alignment={EReelsAlignments.LEFT}
           hasEnded={stateSlotSpinningHasEnded}
         />
+        {(showIndicators && stateSlotAchievements.achievementCenter > 0) &&
+          <span className="machine__reels__indicator machine__reels__indicator--center"></span>}
         <MachineReel
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
@@ -52,6 +58,8 @@ function Machine(): JSX.Element { // TODO:
           alignment={EReelsAlignments.CENTER}
           hasEnded={stateSlotSpinningHasEnded}
         />
+        {(showIndicators && stateSlotAchievements.achievementBottom > 0) &&
+          <span className="machine__reels__indicator machine__reels__indicator--bottom"></span>}
         <MachineReel
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}
