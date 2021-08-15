@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiSave as IconSave } from 'react-icons/fi';
+import { Notify } from 'notiflix';
 
 import { constants } from 'application/constants';
 import { EReelsAlignments } from 'application/enumerations/reels';
@@ -48,8 +49,9 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
     dispatch(rdxSlotDebugModeLuckyNumbersAsync(debugLuckyNumbers));
   }, [symbolLeft, symbolCenter, symbolRight, dispatch]);
 
-  const closeDebugModalOnClickHandlerAsync = async (): Promise<void> => {
+  const saveAndcloseDebugModalOnClickHandlerAsync = async (): Promise<void> => {
     dispatch(rdxSlotDebugModeCloseModalAsync());
+    Notify.success(constants.text.debugMode.modalSavedAndClosed, constants.settings.notifyOptions);
   };
 
   useEffect(() => {
@@ -75,7 +77,7 @@ function MachineDebug({ classNamePrefix }: IMachineDebug): JSX.Element {
       <div className={`${classNamePrefix}__head`}>
         <h2 className={`${classNamePrefix}__head__title`}>{constants.text.debugMode.title}</h2>
         <p className={`${classNamePrefix}__head__description`}>{constants.text.debugMode.description}</p>
-        <button type="button" className={`${classNamePrefix}__head__save`} onClick={closeDebugModalOnClickHandlerAsync}>
+        <button type="button" className={`${classNamePrefix}__head__save`} onClick={saveAndcloseDebugModalOnClickHandlerAsync}>
           <IconSave />
         </button>
       </div>

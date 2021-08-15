@@ -17,7 +17,6 @@ import {
 } from 'application/enumerations/achievements';
 import { rdxSlotSelector } from 'application/redux';
 
-
 import 'presentation/components/game/partials/table-pay/TablePay.scss';
 
 
@@ -30,17 +29,17 @@ function TablePay({ classNamePrefix }: ITablePay): JSX.Element {
 
   return (
     <div className={classNamePrefix}>
+      {!stateSlotSpinningHasEnded &&
+        <div className={`${classNamePrefix}__loading`}>
+          <span className={`${classNamePrefix}__loading__text`}>{constants.text.tablePay.loading}</span>
+        </div>}
+
       <div className={`${classNamePrefix}__head`}>
         <h2 className={`${classNamePrefix}__head__title`}>{constants.text.tablePay.title}</h2>
         <p className={`${classNamePrefix}__head__description`}>{constants.text.tablePay.description}</p>
       </div>
 
       <div className={`${classNamePrefix}__content`}>
-        {!stateSlotSpinningHasEnded &&
-          <div className={`${classNamePrefix}__content__loading`}>
-            <span className={`${classNamePrefix}__content__loading__text`}>{constants.text.tablePay.loading}</span>
-          </div>}
-
         {achievementsValuesAsArrayOfNumber
           .filter(x => x !== EAchievements.GAME_OVER)
           ?.sort((a: EAchievements, b: EAchievements) => b - a)

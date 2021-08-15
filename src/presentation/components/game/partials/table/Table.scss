@@ -25,6 +25,7 @@
 
   &__pay,
   &__balance {
+    position: relative;
     width: 100%;
     padding: 1rem;
     display: flex;
@@ -33,31 +34,62 @@
     justify-content: flex-start;
     border-radius: 1rem;
     background: $color_theme_light;
+
+    &__loading {
+      position: absolute;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba($color_white, 0.8);
+      backdrop-filter: blur(0.15rem);
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: $box_shadow_40;
+
+      &__text {
+        opacity: 0.75;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+    }
   }
 
   &__pay {
-    margin: 0 0 2rem;
+    margin: 0;
+    order: 2;
 
     @include media_up($breakpoint_minibook) {
       width: 60%;
+      order: 1;
+    }
+
+    @include media_up($breakpoint_laptop) {
+      width: 100%;
+      order: 2;
+    }
+  }
+
+  &__balance {
+    margin: 0 0 2rem;
+    order: 1;
+
+    @include media_up($breakpoint_minibook) {
+      width: calc(40% - 1.5rem);
       margin: 0;
+      order: 2;
     }
 
     @include media_up($breakpoint_laptop) {
       width: 100%;
       margin: 0 0 1.5rem;
-    }
-  }
-
-  &__balance {
-    margin: 0;
-
-    @include media_up($breakpoint_minibook) {
-      width: calc(40% - 1.5rem);
-    }
-
-    @include media_up($breakpoint_laptop) {
-      width: 100%;
+      order: 1;
     }
   }
 }

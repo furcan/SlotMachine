@@ -38,7 +38,6 @@
   }
 
   &__content {
-    position: relative;
     width: 100%;
     padding: 1rem;
     border-radius: 1rem;
@@ -48,29 +47,6 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
-
-    &__loading {
-      position: absolute;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba($color_white, 0.8);
-      backdrop-filter: blur(0.2rem);
-      border-radius: 1rem;
-      padding: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      &__text {
-        font-size: 1rem;
-        font-weight: 500;
-      }
-    }
 
     &__achievement {
       transition: $transition_opacity;

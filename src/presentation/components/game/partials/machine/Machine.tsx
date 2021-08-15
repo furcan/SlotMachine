@@ -16,7 +16,7 @@ import MachineButtonAddCoin from 'presentation/components/game/partials/machine-
 import 'presentation/components/game/partials/machine/Machine.scss';
 
 
-function Machine(): JSX.Element { // TODO:
+function Machine(): JSX.Element {
   const {
     stateDebugMode,
     stateSlotCoinsModalIsOpen,

@@ -27,6 +27,7 @@ import {
   rdxSlotCoinsModalOpenAsync,
   rdxSlotCoinsBalanceIncreaseAsync,
   rdxSlotCoinsBalanceDecreaseAsync,
+  rdxSlotCheckoutAsync,
   rdxSlotSelector,
 } from 'application/redux/actions/slotActions';
 
@@ -58,5 +59,6 @@ export {
   rdxSlotCoinsModalOpenAsync,
   rdxSlotCoinsBalanceIncreaseAsync,
   rdxSlotCoinsBalanceDecreaseAsync,
+  rdxSlotCheckoutAsync,
   rdxSlotSelector,
 };

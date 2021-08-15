@@ -90,6 +90,13 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         stateSlotCanBePlayed: (state.stateSlotCoinsBalance - 1) > 0,
       };
 
+    case rdxSlotActionTypes.SLOT_CHECKOUT:
+      return {
+        ...state,
+        stateSlotCoinsBalance: 0,
+        stateSlotCanBePlayed: false,
+      };
+
     default:
       return state;
   }

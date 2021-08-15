@@ -185,7 +185,7 @@
     margin: 0 auto 1.5rem;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     background: $color_dark;
@@ -194,10 +194,6 @@
     border-bottom: 0.75rem solid $color_gray_dark;
     box-shadow: $box_shadow_bottom_50;
     transform: perspective(30rem) rotateX(6deg);
-
-    @include media_up($breakpoint_mobile) {
-      flex-direction: row;
-    }
 
     @include media_up($breakpoint_tablet) {
       transform: perspective(30rem) rotateX(12deg);
@@ -288,11 +284,11 @@
       height: 100%;
       background: rgba($color_black, 0.8);
       backdrop-filter: blur(0.25rem);
-      animation: animation_modal_filter_opacity 0.5s ease-in-out 0s 1;
+      animation: animation_modal_filter_opacity 0.25s ease-in-out 0s 1;
 
       @keyframes animation_modal_filter_opacity {
         0% {
-          opacity: 0.5;
+          opacity: 0;
         }
 
         100% {
@@ -302,11 +298,11 @@
     }
 
     &__content {
-      animation: animation_modal_bounce 0.5s ease-in-out 0s 1;
+      animation: animation_modal_bounce 0.1s ease-in-out 0s 1;
 
       @keyframes animation_modal_bounce {
         0% {
-          transform: scale(0.75);
+          transform: scale(0.9);
         }
 
         100% {

@@ -21,7 +21,8 @@ function MachineCoinsModal({ classNamePrefix }: IMachineCoinsModal): JSX.Element
   const [coinsCount, setCoinsCount] = useState<number>(1);
 
   const saveAndCloseCoinsModalOnClickHandlerAsync = async (): Promise<void> => {
-    dispatch(rdxSlotCoinsBalanceIncreaseAsync((coinsCount)));
+    dispatch(rdxSlotCoinsBalanceIncreaseAsync(coinsCount));
+    Notify.success(constants.text.coins.modalSavedAndClosed, constants.settings.notifyOptions);
   };
 
   const saveButtonDisabledOnClickHandler = (): void => {
@@ -48,7 +49,8 @@ function MachineCoinsModal({ classNamePrefix }: IMachineCoinsModal): JSX.Element
             `${classNamePrefix}__head__save`,
             (!coinsCount ? `${classNamePrefix}__head__save--passive` : ''),
           ].join(' ').trim()}
-          onClick={coinsCount ? saveAndCloseCoinsModalOnClickHandlerAsync : saveButtonDisabledOnClickHandler}>
+          onClick={coinsCount ? saveAndCloseCoinsModalOnClickHandlerAsync : saveButtonDisabledOnClickHandler}
+        >
           <IconSave />
         </button>
       </div>

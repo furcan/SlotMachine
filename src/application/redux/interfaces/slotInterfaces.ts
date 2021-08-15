@@ -66,6 +66,7 @@ interface IReduxSlotActionTypes {
   SLOT_COINSMODAL: string;
   SLOT_COINSBALANCEINCREASE: string;
   SLOT_COINSBALANCEDECREASE: string;
+  SLOT_CHECKOUT: string;
   SLOT_WELLCOME: string;
   SLOT_START: string;
   SLOT_SPINNINGANIMATION: string;

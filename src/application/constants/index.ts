@@ -14,10 +14,28 @@ interface IConstants {
     showSucceededIndicatior: boolean;
     maxCoinsCount: number;
     notifyOptions: {
+      borderRadius: string;
       cssAnimationStyle: 'fade' | 'zoom' | 'from-right' | 'from-top' | 'from-bottom' | 'from-left';
       fontFamily: string;
       fontSize: string;
-    },
+      timeout: number;
+      success?: {
+        background?: string,
+        textColor?: string,
+      };
+      failure?: {
+        background?: string,
+        textColor?: string,
+      };
+      warning?: {
+        background?: string,
+        textColor?: string,
+      };
+      info?: {
+        background?: string,
+        textColor?: string,
+      };
+    };
   };
   text: {
     machineName: string;
@@ -25,11 +43,13 @@ interface IConstants {
     buttonAuto: string;
     buttonSpin: string;
     buttonAddCoin: string;
+    buttonCheckout: string;
     debugMode: {
       title: string;
       description: string;
       positions: string;
       symbols: string;
+      modalSavedAndClosed: string;
     };
     tablePay: {
       title: string;
@@ -41,9 +61,17 @@ interface IConstants {
       lineBottom: string;
       lineAny: string;
     };
+    tableBalance: {
+      title: string;
+      description: string;
+      loading: string;
+      noBalance: string;
+      checkoutSuccess: string;
+    };
     coins: {
       modalTitle: string;
       modalDescription: string;
+      modalSavedAndClosed: string;
       coinsRequired: string;
     };
   };
@@ -62,9 +90,19 @@ const constants: IConstants = {
     showSucceededIndicatior: true,
     maxCoinsCount: 5000,
     notifyOptions: {
+      borderRadius: '12px',
       cssAnimationStyle: 'from-top',
       fontFamily: 'Red Hat Display',
       fontSize: '14px',
+      timeout: 4000,
+      success: {
+        background: '#00c478',
+        textColor: '#fff',
+      },
+      info: {
+        background: '#26c0d3',
+        textColor: '#fff',
+      },
     },
   },
   text: {
@@ -73,11 +111,13 @@ const constants: IConstants = {
     buttonAuto: 'Auto Mode',
     buttonSpin: 'SPIN',
     buttonAddCoin: 'Add Coin',
+    buttonCheckout: 'Checkout',
     debugMode: {
       title: 'Debug Mode',
       description: 'You can select the types of symbols, and positions for each reel.',
       positions: 'Positions',
       symbols: 'Symbols',
+      modalSavedAndClosed: 'Your settings have been saved.',
     },
     tablePay: {
       title: 'Pay Table',
@@ -89,10 +129,18 @@ const constants: IConstants = {
       lineBottom: 'Bottom Line',
       lineAny: 'Any Line',
     },
+    tableBalance: {
+      title: 'Balance',
+      description: 'Your current balance is:',
+      loading: 'Please wait...',
+      noBalance: 'You have no coin to checkout...',
+      checkoutSuccess: 'We hope you have enjoyed it. Please come again.',
+    },
     coins: {
       modalTitle: 'Add Coins',
       modalDescription: 'You can add coins between 1 and 5000. Your current balance is:',
-      coinsRequired: 'Please add some Coins to play.',
+      modalSavedAndClosed: 'Thanks. Now, you can play!',
+      coinsRequired: 'Please add some coins to play.',
     },
   },
 };
