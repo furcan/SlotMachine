@@ -31,7 +31,7 @@ function MachineButtonDebug({ classNamePrefix }: IMachineButtonDebug): JSX.Eleme
       onClick={stateSlotSpinningHasEnded ? debugButtonOnClickHandlerAsync : undefined}
     >
       <IconDebug className={`${classNamePrefix}__button__icon`} />
-      <span className={`${classNamePrefix}__button__text`}>{constants.text.buttonDebug}</span>
+      <span className={`${classNamePrefix}__button__text`}>{constants.text.button.debug}</span>
     </button>
   );
 

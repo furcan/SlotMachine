@@ -16,7 +16,7 @@ import { rdxSlotInitialState } from 'application/redux/init/slotInit';
 import {
   rdxSlotActionTypes,
   rdxSlotWelcomeAsync,
-  rdxSlotStartAsync,
+  rdxSlotStartGameAsync,
   rdxSlotSpinningAnimationAsync,
   rdxSlotSpinningHasEndedAsync,
   rdxSlotAchievementsAsync,
@@ -48,7 +48,7 @@ export {
   rdxSlotInitialState,
   rdxSlotActionTypes,
   rdxSlotWelcomeAsync,
-  rdxSlotStartAsync,
+  rdxSlotStartGameAsync,
   rdxSlotSpinningAnimationAsync,
   rdxSlotSpinningHasEndedAsync,
   rdxSlotAchievementsAsync,

@@ -181,7 +181,7 @@ function MachineButtonSpin({
       onClick={stateSlotCanBePlayed ? spinButtonOnClickHandlerAsync : (stateSlotSpinningHasEnded ? spinButtonDisabledOnClickHandler : undefined)}
     >
       <IconSpin className={`${classNamePrefix}__button__icon`} />
-      <span className={`${classNamePrefix}__button__text`}>{constants.text.buttonSpin}</span>
+      <span className={`${classNamePrefix}__button__text`}>{constants.text.button.spin}</span>
     </button>
   );
 

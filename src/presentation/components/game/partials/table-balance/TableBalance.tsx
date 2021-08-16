@@ -49,7 +49,7 @@ function TableBalance({ classNamePrefix }: ITableBalance): JSX.Element {
           onClick={stateSlotCoinsBalance ? withdrawOnClickHandlerAsync : withdrawButtonDisabledOnClickHandler}
         >
           <IconWithdraw className={`${classNamePrefix}__head__withdraw__icon`} />
-          <span className={`${classNamePrefix}__head__withdraw__text`}>{constants.text.buttonWithdraw}</span>
+          <span className={`${classNamePrefix}__head__withdraw__text`}>{constants.text.button.withdraw}</span>
         </button>
       </div>
     </div>

@@ -3,30 +3,30 @@ import { rdxSlotInitialState, IReduxSlotActions, IReduxSlotState, rdxSlotActionT
 /* eslint-disable indent */
 const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IReduxSlotState => {
   switch (action.type) {
-    case rdxSlotActionTypes.SLOT_WELLCOME:
+    case rdxSlotActionTypes.SLOT_GAME_WELCOME:
       return rdxSlotInitialState;
 
-    case rdxSlotActionTypes.SLOT_START:
+    case rdxSlotActionTypes.SLOT_GAME_START:
       return {
         ...rdxSlotInitialState,
         stateDebugMode: state.stateDebugMode,
         stateSlotIsWelcome: false,
       };
 
-    case rdxSlotActionTypes.SLOT_SPINNINGANIMATION:
+    case rdxSlotActionTypes.SLOT_GAME_SPINNINGANIMATION:
       return {
         ...state,
         stateSlotCanBePlayed: false,
         stateSlotIsSpinning: action.actionIsSpinning === true,
       };
 
-    case rdxSlotActionTypes.SLOT_SPINNINGHASENDED:
+    case rdxSlotActionTypes.SLOT_GAME_SPINNINGHASENDED:
       return {
         ...state,
         stateSlotSpinningHasEnded: action.actionHasEnded === true,
       };
 
-    case rdxSlotActionTypes.SLOT_ACHIEVEMENTS:
+    case rdxSlotActionTypes.SLOT_GAME_ACHIEVEMENTS:
       return {
         ...state,
         stateSlotAchievements: action.actionAchievements || rdxSlotInitialState.stateSlotAchievements,
@@ -42,7 +42,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         },
       };
 
-    case rdxSlotActionTypes.SLOT_DEBUGMODEMODAL:
+    case rdxSlotActionTypes.SLOT_DEBUGMODE_MODAL:
       return {
         ...state,
         stateDebugMode: {
@@ -51,7 +51,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         },
       };
 
-    case rdxSlotActionTypes.SLOT_DEBUGMODELUCKYPOSITONS:
+    case rdxSlotActionTypes.SLOT_DEBUGMODE_LUCKYPOSITONS:
       return {
         ...state,
         stateDebugMode: {
@@ -60,7 +60,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         },
       };
 
-    case rdxSlotActionTypes.SLOT_DEBUGMODELUCKYNUMBERS:
+    case rdxSlotActionTypes.SLOT_DEBUGMODE_LUCKYNUMBERS:
       return {
         ...state,
         stateDebugMode: {
@@ -69,13 +69,13 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         },
       };
 
-    case rdxSlotActionTypes.SLOT_COINSMODAL:
+    case rdxSlotActionTypes.SLOT_COINS_MODAL:
       return {
         ...state,
         stateSlotCoinsModalIsOpen: action.actionIsCoinsModalOpen === true,
       };
 
-    case rdxSlotActionTypes.SLOT_COINSBALANCEINCREASE:
+    case rdxSlotActionTypes.SLOT_COINS_BALANCEINCREASE:
       return {
         ...state,
         stateSlotCoinsBalance: state.stateSlotCoinsBalance + (action.actionCoinsBalanceIncrase || 0),
@@ -83,7 +83,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         stateSlotCanBePlayed: true,
       };
 
-    case rdxSlotActionTypes.SLOT_COINSBALANCEDECREASEONE:
+    case rdxSlotActionTypes.SLOT_COINS_BALANCEDECREASEONE:
       return {
         ...state,
         stateSlotCoinsBalance: (state.stateSlotCoinsBalance - 1) < 0 ? 0 : (state.stateSlotCoinsBalance - 1),

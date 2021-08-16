@@ -38,16 +38,21 @@ interface IConstants {
     };
   };
   text: {
-    gitHubName: string;
-    gitHubUrl: string;
-    copyright: string;
-    machineName: string;
-    buttonDebug: string;
-    buttonAuto: string;
-    buttonSpin: string;
-    buttonAddCoin: string;
-    buttonWithdraw: string;
+    footer: {
+      gitHubName: string;
+      gitHubUrl: string;
+      copyright: string;
+    },
+    button: {
+      start: string;
+      debug: string;
+      auto: string;
+      spin: string;
+      addCoin: string;
+      withdraw: string;
+    };
     game: {
+      machineName: string;
       isOver: string;
       isSuccess: string;
     };
@@ -114,16 +119,21 @@ const constants: IConstants = {
     },
   },
   text: {
-    gitHubName: '/furcan',
-    gitHubUrl: 'https://github.com/furcan',
-    copyright: 'All rights reserved.',
-    machineName: 'JACKPOT',
-    buttonDebug: 'Debug Mode',
-    buttonAuto: 'Auto Mode',
-    buttonSpin: 'SPIN',
-    buttonAddCoin: 'Add Coin',
-    buttonWithdraw: 'Withdraw',
+    footer: {
+      gitHubName: '/furcan',
+      gitHubUrl: 'https://github.com/furcan',
+      copyright: 'All rights reserved.',
+    },
+    button: {
+      start: 'Start Game',
+      debug: 'Debug Mode',
+      auto: 'Auto Mode',
+      spin: 'SPIN',
+      addCoin: 'Add Coin',
+      withdraw: 'Withdraw',
+    },
     game: {
+      machineName: 'JACKPOT',
       isOver: 'Uppsss. You have lost...',
       isSuccess: 'Wow! You have won!',
     },

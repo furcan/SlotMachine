@@ -14,40 +14,40 @@ import {
 
 const rdxSlotActionTypes: IReduxSlotActionTypes = {
   SLOT_DEBUGMODE: 'SLOT_DEBUGMODE',
-  SLOT_DEBUGMODEMODAL: 'SLOT_DEBUGMODEMODAL',
-  SLOT_DEBUGMODELUCKYPOSITONS: 'SLOT_DEBUGMODELUCKYPOSITONS',
-  SLOT_DEBUGMODELUCKYNUMBERS: 'SLOT_DEBUGMODELUCKYNUMBERS',
-  SLOT_COINSMODAL: 'SLOT_COINSMODAL',
-  SLOT_COINSBALANCEINCREASE: 'SLOT_COINSBALANCEINCREASE',
-  SLOT_COINSBALANCEDECREASEONE: 'SLOT_COINSBALANCEDECREASEONE',
-  SLOT_WELLCOME: 'SLOT_START',
-  SLOT_START: 'SLOT_START',
-  SLOT_SPINNINGANIMATION: 'SLOT_SPINNINGANIMATION',
-  SLOT_SPINNINGHASENDED: 'SLOT_SPINNINGHASENDED',
-  SLOT_ACHIEVEMENTS: 'SLOT_ACHIEVEMENTS',
+  SLOT_DEBUGMODE_MODAL: 'SLOT_DEBUGMODE_MODAL',
+  SLOT_DEBUGMODE_LUCKYPOSITONS: 'SLOT_DEBUGMODE_LUCKYPOSITONS',
+  SLOT_DEBUGMODE_LUCKYNUMBERS: 'SLOT_DEBUGMODE_LUCKYNUMBERS',
+  SLOT_COINS_MODAL: 'SLOT_COINS_MODAL',
+  SLOT_COINS_BALANCEINCREASE: 'SLOT_COINS_BALANCEINCREASE',
+  SLOT_COINS_BALANCEDECREASEONE: 'SLOT_COINS_BALANCEDECREASEONE',
+  SLOT_GAME_WELCOME: 'SLOT_GAME_WELCOME',
+  SLOT_GAME_START: 'SLOT_GAME_START',
+  SLOT_GAME_SPINNINGANIMATION: 'SLOT_GAME_SPINNINGANIMATION',
+  SLOT_GAME_SPINNINGHASENDED: 'SLOT_GAME_SPINNINGHASENDED',
+  SLOT_GAME_ACHIEVEMENTS: 'SLOT_GAME_ACHIEVEMENTS',
 };
 
 
 const slotWelcome = (): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_WELLCOME,
+  type: rdxSlotActionTypes.SLOT_GAME_WELCOME,
 });
 
-const slotStart = (): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_START,
+const slotStartGame = (): IReduxSlotActions => ({
+  type: rdxSlotActionTypes.SLOT_GAME_START,
 });
 
 const slotSpinningAnimation = (toggle: boolean): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_SPINNINGANIMATION,
+  type: rdxSlotActionTypes.SLOT_GAME_SPINNINGANIMATION,
   actionIsSpinning: toggle,
 });
 
 const slotSpinningHasEnded = (toggle: boolean): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_SPINNINGHASENDED,
+  type: rdxSlotActionTypes.SLOT_GAME_SPINNINGHASENDED,
   actionHasEnded: toggle,
 });
 
 const slotAchievements = (achievements: IReduxSlotAchievements): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_ACHIEVEMENTS,
+  type: rdxSlotActionTypes.SLOT_GAME_ACHIEVEMENTS,
   actionAchievements: achievements,
 });
 
@@ -57,31 +57,31 @@ const slotDebugModeSwitch = (toggle: boolean): IReduxSlotActions => ({
 });
 
 const slotDebugModeCloseModal = (): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_DEBUGMODEMODAL,
+  type: rdxSlotActionTypes.SLOT_DEBUGMODE_MODAL,
 });
 
 const slotDebugModeLuckyPositions = (positions: IReduxSlotLuckyPositions): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_DEBUGMODELUCKYPOSITONS,
+  type: rdxSlotActionTypes.SLOT_DEBUGMODE_LUCKYPOSITONS,
   actionDebugLuckyPositions: positions,
 });
 
 const slotDebugModeLuckyNumbers = (numbers: IReduxSlotLuckyNumbers): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_DEBUGMODELUCKYNUMBERS,
+  type: rdxSlotActionTypes.SLOT_DEBUGMODE_LUCKYNUMBERS,
   actionDebugLuckyNumbers: numbers,
 });
 
 const slotCoinsModalToggle = (toggle: boolean): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_COINSMODAL,
+  type: rdxSlotActionTypes.SLOT_COINS_MODAL,
   actionIsCoinsModalOpen: toggle,
 });
 
 const slotCoinsBalanceIncraseByAmount = (balance: number): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_COINSBALANCEINCREASE,
+  type: rdxSlotActionTypes.SLOT_COINS_BALANCEINCREASE,
   actionCoinsBalanceIncrase: balance,
 });
 
 const slotCoinsBalanceDecreaseOneCoin = (): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_COINSBALANCEDECREASEONE,
+  type: rdxSlotActionTypes.SLOT_COINS_BALANCEDECREASEONE,
 });
 
 
@@ -89,8 +89,8 @@ const rdxSlotWelcomeAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<
   dispatch(slotWelcome());
 };
 
-const rdxSlotStartAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotStart());
+const rdxSlotStartGameAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
+  dispatch(slotStartGame());
 };
 
 const rdxSlotSpinningAnimationAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
@@ -136,7 +136,7 @@ const rdxSlotCoinsBalanceDecreaseOneCoinAsync = (): IReduxSlotDispatch => async 
 };
 
 const rdxSlotCoinsWithdrawAsync = (): IReduxSlotDispatch => async (dispatch: Dispatch<IReduxSlotActions>) => {
-  dispatch(slotStart());
+  dispatch(slotStartGame());
 };
 
 const rdxSlotSelector = (state: IReduxSlotState): IReduxSlotState => state.slotReducer;
@@ -144,7 +144,7 @@ const rdxSlotSelector = (state: IReduxSlotState): IReduxSlotState => state.slotR
 export {
   rdxSlotActionTypes,
   rdxSlotWelcomeAsync,
-  rdxSlotStartAsync,
+  rdxSlotStartGameAsync,
   rdxSlotSpinningAnimationAsync,
   rdxSlotSpinningHasEndedAsync,
   rdxSlotAchievementsAsync,

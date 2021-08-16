@@ -38,7 +38,7 @@ function Machine(): JSX.Element {
   return (
     <div className="machine">
       <div className={[`machine__reels`, `${stateSlotIsSpinning ? 'machine__reels--spinning' : ''}`].join(' ').trim()}>
-        <h2 className="machine__reels__title">{constants.text.machineName}</h2>
+        <h2 className="machine__reels__title">{constants.text.game.machineName}</h2>
         <MachineReel
           classNamePrefix={'machine__reels'}
           slotData={stateSlotData}

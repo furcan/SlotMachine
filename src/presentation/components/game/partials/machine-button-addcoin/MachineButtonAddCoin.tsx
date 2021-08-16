@@ -31,7 +31,7 @@ function MachineButtonAddCoin({ classNamePrefix }: IMachineButtonAddCoin): JSX.E
       disabled={!stateSlotSpinningHasEnded}
     >
       <IconCoin className={`${classNamePrefix}__button__icon`} />
-      <span className={`${classNamePrefix}__button__text`}>{constants.text.buttonAddCoin}</span>
+      <span className={`${classNamePrefix}__button__text`}>{constants.text.button.addCoin}</span>
     </button>
   );
 }

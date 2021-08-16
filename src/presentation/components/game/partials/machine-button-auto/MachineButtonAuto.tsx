@@ -31,7 +31,7 @@ function MachineButtonAuto({ classNamePrefix }: IMachineButtonAuto): JSX.Element
       onClick={stateSlotSpinningHasEnded ? autoButtonOnClickHandlerAsync : undefined}
     >
       <IconAuto className={`${classNamePrefix}__button__icon`} />
-      <span className={`${classNamePrefix}__button__text`}>{constants.text.buttonAuto}</span>
+      <span className={`${classNamePrefix}__button__text`}>{constants.text.button.auto}</span>
     </button>
   );
 

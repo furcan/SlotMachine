@@ -20,7 +20,7 @@ const rdxSlotInitialState: IReduxSlotState = {
   },
   stateSlotCoinsModalIsOpen: false,
   stateSlotCoinsBalance: 0,
-  stateSlotIsWelcome: false, // TODO: will be true after dev
+  stateSlotIsWelcome: true,
   stateSlotCanBePlayed: false,
   stateSlotIsSpinning: false,
   stateSlotSpinningHasEnded: true,

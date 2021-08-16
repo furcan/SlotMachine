@@ -1,22 +1,37 @@
 import { useDispatch } from 'react-redux';
+import { FcStart as IconStart } from 'react-icons/fc';
 
-import { rdxSlotStartAsync } from 'application/redux';
+import { constants } from 'application/constants';
+import { rdxSlotStartGameAsync } from 'application/redux';
 
-function Welcome(): JSX.Element { // TODO:
+import 'presentation/components/welcome/Welcome.scss';
+
+
+function Welcome(): JSX.Element {
   const dispatch = useDispatch();
 
-  const buttonStartHandler = (): void => {
-    dispatch(rdxSlotStartAsync());
+  const startGameButtonOnClickHandlerAsync = async (): Promise<void> => {
+    dispatch(rdxSlotStartGameAsync());
   };
 
   return (
-    <div>
-      <h1>Welcome... (TODO)</h1>
-      <br />
-      <br />
-      <br />
-      <button type="button" onClick={buttonStartHandler}>
-        <span>{'START GAME (TODO)'}</span>
+    <div className="welcome">
+      <div className="welcome__banner">
+        <img
+          width="1920"
+          height="783"
+          className="welcome__banner__image"
+          alt={constants.app.name}
+          src={`${process.env.PUBLIC_URL}/content/media/banners/slot-machine-banner-welcome.png`}
+        />
+      </div>
+      <button
+        type="button"
+        className="welcome__button"
+        onClick={startGameButtonOnClickHandlerAsync}
+      >
+        <IconStart className="welcome__button__icon" />
+        <span className="welcome__button__text">{constants.text.button.start}</span>
       </button>
     </div>
   );
