@@ -1,3 +1,9 @@
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/furcan/SlotMachine/main/public/slot-machine-cover.png" width="1920" height="auto" alt="Slot Machine">
+</p>
+<br />
+
 # Slot Machine
 A Slot Machine simulation that has been developed by using React(TypeScript/SCSS). Redux has been used for state management.
 
@@ -16,10 +22,7 @@ App: https://furcan.github.io/SlotMachine/
 | 3 2xBAR symbols on any line                     | x20     |
 | 3 BAR symbols on any line                       | x10     |
 | Combination of any BAR symbols on any line      | x5      |
-|                                                 |         |
 
----
----
 ---
 
 ## Install the dependencies
@@ -27,8 +30,6 @@ App: https://furcan.github.io/SlotMachine/
 ```sh
 yarn
 ```
-
----
 
 ## Runs the app in the development mode
 
@@ -40,8 +41,6 @@ You will also see any lint errors in the console.
 ```sh
 yarn start
 ```
-
----
 
 ## Lint/Test
 
@@ -55,8 +54,6 @@ yarn lint
 yarn test
 ```
 
----
-
 ## Builds the app for production (GitHub Actions)
 
 This repository is using GitHub Actions for the build and deployment.\
@@ -64,9 +61,6 @@ This repository is using GitHub Actions for the build and deployment.\
 
 https://furcan.github.io/SlotMachine/
 
-
----
----
 ---
 
 ## Copyright
