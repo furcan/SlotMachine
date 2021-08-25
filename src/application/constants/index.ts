@@ -1,3 +1,5 @@
+import { INotifyOptions } from 'notiflix';
+
 import * as packageJSON from '../../../package.json';
 
 
@@ -13,29 +15,7 @@ interface IConstants {
     animationDurationStepAsMs: number;
     showSucceededIndicatior: boolean;
     maxCoinsCount: number;
-    notifyOptions: {
-      borderRadius: string;
-      cssAnimationStyle: 'fade' | 'zoom' | 'from-right' | 'from-top' | 'from-bottom' | 'from-left';
-      fontFamily: string;
-      fontSize: string;
-      timeout: number;
-      success?: {
-        background?: string,
-        textColor?: string,
-      };
-      failure?: {
-        background?: string,
-        textColor?: string,
-      };
-      warning?: {
-        background?: string,
-        textColor?: string,
-      };
-      info?: {
-        background?: string,
-        textColor?: string,
-      };
-    };
+    notifyOptions: INotifyOptions;
   };
   text: {
     footer: {
