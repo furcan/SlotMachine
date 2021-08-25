@@ -15,7 +15,7 @@ import {
 const rdxSlotActionTypes: IReduxSlotActionTypes = {
   SLOT_DEBUGMODE: 'SLOT_DEBUGMODE',
   SLOT_DEBUGMODE_MODAL: 'SLOT_DEBUGMODE_MODAL',
-  SLOT_DEBUGMODE_LUCKYPOSITONS: 'SLOT_DEBUGMODE_LUCKYPOSITONS',
+  SLOT_DEBUGMODE_LUCKYPOSITIONS: 'SLOT_DEBUGMODE_LUCKYPOSITIONS',
   SLOT_DEBUGMODE_LUCKYNUMBERS: 'SLOT_DEBUGMODE_LUCKYNUMBERS',
   SLOT_COINS_MODAL: 'SLOT_COINS_MODAL',
   SLOT_COINS_BALANCEINCREASE: 'SLOT_COINS_BALANCEINCREASE',
@@ -61,7 +61,7 @@ const slotDebugModeCloseModal = (): IReduxSlotActions => ({
 });
 
 const slotDebugModeLuckyPositions = (positions: IReduxSlotLuckyPositions): IReduxSlotActions => ({
-  type: rdxSlotActionTypes.SLOT_DEBUGMODE_LUCKYPOSITONS,
+  type: rdxSlotActionTypes.SLOT_DEBUGMODE_LUCKYPOSITIONS,
   actionDebugLuckyPositions: positions,
 });
 

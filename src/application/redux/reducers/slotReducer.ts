@@ -51,7 +51,7 @@ const slotReducer = (state = rdxSlotInitialState, action: IReduxSlotActions): IR
         },
       };
 
-    case rdxSlotActionTypes.SLOT_DEBUGMODE_LUCKYPOSITONS:
+    case rdxSlotActionTypes.SLOT_DEBUGMODE_LUCKYPOSITIONS:
       return {
         ...state,
         stateDebugMode: {

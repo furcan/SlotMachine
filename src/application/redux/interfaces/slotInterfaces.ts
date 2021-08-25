@@ -61,7 +61,7 @@ interface IReduxSlotState {
 interface IReduxSlotActionTypes {
   SLOT_DEBUGMODE: string;
   SLOT_DEBUGMODE_MODAL: string;
-  SLOT_DEBUGMODE_LUCKYPOSITONS: string;
+  SLOT_DEBUGMODE_LUCKYPOSITIONS: string;
   SLOT_DEBUGMODE_LUCKYNUMBERS: string;
   SLOT_COINS_MODAL: string;
   SLOT_COINS_BALANCEINCREASE: string;

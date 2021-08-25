@@ -9,7 +9,7 @@ import {
 } from 'application/helpers';
 
 
-describe('Helper functions should be work as epected.', () => {
+describe('Helper functions should be work as expected.', () => {
 
   describe('generateRandomNumberBetween()', () => {
     it('"generateRandomNumberBetween" function should return a number between the arguments:', () => {
